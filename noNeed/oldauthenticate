@@ -1,0 +1,72 @@
+<?php
+
+session_start();
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $db_conn = new mysqli('localhost', 'root', '', 'details');
+
+    if ($db_conn->connect_error) {
+        die('Connection to database failed: ' . $db_conn->connect_error);
+    }
+
+    // Using prepared statements to prevent SQL injection
+    $query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+    $stmt = $db_conn->prepare($query);
+    $stmt->bind_param('ss', $username, sha1($password));
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Fetch user details including role
+        $user = $result->fetch_assoc();
+
+        $_SESSION['valid_user'] = $username;
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['user_id'] = $user['id']; // Save the user's id in the session
+    }
+
+    $db_conn->close();
+}
+?>
+
+<html>
+<body>
+    <title>Login</title>
+
+    <?php
+    if (isset($_SESSION['valid_user'])) {
+        echo 'You are logged in as: ' . $_SESSION['valid_user'] . ' <br />';
+        echo 'Your role is: ' . $_SESSION['role'] . ' <br />';
+        echo 'Your id is: ' . $_SESSION['user_id'] . ' <br />';
+        echo '<a href="logout.php">Log out</a><br />';
+    } else {
+        if (isset($username)) {
+            echo 'Could not log you in.<br />';
+        } else {
+            echo 'You are not logged in.<br />';
+        }
+
+
+       echo '<div class="login">
+        <h1>Login</h1>
+        <form action="authenticate.php" method="post">
+            <label for="username">
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="text" name="username" placeholder="Username" id="username" required>
+            <label for="password">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="password" placeholder="Password" id="password" required>
+            <input type="submit" value="Login">
+        </form>
+    </div>';
+    }
+    ?>
+    <br />
+    <a href="members_only.php">Members section</a>
+</body>
+</html>

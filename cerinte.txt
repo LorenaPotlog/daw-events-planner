@@ -1,0 +1,75 @@
+(minim - implementarea unor functionalitati de baza intr-o aplicatie web: autentificare, CRUD pe baza de date, roluri)
+
+Cerinte proiect (sinteza, vezi Cerinte proiecte.docx!):
+    1.     Proiectul va utiliza o baza de date MySQL si va fi programat în PHP. DONE
+    2.     Prin intermediul aplicatiei se vor efectua operatii de stergere, adaugare, citire asupra bazei de date. DONE
+    3.     Va exista o pagina de autentificare/înregistrare de utilizatori. DONE
+    4.     Vor exista mai multe categorii de utilizatori. Fiecare categorie va avea anumite actiuni specifice. DONE
+    5.     Aplicatia va contine mai multe pagini dinamice cu legaturi între ele. DONE
+    6.     Va exista posibilitatea de generare si vizualizare de rapoarte (nu doar HTML/PHP/CSV).
+    7.     Elemente statistice ale site-ului (website analytics): vizitatori, accesari etc.
+    8.     Formular de contact cu posibilitatea de a transmite email-uri.
+    9.     Integrarea de informatii (nu pagini, elemente ale acestora – parsare continut) din surse externe.
+    10. Terminarea sesiunii.
+
+    Sugestii:
+
+    o gasiti o solutie pentru reutilizarea codului HTML in aplicatie; DONE
+
+    o folositi un mecanism generic de inserare/modificare/obtinere a informatiilor in/din BD; DONE (mai putin update)
+
+    o folositi un mecanism generic de parcurgere/afisare a elementelor aplicatiei; DONE
+
+    o evitati sa folositi copy/paste pentru cod PHP; scrieti functii pentru astfel de situatii; DONE
+
+    o folositi taguri <?php ?> pentru imbricarea codului PHP in codul HTML, evitati pe cat posibil afisarea unei pagini (sau a componentelor) HTML cu echo; DONE (de verificat echo)
+
+    o gasiti o solutie pentru persistenta parametriilor (GET sau POST).
+
+
+
+        Integrare module (email, export, integrare informatie externa)
+
+        · In functie de specificul fiecarei teme trebuie sa introduceti in aplicatie continut parsat/modelat din surse externe (nu direct url, frame etc);
+
+        · Pentru diferite situatii: contact, comanda, mesaje este necesar sa implementati o functionalitate de transmitere a mesajelor email;
+
+        · Aplicatia va permite importul/exportul in diferite formate (excel, doc, pdf etc) a informatiilor spre/din aplicatie;
+
+        · Adaugati aplicatiei un element multimedia si realizati o serie de optimizari SEO;
+
+        · Testati functionarea corespunzatoare a aplicatiei indiferent de browser-ul utilizat.
+
+        Sfaturi utile pentru implementarea proiectului:
+
+        · grupati elementele (sau functionalitatile) cu proprietati comune;
+
+        · decuplati cat mai mult posibil modulele (incercati sa separati componentele care se ocupa de prezentare si cele de modelare);
+
+        · alegeti solutii de reutilizare a codului, evitati sa aveti doua sau mai multe componente care executa aceeasi operatie in contexte diferite;
+
+        · gasiti solutii de implementare generice care permit extinderi usoare;
+
+        · puneti accent pe utilizare, propuneti fluxuri intuitive;
+
+        · inspirati-va din aplicatii web similare.
+
+
+    SECURITATE
+    Autentificare si securizare acces
+
+    · Se doreste implementarea actiunilor specifice pentru fiecare categorie de utilizator (se va verifica separarea rolurilor);
+
+    · In acest moment trebuie sa aveti in vedere si aspecte cu privire la securizarea aplicației web împotriva atacurilor comune la care ea va fi expusă după lansarea în Internet;
+
+    · Se vor lua în considerare următoarele tipuri de atacuri discutate: Form Spoofing, HTTP Request Spoofing, XSS, XRSF, SQL Injection;
+
+    · Adițional, toate formularele publice (cum ar fi, spre exemplu, formularul de contact sau orice alt formular care nu necesită privilegii pentru a fi trimis server-ului) să conțină metode de protecție împotriva transmiterii automate – este recomandata utilizarea reCAPTCHA, dar orice soluție validă va fi acceptată);
+
+    · La securizarea aplicației, ușurința în utilizare trebuie să nu fie afectată în mod inutil de mecanismele suplimentare de securizare (cât mai multe dintre acțiunile legitime ale utilizatorilor să se întâmple la fel de ușor ca înainte de implementarea acțiunilor de securitate). Recomandări:
+
+    o pentru securizarea formularelor, este indicat (dar nu obligatoriu) să se folosească, eventual, generatoare de formulare;
+
+    o pentru securizarea împotriva SQL Injection este recomandată utilizarea unor functii de tipul: mysql_real_escape_string(),php_mysql_prepared_statements();
+
+    o se poate utiliza, cu titlu de excepție, un script extern de tip CAPTCHA.
