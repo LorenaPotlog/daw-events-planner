@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/contact.php';
+require __DIR__ . '/../src/services.php';
 
 ?>
 
@@ -11,7 +11,7 @@ session_start();
 if (is_user_logged_in() && is_admin()) {
     ?>
     <button style='color: black; margin-top: 60px; border: 2px solid black; text-align: center; font-size: 14px; font-weight: bold; border-radius: 20px; background-color: #f0f0f0; display: inline-block;'>
-        <a href='./insert_package.php' style='color: black; text-decoration: underline;'>Add a new package</a></button>
+        <a href='#' style='color: black; text-decoration: underline;'>Add a new package</a></button>
     <?php
 }
 ?>

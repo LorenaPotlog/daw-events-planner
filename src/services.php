@@ -1,7 +1,8 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
 
-function retrieveServices() {
+function retrieveServices(): array
+{
     $db = new mysqli('localhost', 'root', '', 'details');
 
     $filter_menu_type = $_GET['menu_type'] ?? '';
@@ -61,7 +62,8 @@ function retrieveServices() {
     return $services;
 }
 
-function displayServices() {
+function displayServices(): void
+{
     $services = retrieveServices();
     foreach ($services as $service) {
         ?>
