@@ -5,7 +5,7 @@ require __DIR__ . '/../src/login.php';
 ?>
 <?php view('header', ['title' => 'Login']) ?>
 
-<form action="../src/login.php" method="post">
+<form action="../src/login.php" method="post" style="padding-top: 50px">
     <h1>Login</h1>
     <div>
         <label for="username">Username:</label>

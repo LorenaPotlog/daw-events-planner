@@ -22,7 +22,7 @@ session_destroy();
 </head>
 <body>
 <?php view('header', ['title' => 'Logout']); ?>
-<div class="message-box">
+<div class="message-box" style="padding-top: 50px">
     <?php if (!empty($old_user)) : ?>
         Logged out.<br />
     <?php else : ?>

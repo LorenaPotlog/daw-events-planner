@@ -9,7 +9,7 @@ Cerinte proiect (sinteza, vezi Cerinte proiecte.docx!):
     6.     Va exista posibilitatea de generare si vizualizare de rapoarte (nu doar HTML/PHP/CSV).
     7.     Elemente statistice ale site-ului (website analytics): vizitatori, accesari etc.
     8.     Formular de contact cu posibilitatea de a transmite email-uri.
-    9.     Integrarea de informatii (nu pagini, elemente ale acestora – parsare continut) din surse externe.
+    9.     Integrarea de informatii (nu pagini, elemente ale acestora – parsare continut) din surse externe. //exemple meniu//booking camere
     10. Terminarea sesiunii.
 
     Sugestii:
@@ -73,3 +73,5 @@ Cerinte proiect (sinteza, vezi Cerinte proiecte.docx!):
     o pentru securizarea împotriva SQL Injection este recomandată utilizarea unor functii de tipul: mysql_real_escape_string(),php_mysql_prepared_statements();
 
     o se poate utiliza, cu titlu de excepție, un script extern de tip CAPTCHA.
+    
+    Link catre github + link spre hosting

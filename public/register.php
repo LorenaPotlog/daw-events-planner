@@ -4,7 +4,7 @@ require __DIR__ . '/../src/register.php';
 ?>
 
 <?php view('header', ['title' => 'Register']); ?>
-    <form action="../src/register.php" method="post">
+    <form action="../src/register.php" method="post" style="padding-top: 50px">
         <h1>Sign Up</h1>
 
         <div>
