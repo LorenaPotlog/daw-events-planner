@@ -6,7 +6,8 @@
         "symfony/cache": "^5.4",
       "ext-mysqli": "*",
         "ext-pdo": "*",
-      "ext-gd": "*"
+      "ext-gd": "*",
+        "phpmailer/phpmailer": "^6.9"
     },
     "autoload": {
         "psr-0": {"": "src/"}
