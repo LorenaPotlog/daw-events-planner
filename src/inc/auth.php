@@ -8,10 +8,10 @@ function register_user(string $firstname, string $lastname, string $email, strin
 {
     $conn = getDBConnection();
 
-//    $existingEmailUser = find_user_by_email($email);
-//    if ($existingEmailUser !== null) {
-//        throw new Exception("Email already registered. Please login.");
-//    }
+    $existingEmailUser = find_user_by_email($email);
+    if ($existingEmailUser !== null) {
+        throw new Exception("Email already registered. Please login.");
+    }
 
     // Prepare SQL statement
     $sql = "INSERT INTO users (username, lastname, firstname, email, password) VALUES (?, ?, ?, ?, ?)";
@@ -24,9 +24,11 @@ function register_user(string $firstname, string $lastname, string $email, strin
     // Bind parameters and execute the statement
     $stmt->bind_param("sssss", $username, $lastname, $firstname, $email, $hashedPassword);
 
-    send_activation_email($email);
-
     if (!$stmt->execute()) {
+        return false;
+    }
+
+    if(!send_activation_email($email)){
         return false;
     }
 
@@ -36,27 +38,27 @@ function register_user(string $firstname, string $lastname, string $email, strin
     return true;
 }
 
-function send_activation_email(string $email): void
+function send_activation_email(string $email): bool
 {
     $verificationCode = md5($email);
-    $verificationLink = "http://yourwebsite.com/verify.php?code=$verificationCode";
+    $verificationLink = "http://localhost/details/src/verify.php?code=$verificationCode";
     $subject = "Verify Your Email Address";
     $message = "Click the link below to verify your email address:\n$verificationLink";
 
-    // Use PHP's mail function to send the email
-    $mailed = mail($email, $subject, $message);
+    $mailed = send_email($email,$subject,$message);
 
-    // Optionally, you can check if the mail function was successful
     if (!$mailed) {
-        // Handle email sending failure (log error, display message, etc.)
+        return false;
     }
+
+    return true;
 }
 
 function find_user_by_username(string $username): ?array
 {
     $conn = getDBConnection();
 
-    $sql = 'SELECT id, username, password, role FROM users WHERE username=?';
+    $sql = 'SELECT id, username, password, role , verified FROM users WHERE username=?';
     $statement = $conn->prepare($sql);
 
     if (!$statement) {
@@ -72,14 +74,15 @@ function find_user_by_username(string $username): ?array
         return null; // No user found
     }
 
-    $statement->bind_result($fetchedId, $fetchedUsername, $fetchedPassword, $fetchedRole);
+    $statement->bind_result($fetchedId, $fetchedUsername, $fetchedPassword, $fetchedRole, $fetchedVerified);
     $statement->fetch();
 
     $result = [
         'id' => $fetchedId,
         'username' => $fetchedUsername,
         'password' => $fetchedPassword,
-        'role' => $fetchedRole
+        'role' => $fetchedRole,
+        'verified' => $fetchedVerified
     ];
 
     $statement->close();
@@ -122,20 +125,29 @@ function find_user_by_email(string $email): ?array
     return $result;
 }
 
-function login(string $username, string $password): bool
+/**
+ * @throws Exception
+ */
+function login(string $username, string $password): void
 {
     $user = find_user_by_username($username);
 
-    if ($user && password_verify($password, $user['password'])) {
-        // set username, role, and ID in the session
-        $_SESSION['valid_user'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-        $_SESSION['user_id'] = $user['id'];
+    if(!$user){
+        throw new Exception("Wrong username");
 
-        return true;
     }
 
-    return false;
+    if($user['verified'] == 0 ){
+        throw new Exception("Email not verified");
+    }
+
+    if (!password_verify($password, $user['password'])) {
+        throw new Exception("Wrong password");
+    }
+
+    $_SESSION['valid_user'] = $user['username'];
+    $_SESSION['role'] = $user['role'];
+    $_SESSION['user_id'] = $user['id'];
 }
 
 function is_user_logged_in(): bool

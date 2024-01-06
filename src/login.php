@@ -11,20 +11,26 @@ $errors = [];
 if (is_post_request()) {
     $username = $_POST['username'];
     $password  = $_POST['password'];
+
     // if login fails
-    if (!login($username,$password)) {
-
-        $errors['login'] = 'Invalid username or password';
-
-        redirect_with('login.php', [
-            'errors' => $errors,
-            'inputs' => $inputs
-        ]);
+    try {
+      login($username, $password);
+    } catch (Exception $e) {
+        $errors['login'] = $e->getMessage();
+        $_SESSION['inputs'] = $_POST;
+        $_SESSION['errors'] = $errors;
+        redirect_to('../public/login.php');
     }
 
     // login successfully
     redirect_to('../public/index.php');
 
 } else if (is_get_request()) {
-    [$errors, $inputs] = session_flash('errors', 'inputs');
+    echo sizeof($errors);
+    [$inputs, $errors] = session_flash('inputs', 'errors');
+    if (!empty($errors)) {
+        foreach ($errors as $errorKey => $errorMessage) {
+            flash('flash_' . uniqid(), $errorMessage, FLASH_ERROR);
+        }
+    }
 }

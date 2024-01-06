@@ -1,8 +1,11 @@
 <?php
 
 require __DIR__ . '/../src/bootstrap.php';
+require_once '../phpmailer/mail_cod.php';
 
 $nameErr = "";
+
+///redirect user to login if email already exists
 
 if (is_post_request()) {
 
@@ -37,9 +40,8 @@ if (is_post_request()) {
     if (empty($errors)){
         try {
             if (register_user($firstname, $lastname, $email, $username, $password)) {
-                redirect_with_message(
-                    '../public/login.php',
-                    'Registration successful. Please check your email for verification.'
+                redirect_to(
+                    '../public/registration_success.php',
                 );
             }
         } catch (Exception $e) {

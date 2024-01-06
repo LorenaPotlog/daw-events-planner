@@ -3,6 +3,8 @@ require __DIR__ . '/../src/bootstrap.php';
 require __DIR__ . '/../src/contact.php';
 
 ?>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
 <?php view('header', ['title' => 'Contact us']); ?>
     <form method="post" action="../src/contact.php">
@@ -17,8 +19,10 @@ require __DIR__ . '/../src/contact.php';
         <label for="message">Message:</label><br>
         <textarea id="message" name="message" required></textarea><br>
 
-        <!-- Your reCAPTCHA here -->
-<!--        <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div><br>-->
+        <div class="form-input">
+            <!-- Google reCAPTCHA box -->
+            <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
+        </div>
 
         <input type="submit" value="Submit">
     </form>
