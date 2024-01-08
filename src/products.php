@@ -1,6 +1,46 @@
 <?php
 //require('../fpdf/fpdf.php');
 
+function retrieveProductById($productId) {
+    $db = getDBConnection(); // Get database connection
+
+    $productId = intval($productId);
+
+    $query = "SELECT * FROM products WHERE id = ?";
+    $stmt = $db->prepare($query);
+
+    if (!$stmt) {
+        return null; // Or handle the error as required
+    }
+
+    $stmt->bind_param("i", $productId);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $product = [
+            'name' => htmlspecialchars($row["name"]),
+            'description' => htmlspecialchars($row["description"]),
+            'price' => htmlspecialchars($row["price"]),
+            'quantity' => htmlspecialchars($row["quantity"]),
+            'id' => htmlspecialchars($row["id"]),
+            'image' => $row["image"]
+
+        ];
+
+        $stmt->close();
+        $db->close();
+
+        return $product; // Return the retrieved product details
+    } else {
+        $stmt->close();
+        $db->close();
+        return null; // Product not found with the given ID
+    }
+}
+
 function retrieveProducts() {
     $db = getDBConnection(); // Get database connection
 
@@ -23,16 +63,16 @@ function retrieveProducts() {
                     'description' => htmlspecialchars($row["description"]),
                     'price' => htmlspecialchars($row["price"]),
                     'quantity' => htmlspecialchars($row["quantity"]),
-                    'company_name' => htmlspecialchars($row["company_name"]),
                     'id' => htmlspecialchars($row["id"]),
+                    'image' => $row["image"]
                 ];
 
-                if (!empty($row["photo"])) {
-                    $basePhotoURL = "resources/photos/";
-                    $photoName = $row["photo"];
-                    $fullPhotoURL = $basePhotoURL . $photoName;
-                    $product['photo'] = htmlspecialchars($fullPhotoURL);
-                }
+//                if (!empty($row["photo"])) {
+//                    $basePhotoURL = "resources/photos/";
+//                    $photoName = $row["photo"];
+//                    $fullPhotoURL = $basePhotoURL . $photoName;
+//                    $product['photo'] = htmlspecialchars($fullPhotoURL);
+//                }
 
                 $products[] = $product;
             }
@@ -51,7 +91,7 @@ function retrieveProducts() {
     return $products;
 }
 
-function insertProduct($name, $description, $price, $quantity, $userID) {
+function insertProduct($name, $description, $price, $quantity, $userID,$productImage) {
     $db = getDBConnection(); // Retrieve the database connection
 
     $name = htmlspecialchars(trim($name));
@@ -64,14 +104,14 @@ function insertProduct($name, $description, $price, $quantity, $userID) {
         return "All fields are required.";
     }
 
-    $query = "INSERT INTO products (name, description, price, quantity, user_id) VALUES (?, ?, ?, ?, ?)";
+    $query = "INSERT INTO products (name, description, price, quantity, user_id, image) VALUES (?, ?, ?, ?, ?,?)";
     $stmt = $db->prepare($query);
 
     if (!$stmt) {
         return "Error: Couldn't prepare the statement.";
     }
 
-    $stmt->bind_param("ssdii", $name, $description, $price, $quantity, $userID);
+    $stmt->bind_param("ssdiis", $name, $description, $price, $quantity, $userID,$productImage);
     $stmt->execute();
 
     $affected_rows =  $stmt->affected_rows;
@@ -89,15 +129,15 @@ function insertProduct($name, $description, $price, $quantity, $userID) {
 function deleteProduct($productID) {
     $db = getDBConnection(); // Get database connection
 
-    // Sanitize the input
-    $productID = intval($productID);
+//    // Sanitize the input
+//    $productID = intval($productID);
 
     // Prepare the delete statement
     $query = "DELETE FROM products WHERE id = ?";
     $stmt = $db->prepare($query);
 
     if (!$stmt) {
-        return "Error: Couldn't prepare the statement.";
+        echo "Error: Couldn't prepare the statement.";
     }
 
     // Bind the productID parameter
@@ -107,7 +147,7 @@ function deleteProduct($productID) {
     if ($stmt->affected_rows > 0) {
         $stmt->close();
         $db->close();
-        return "Product with ID {$productID} deleted successfully.";
+        echo "Product with ID {$productID} deleted successfully.";
     } else {
         $stmt->close();
         $db->close();
