@@ -26,7 +26,6 @@ if (is_post_request()) {
     redirect_to('../public/index.php');
 
 } else if (is_get_request()) {
-    echo sizeof($errors);
     [$inputs, $errors] = session_flash('inputs', 'errors');
     if (!empty($errors)) {
         foreach ($errors as $errorKey => $errorMessage) {

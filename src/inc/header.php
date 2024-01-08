@@ -55,8 +55,8 @@
 </head>
 <body>
 <!-- nav -->
-<nav>
-    <ul class="menu" style="padding-bottom: 20px; z-index: -1000" >
+<nav style="padding: 20px">
+    <ul class="menu" style=" z-index: 1000" >
         <li>
             <div id="home">
                 <a href="index.php">Home</a>
@@ -110,7 +110,7 @@
 
         <?php endif; ?>
 <!--        to move this-->
-    </ul ><div style="z-index: 1"><?php flash() ?></div>
+    </ul >
 </nav>
-<main>
+<main style="padding: 100px">
 

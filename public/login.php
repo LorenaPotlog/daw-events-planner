@@ -20,6 +20,7 @@ require __DIR__ . '/../src/login.php';
     <section>
         <button type="submit">Login</button>
         <a href="register.php">Register</a>
+        <p><a href="enter_email.php">Forgot your password?</a></p>
     </section>
 </form>
 <?php view('footer') ?>
