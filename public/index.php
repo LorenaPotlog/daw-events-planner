@@ -7,8 +7,9 @@ require __DIR__ . '/../src/register.php';
 <div id="page-grid">
             <section id="welcome" style="padding-top: 10%">
                 <h2>Welcome!</h2>
+
                 <p>
-                Welcome to DREAM, your (partially) virtual wedding planner! Whether you're seeking assistance with those last-minute details like booking a band or simply wish to sit back, relax, and entrust the planning to someone else, we've got you covered.
+                Welcome to DETAILS, your (partially) virtual wedding planner! Whether you're seeking assistance with those last-minute details like booking a band or simply wish to sit back, relax, and entrust the planning to someone else, we've got you covered.
 
                 Explore our SERVICES section to discover our full packages tailored to your needs. Here, you'll find specifics like total pricing, maximum guest counts, and menu options.
 
@@ -226,6 +227,26 @@ require __DIR__ . '/../src/register.php';
 
             </section>
         </div>
+<section>
+    <h3 style="color: #900000"><?php
+        session_start();
+
+        // Check if the page view counter session variable exists
+
+        if(isset($_SESSION['page_views']))
+        {
+            // Increment the page view counter
+            $_SESSION['page_views']++;
+        } Else {
+            // Set the initial page view counter to 1
+            $_SESSION['page_views'] = 1;
+        }
+
+        // Display the page view count
+        echo "Page Views: " . $_SESSION['page_views'];
+        ?></h3>
+</section>
+
     </main>
 
     <footer>

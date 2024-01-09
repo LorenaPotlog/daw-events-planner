@@ -69,19 +69,19 @@
         </li>
 
         <li>
-            <div><a href="todo.php">TO DO</a></div>
-        </li>
-
-        <li>
             <div><a href="services.php">Services</a></div>
             <ul>
-                <li><a href="#">Wedding</a></li>
-                <li><a href="#">Bachelor & Bachelorette</a></li>
+                <li><a href="services.php?name=wedding">Wedding</a></li>
+                <li><a href="services.php?name=bachelor">Bachelor & Bachelorette</a></li>
             </ul>
         </li>
         <li>
             <div><a href="products.php">Shop</a></div>
         </li>
+        <li>
+            <div><a href="blog.php">Blog / Reviews</a></div>
+        </li>
+
         <li>
             <div><a href="contact.php">Contact</a></div>
             <ul>
@@ -99,7 +99,7 @@
                 <div><a href="logout.php">Logout</a></div>
             </li>
         <?php else : ?>
-            <li><a href="login.php">Login</a></li>
+            <li><a href="login.php">Login/Register</a></li>
         <?php endif; ?>
         <?php
         if (is_admin()) :

@@ -26,8 +26,8 @@ function retrieveProductById($productId) {
             'price' => htmlspecialchars($row["price"]),
             'quantity' => htmlspecialchars($row["quantity"]),
             'id' => htmlspecialchars($row["id"]),
-            'image' => $row["image"]
-
+            'image' => $row["image"],
+            'longDesc' => $row["longDesc"]
         ];
 
         $stmt->close();
@@ -64,7 +64,9 @@ function retrieveProducts() {
                     'price' => htmlspecialchars($row["price"]),
                     'quantity' => htmlspecialchars($row["quantity"]),
                     'id' => htmlspecialchars($row["id"]),
-                    'image' => $row["image"]
+                    'image' => $row["image"],
+                    'longDesc' => $row["longDesc"]
+
                 ];
 
 //                if (!empty($row["photo"])) {
