@@ -18,8 +18,8 @@ session_start();
 <?php
 if (is_user_logged_in() && is_admin()) {
     ?>
-    <button style='color: black; margin-top: 60px; border: 2px solid black; text-align: center; font-size: 14px; font-weight: bold; border-radius: 20px; background-color: #f0f0f0; display: inline-block;'>
-        <a href='#' style='color: black; text-decoration: underline;'>Add a new package</a></button>
+<!--    <button style='color: black; margin-top: 60px; border: 2px solid black; text-align: center; font-size: 14px; font-weight: bold; border-radius: 20px; background-color: #f0f0f0; display: inline-block;'>-->
+<!--        <a href='#' style='color: black; text-decoration: underline;'>Add a new package</a></button>-->
     <?php
 }
 ?>
