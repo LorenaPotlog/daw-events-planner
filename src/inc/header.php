@@ -52,7 +52,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid" style="font-size: 2rem">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <a class="navbar-brand" style="padding-right: 50px">
+        <a class="navbar-brand" href="index.php"  style="padding-right: 50px">
           <i class="fas fa-ring"> DETAILS</i> </a>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -61,8 +61,9 @@
                     <a href="index.php" style="font-weight: bold">Home</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+                    <a href="services.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a href="services.php">All</a></li>
                         <li><a href="services.php?name=wedding">Wedding</a></li>
                         <li><a href="services.php?name=bachelor">Bachelor & Bachelorette</a></li>
                         <!-- Add more dropdown items if needed -->
@@ -74,14 +75,9 @@
 
 
                 <li><a href="blog.php">Blog / Reviews</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="contact.php">Contact</a></li>
-                        <li><a href="book_consultation.php">Book a consultation</a></li>
-                        <!-- Add more dropdown items if needed -->
-                    </ul>
-                </li>
+
+                <li><a href="contact.php">Contact</a></li>
+
             </ul>
 
             <!-- Right-aligned items -->
@@ -103,7 +99,15 @@
                 <?php endif; ?>
             </ul>
         </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>
+<?php if (flash()): ?>
+    <div class="popup-container">
+        <div class="popup-content">
+            <?php flash() ?>
+        </div>
+    </div>
+<?php endif; ?>
 <main>
 

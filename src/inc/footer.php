@@ -1,4 +1,3 @@
-<!--<div style="z-index: 1000; padding-top: 100px; width: 50%">--><?php //flash() ?><!--</div>-->
 <style>
     footer {
         background-color: rgba(197, 213, 197, 0.8); /* Adjust the alpha value for transparency */
