@@ -21,9 +21,7 @@ if (!is_seller() && !is_admin()) {
             position: relative;
         }
 
-        #content-wrap {
-            padding-bottom: 2.5rem; /* Footer height */
-        }
+
 
         form {
             background-color: #fff;

@@ -10,9 +10,6 @@ require __DIR__ . '/../src/register.php';
             position: relative;
         }
 
-        #content-wrap {
-            padding-bottom: 2.5rem; /* Footer height */
-        }
 
         form {
             background-color: #fff;

@@ -9,9 +9,7 @@ require __DIR__ . '/../src/register.php';
             min-height: 100vh;
         }
 
-        #content-wrap {
-            padding-bottom: 2.5rem; /* Footer height */
-        }
+
 
         #page-grid {
             display: flex;

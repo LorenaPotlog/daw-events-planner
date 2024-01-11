@@ -41,8 +41,6 @@
             background-color: #f5f5f5; /* Change this to the desired background color */
             color: #333; /* Text color for better readability */
             margin: 20px; /* Add space around the body content */
-            justify-content: center; /* Horizontally center content */
-            align-items: center; /* Vertically center content */
             min-height: 100vh; /* Ensure full viewport height */
         }
 

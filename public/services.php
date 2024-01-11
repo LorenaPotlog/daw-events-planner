@@ -12,9 +12,7 @@ require __DIR__ . '/../src/services_pdf.php';
             min-height: 100vh;
         }
 
-        #content-wrap {
-            padding-bottom: 2.5rem; /* Footer height */
-        }
+
 
         .service-list {
             display: flex;

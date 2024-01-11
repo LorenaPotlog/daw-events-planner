@@ -1,13 +1,24 @@
 <style>
+    body{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    footer{
+        margin-top: auto;
+    }
+
     footer {
         background-color: rgba(197, 213, 197, 0.8); /* Adjust the alpha value for transparency */
         color: #fff;
         padding: 15px 0;
-        position: relative;
+        /*position: sticky;*/
+        left: 0;
         bottom: 0;
         width: 100%;
         margin-bottom: 10px;
         border: 1px solid transparent;
+        border-radius: 10px;
     }
 
     footer h3 {

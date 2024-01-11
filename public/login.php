@@ -9,12 +9,9 @@ require __DIR__ . '/../src/login.php';
 
         #page-container {
             position: relative;
-            margin-bottom: 50px;
         }
 
-        #content-wrap {
-            padding-bottom: 2.5rem; /* Footer height */
-        }
+
 
         form {
             background-color: #fff;

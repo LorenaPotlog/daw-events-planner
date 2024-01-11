@@ -10,7 +10,6 @@ require __DIR__ . '/../src/contact.php';
     <style>
         #page-container {
             position: relative;
-            margin-bottom: 50px;
             margin-left: 600px;
             width: 100%;
         }
