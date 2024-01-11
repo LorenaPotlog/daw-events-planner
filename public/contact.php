@@ -7,6 +7,17 @@ require __DIR__ . '/../src/contact.php';
 
 
 <?php view('header', ['title' => 'Contact us']); ?>
+    <style>
+        #page-container {
+            position: relative;
+            min-height: 66vh;
+        }
+        #content-wrap {
+            padding-bottom: 2.5rem; /* Footer height */
+        }
+    </style>
+    <div id="page-container">
+        <div id="content-wrap">
     <form method="post" action="../src/contact.php">
         <h2>Contact us</h2>
 
@@ -26,5 +37,6 @@ require __DIR__ . '/../src/contact.php';
 
         <input type="submit" value="Submit">
     </form>
+        </div></div>
 
 <?php view('footer') ?>

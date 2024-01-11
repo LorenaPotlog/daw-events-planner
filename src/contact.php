@@ -38,6 +38,4 @@ if (is_post_request()) {
         echo 'Please check on the reCAPTCHA box.';
     }
 
-    }  else {
-    echo "Access denied.";
 }
