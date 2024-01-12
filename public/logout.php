@@ -11,18 +11,21 @@ session_destroy();
     <meta charset="UTF-8">
     <title>Logout</title>
     <style>
+
         .message-box {
-            padding: 20px;
             border: 2px solid pink;
-            background-color: pink;
+            background-color: rgba(197, 213, 197, 0.6);
             color: black;
             text-align: center;
+            margin:150px 150px 0 150px;
+            padding: 20px;
+            font-size: 2rem;
         }
     </style>
 </head>
 <body>
 <?php view('header', ['title' => 'Logout']); ?>
-<div class="message-box" style="padding-top: 50px">
+<div class="message-box">
     <?php if (!empty($old_user)) : ?>
         Logged out.<br />
     <?php else : ?>

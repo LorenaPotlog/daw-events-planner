@@ -12,7 +12,6 @@ require __DIR__ . '/../src/login.php';
         }
 
 
-
         form {
             background-color: #fff;
             border: 1px solid #ddd;
@@ -73,19 +72,18 @@ require __DIR__ . '/../src/login.php';
     </style>
 
     <div id="page-container">
-        <div id="content-wrap">
+        <div id="content-wrap" style="padding-top: 50px">
             <form action="../src/login.php" method="post">
-                <h1>Login</h1>
+                <h1 class="text-center">Login</h1>
                 <div>
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username">
                 </div>
 
                 <div>
-                    <label for="password">Password:</label>
+                    <label for="password" style="padding-top: 20px">Password:</label>
                     <input type="password" name="password" id="password">
                 </div>
-
                 <button type="submit">Login</button>
                 <a href="register.php" class="styled-link">Register</a>
                 <a href="enter_email.php" class="styled-link">Forgot your password?</a>

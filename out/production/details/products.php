@@ -26,8 +26,8 @@ function retrieveProductById($productId) {
             'price' => htmlspecialchars($row["price"]),
             'quantity' => htmlspecialchars($row["quantity"]),
             'id' => htmlspecialchars($row["id"]),
-            'image' => $row["image"],
-            'longDesc' => $row["longDesc"]
+            'image' => $row["image"]
+
         ];
 
         $stmt->close();
@@ -64,9 +64,7 @@ function retrieveProducts() {
                     'price' => htmlspecialchars($row["price"]),
                     'quantity' => htmlspecialchars($row["quantity"]),
                     'id' => htmlspecialchars($row["id"]),
-                    'image' => $row["image"],
-                    'longDesc' => $row["longDesc"]
-
+                    'image' => $row["image"]
                 ];
 
 //                if (!empty($row["photo"])) {
@@ -180,79 +178,33 @@ function hasProduct($productID, $userID) {
     return $count > 0; // Returns true if the product exists for the user, otherwise false
 }
 
-function countProducts() {
-    $db = getDBConnection(); // Get database connection
-
-    // Query to count the total number of products
-    $query = "SELECT COUNT(*) AS total FROM products";
-
-    // Prepare the statement
-    $stmt = $db->prepare($query);
-
-    if (!$stmt) {
-        return 0; // Or handle the error as required
-    }
-
-    // Execute the statement
-    $stmt->execute();
-
-    // Get the result set
-    $result = $stmt->get_result();
-
-    // Fetch the result
-    $row = $result->fetch_assoc();
-
-    // Close the statement and database connection
-    $stmt->close();
-    $db->close();
-
-    // Return the total number of products
-    return $row['total'];
-}
-
-function retrieveProductsWithLimit($productsPerPage, $offset) {
-    $db = getDBConnection(); // Get database connection
-
-    // Query to retrieve a limited number of products based on pagination parameters
-    $query = "SELECT * FROM products LIMIT ?, ?";
-
-    // Prepare the statement
-    $stmt = $db->prepare($query);
-
-    if (!$stmt) {
-        return []; // Or handle the error as required
-    }
-
-    // Bind the parameters
-    $stmt->bind_param("ii", $offset, $productsPerPage);
-
-    // Execute the statement
-    $stmt->execute();
-
-    // Get result set
-    $result = $stmt->get_result();
-
-    $products = [];
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $product = [
-                'name' => htmlspecialchars($row["name"]),
-                'description' => htmlspecialchars($row["description"]),
-                'price' => htmlspecialchars($row["price"]),
-                'quantity' => htmlspecialchars($row["quantity"]),
-                'id' => htmlspecialchars($row["id"]),
-                'image' => $row["image"],
-                'longDesc' => $row["longDesc"]
-            ];
-
-            $products[] = $product;
-        }
-    }
-
-    // Close statement
-    $stmt->close();
-    $db->close();
-
-    return $products;
-}
+//function generateProductsPdf($products)
+//{
+//
+//    // Instantiate and use the FPDF class
+//    $pdf = new FPDF();
+//    $pdf->AddPage();
+//    $pdf->SetFont('Arial', 'B', 16);
+//
+//    // Add a title
+//    $pdf->Cell(0, 10, 'Product List', 0, 1, 'C');
+//
+//    // Display product information in the PDF
+//    foreach ($products as $product) {
+//        $pdf->Cell(0, 10, 'Product: ' . $product['name'], 0, 1);
+//        $pdf->Cell(0, 10, 'Description: ' . $product['description'], 0, 1);
+//        $pdf->Cell(0, 10, 'Price: $' . $product['price'], 0, 1);
+//        $pdf->Cell(0, 10, 'Quantity: ' . $product['quantity'], 0, 1);
+//        // Add more details as needed
+//
+//        $pdf->Ln(); // Move to the next line for the next product
+//    }
+//
+//    // Output the PDF to the browser with a filename
+//    $pdf->Output('product_list.pdf', 'D');
+//}
+//
+//if (isset($_POST['generateProductsPdf'])) {
+//    generateProductsPdf(retrieveProducts());
+//}
+//

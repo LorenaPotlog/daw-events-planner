@@ -25,9 +25,10 @@ require __DIR__ . '/../src/delete_product.php';
         }
 
         .product-image {
-            max-width: 100%; /* Ensure the image doesn't exceed its container */
-            height: auto; /* Maintain the aspect ratio */
-            width: 100%; /* Make the image take up the full width of its container */
+            /*max-width: 100%;*/
+            height: 300px;
+            width: 350px /* Set a fixed height for the images */
+            /*object-fit: cover; !* Maintain the aspect ratio and cover the container *!*/
         }
 
         .product {
@@ -62,11 +63,11 @@ require __DIR__ . '/../src/delete_product.php';
         }
 
         .pdf-form {
-            /*flex: 1; !* 1/3 of the page *!*/
-            padding: 20px;
-            display: flex;
             flex-direction: column;
             align-items: flex-start;
+            margin-left: 20px;
+            margin-bottom: 30px;
+
         }
 
         .pdf-form button {
@@ -85,13 +86,17 @@ require __DIR__ . '/../src/delete_product.php';
         .pdf-form ul {
             list-style: none;
             padding: 0;
-            margin: 0; /* Remove default margin for the list */
+            margin: 0;
+            column-count: 3; /* Display in three columns */
+            column-gap: 20px; /* Adjust the gap between columns as needed */
         }
 
         .pdf-form li {
             margin-bottom: 10px;
+            break-inside: avoid; /* Avoid breaking inside the li element */
             display: flex;
             align-items: center;
+            width: 40%;
         }
 
         .pdf-form li input[type="checkbox"] {
@@ -99,14 +104,13 @@ require __DIR__ . '/../src/delete_product.php';
         }
 
         .pdf-form li a {
-            flex: 1; /* Make the name take remaining space */
+            flex: 1;
             text-decoration: none;
-            color: #333; /* Adjust text color as needed */
+            color: #333;
         }
 
         .pdf-form li input[type="number"] {
             width: 50px;
-            /* You can add additional styling if needed */
         }
 
         .custom-btn {
@@ -124,62 +128,89 @@ require __DIR__ . '/../src/delete_product.php';
         .custom-btn:hover {
             background-color: #23527c;
         }
+
+        .styled-link {
+            display: inline-block;
+            background-color: #9fa9a3;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .styled-link:hover {
+            background-color: #c5d5c5;
+        }
     </style>
 
 <?php if (is_seller() || is_admin()) : ?>
     <div class="admin-options">
         <!-- Admin options -->
-        <button class="custom-btn"><a href='./insert_product.php' style='text-decoration: none; color: white'>Add New Products</a></button>
+        <button class="custom-btn"><a href='./insert_product.php' style='text-decoration: none; color: white'>Add New
+                Products</a></button>
         <form method='POST' action="../src/delete_product.php" style="display: inline;">
-            <button type='submit' name="delete_product" value="deleteProduct" class="custom-btn">Delete Selected Products</button>
-        </form>
-    </div>
-<?php endif; ?>
+            <button type='submit' name="delete_product" value="deleteProduct" class="custom-btn">Delete Selected
+                Products
+            </button>
+            <?php endif ?>
+            <a href="#scroll" class="styled-link">Calculate invoice <i class="fa fa-arrow-down" style="color: white"></i></a>
 
-    <div id="page-container">
-        <div id="content-wrap">
-            <div class="product-list">
-                <!-- Display products -->
-                <?php
-                $products = retrieveProducts();
-                foreach ($products as $product) : ?>
-                    <div class="product">
-                        <!-- Product details -->
-                        <a href="product_details.php?productId=<?= $product['id'] ?>"  style="color:black">
-                            <h2> <?= $product['name'] ?></h2></a>
+            <div id="Lorena" style="display: flex"
+            <div id="page-container" style="width: 50%">
+                <div id="content-wrap">
+                    <div class="product-list">
+                        <!-- Display products -->
                         <?php
-                        $defaultImage = '../resources/photos/default-no-product.jpg'; // Replace this with the path to your default image
-                        if (!empty($product['image'])) {
-                            $imageSource = "data:image/jpeg;base64," . base64_encode($product['image']);
-                        } else {
-                            $imageSource = $defaultImage;
-                        } ?>
-                            <div class="photo">
-                                <img src="<?= $imageSource ?>" alt="Product Photo" class="product-image">
-                            </div>
-                        <div class="product-details">
-                            <p><strong>Description:</strong> <?= $product['description'] ?></p>
-                            <p><strong>Price:</strong> $<?= $product['price'] ?></p>
-                            <p><strong>Quantity:</strong> <?= $product['quantity'] ?></p>
-                            <p><strong>Product id:</strong> <?= $product['id'] ?></p>
-                            <?php if (is_seller() || is_admin()) : ?>
-                                <input type='checkbox' name='productIDs[]' value='<?= $product['id'] ?>'>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
+                        $products = retrieveProducts();
+                        foreach ($products as $product) : ?>
+                            <div class="product">
+                                <!-- Product details -->
+                                <a href="product_details.php?productId=<?= $product['id'] ?>" style="color:black">
+                                    <h2><?= $product['name'] ?></h2>
+                                </a>
+                                <?php
+                                $defaultImage = '../resources/photos/default-no-product.jpg'; // Replace this with the path to your default image
+                                if (!empty($product['image'])) {
+                                    $imageSource = "data:image/jpeg;base64," . base64_encode($product['image']);
+                                } else {
+                                    $imageSource = $defaultImage;
+                                } ?>
 
-        <div class="pdf-form">
+                                <div class="photo">
+                                    <img src="<?= $imageSource ?>" alt="Product Photo" class="product-image">
+                                </div>
+
+                                <div class="product-details">
+                                    <p><strong>Description:</strong> <?= $product['description'] ?></p>
+                                    <p><strong>Price:</strong> $<?= $product['price'] ?></p>
+                                    <p><strong>Quantity:</strong> <?= $product['quantity'] ?></p>
+                                    <p><strong>Product id:</strong> <?= $product['id'] ?></p>
+                                    <?php if (is_seller() || is_admin()) : ?>
+                                        <input type='checkbox' name='productIDs[]' value='<?= $product['id'] ?>'>
+                                    <?php endif; ?>
+                                </div>
+
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="pdf-form" id="scroll">
             <!-- PDF generation form -->
             <form method='POST' action="../src/products_pdf.php">
-                <button type="submit" name="generate_pdf" value="generatePdf" class="custom-btn" style="background-color: #9fa9a3; margin-bottom: 20px">Calculate invoice</button>
+                <button type="submit" name="generate_pdf" value="generatePdf" class="custom-btn"
+                        style="background-color: #9fa9a3; margin-bottom: 20px">Calculate invoice
+                </button>
                 <ul>
                     <?php foreach ($products as $product) : ?>
                         <li>
                             <input type='checkbox' name='productIDs[]' value='<?= $product['id'] ?>'>
-                            <a ><?= $product['name'] ?></a>
+                            <a><?= $product['name'] ?></a>
                             <input type="number" name="quantities[<?= $product['id'] ?>]" value="1" min="1"
                                    max="<?= $product['quantity'] ?>">
                         </li>

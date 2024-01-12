@@ -1,6 +1,7 @@
+
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-
+ if(is_admin()){
 ?>
 <?php view('header', ['title' => 'Technicalities']) ?>
 
@@ -12,7 +13,7 @@ require __DIR__ . '/../src/bootstrap.php';
             margin-bottom: 20px;
         }
     </style>
-    <div class="container">
+    <div class="container" style="margin-left: 500px; margin-right: 500px;  font-family: 'Ubuntu', cursive;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <section >
@@ -71,12 +72,12 @@ require __DIR__ . '/../src/bootstrap.php';
                     <h2>DB & Diagrams</h2>
 
                     <figure>
-                        <img src="../resources/UML.png" alt="logo">
+                        <img src="../resources/UML.png" alt="logo" style="width: 700px; height: 400px">
                         <figcaption>Database entities & realtionships</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="../resources/UML.png" alt="logo">
+                        <img src="../resources/UML.png" alt="logo" style="width: 700px; height: 400px">
                         <figcaption>Place an order</figcaption>
                     </figure>
 
@@ -86,5 +87,6 @@ require __DIR__ . '/../src/bootstrap.php';
         </div>
     </div>
 
+<?php } else redirect_to('index.php'); ?>
 
 <?php view('footer') ?>

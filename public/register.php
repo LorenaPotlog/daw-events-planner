@@ -54,10 +54,6 @@ require __DIR__ . '/../src/register.php';
             background-color: #c5d5c5;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 15px;
-        }
 
         .styled-link {
             display: block;

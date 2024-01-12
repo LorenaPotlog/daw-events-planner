@@ -3,13 +3,7 @@
 require __DIR__ . '/../src/bootstrap.php';
 require_once 'products.php';
 
-if (is_post_request()) {
-    if(empty($_POST['productIDs'])){
-        redirect_with_message(
-            '../public/products.php',
-            'No product selected', FLASH_WARNING
-        );
-    }
+if (is_post_request() && $_POST['delete_product'] == 'deleteProduct') {
     $are_valid = true;
     if (is_seller()) {
         $userID = $_SESSION['user_id'];
@@ -33,8 +27,5 @@ if (is_post_request()) {
     } else {
         $_SESSION['alert'] = "You do not have rights to delete this!";
         echo "<script>alert('Deleted Products: You do not have rights to delete this!');</script>";
-        redirect_with_message(
-            '../public/products.php',
-            'You do not have rights to delete this!', FLASH_ERROR);
     }
 }
