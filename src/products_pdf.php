@@ -5,9 +5,9 @@ require('../fpdf/fpdf.php');
 
 if (is_post_request()) {
     $productIDs = $_POST['productIDs'] ?? [];
+    $products = [];
 
     if (!empty($productIDs)) {
-        $products = [];
         foreach ($productIDs as $productID) {
             $product = retrieveProductById($productID);
             if ($product) {
@@ -17,7 +17,10 @@ if (is_post_request()) {
     }
 
     if (empty($products)) {
-        $products = retrieveProducts();
+        redirect_with_message(
+            '../public/products.php',
+            'No product selected', FLASH_WARNING
+        );
     }
 
     generate_products_pdf($products, $_POST['quantities'] ?? []);

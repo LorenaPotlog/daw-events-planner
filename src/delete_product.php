@@ -3,7 +3,7 @@
 require __DIR__ . '/../src/bootstrap.php';
 require_once 'products.php';
 
-if (is_post_request() && $_POST['delete_product'] == 'deleteProduct') {
+if (is_post_request()) {
     if(empty($_POST['productIDs'])){
         redirect_with_message(
             '../public/products.php',
