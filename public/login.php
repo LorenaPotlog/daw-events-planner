@@ -7,11 +7,6 @@ require __DIR__ . '/../src/login.php';
 
     <style>
 
-        #page-container {
-            position: relative;
-        }
-
-
         form {
             background-color: #fff;
             border: 1px solid #ddd;
@@ -20,9 +15,7 @@ require __DIR__ . '/../src/login.php';
             max-width: 400px;
             width: 100%;
             box-sizing: border-box;
-            margin-left: 600px;
         }
-
 
         label {
             display: block;
@@ -63,31 +56,39 @@ require __DIR__ . '/../src/login.php';
             text-decoration: none;
             cursor: pointer;
             border: 1px solid black;
-            margin-bottom: 10px;
+            margin-top: 4%;
         }
 
         .styled-link:hover {
             background-color: #c5d5c5;
         }
+
     </style>
 
-    <div id="page-container">
-        <div id="content-wrap" style="padding-top: 50px">
-            <form action="../src/login.php" method="post">
-                <h1 class="text-center">Login</h1>
-                <div>
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username">
-                </div>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 3%; margin-bottom: 3%;">
+            <div class="col-md-6 col-md-offset-3">
+                <div id="content-wrap">
+                    <form action="../src/login.php" method="post" style="display: block; margin-left: auto; margin-right: auto;">
+                        <h1 class="text-center">Login</h1>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" name="username" id="username" class="form-control">
+                        </div>
 
-                <div>
-                    <label for="password" style="padding-top: 20px">Password:</label>
-                    <input type="password" name="password" id="password">
+                        <div class="form-group">
+                            <label for="password" style="padding-top: 20px">Password:</label>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group" style="padding-top: 2%;">
+                            <button type="submit" class="mt-2">Login</button>
+                            <a href="register.php" class="styled-link mt-2">Register</a>
+                            <a href="enter_email.php" class="styled-link mt-2">Forgot your password?</a>
+                        </div>
+                    </form>
                 </div>
-                <button type="submit">Login</button>
-                <a href="register.php" class="styled-link">Register</a>
-                <a href="enter_email.php" class="styled-link">Forgot your password?</a>
-            </form>
+            </div>
         </div>
     </div>
+
 <?php view('footer') ?>

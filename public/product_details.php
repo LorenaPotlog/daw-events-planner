@@ -15,43 +15,67 @@ $productId = $_GET['productId'];
 $product = retrieveProductById($productId);
 
 if (!$product) {
-    // Handle the case where the product with given ID doesn't exist
-    // You might redirect the user to an error page or back to the products page
     header("Location: products.php");
     exit();
 }
-
-// Now $product contains details of the selected product
-// You can use $product['name'], $product['description'], etc., to display its details
 ?>
-        <style>
-            .product-details {
-                background-color: #fff;
-                border: 1px solid #ddd;
-                padding: 20px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                max-width: 400px;
-                width: 100%;
-                box-sizing: border-box;
-                text-align: center;
-                margin-bottom: 50px;
-                margin-left: 600px;
-            }
 
-            h1 {
-                margin-bottom: 10px;
-            }
+    <style>
+        .product-details {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: calc(33.33% - 20px); /* 1/3 of the page */
+            box-sizing: border-box;
+            text-align: center;
+            margin-right: 20px;
+            float: left;
+        }
 
-            p {
-                margin: 5px 0;
-            }
+        .similar-products {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: calc(66.66% - 20px); /* 2/3 of the page */
+            box-sizing: border-box;
+            text-align: center;
+            float: left;
+        }
 
-            .photo img {
-                max-width: 100%;
-                height: auto;
-            }
-        </style>
+        .photo img {
+            max-width: 100%;
+            height: auto;
+        }
 
+        .similar-products-box {
+            width: 100%;
+            padding-left: 20px;
+        }
+
+        .similar-products-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .similar-product {
+            width: calc(33.33% - 20px); /* 1/3 of the similar-products div */
+            margin: auto;
+            text-align: center;
+        }
+
+        .similar-product img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Create three columns with equal width */
+        }
+
+
+    </style>
     <div class="product-details">
         <h1><?= $product['name'] ?></h1>
         <p>Description: <?= $product['description'] ?></p>
@@ -62,6 +86,25 @@ if (!$product) {
                 <img src="data:image/jpeg;base64,<?= base64_encode($product['image']) ?>" alt="Product Photo">
             </div>
         <?php endif; ?>
+    </div>
+
+    <div class="similar-products">
+        <div class="similar-products-box">
+            <h3>Looking for similar items?</h3>
+            <div class="product-grid">
+                <?php
+                // TODO o functie pentru similar items
+                $similarProducts = array_slice(retrieveProducts(), 0, 3);
+                foreach ($similarProducts as $similarProduct) : ?>
+                    <div class="similar-product">
+                        <img src="data:image/jpeg;base64,<?= base64_encode($similarProduct['image']) ?>" alt="Similar Product Photo">
+                        <a href="product_details.php?productId=<?= $similarProduct['id'] ?>" style="color:black">
+                            <h2><?= $similarProduct['name'] ?></h2>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 
 <?php view('footer') ?>

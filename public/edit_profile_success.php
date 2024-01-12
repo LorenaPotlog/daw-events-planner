@@ -1,10 +1,5 @@
-<?php
-session_start();
-$old_user = $_SESSION['valid_user'];
-session_unset();
-session_destroy();
-?>
 <?php require __DIR__ . '/../src/bootstrap.php'; ?>
+    <meta charset="UTF-8">
     <title>Logout</title>
     <style>
 
@@ -18,13 +13,12 @@ session_destroy();
             font-size: 2rem;
         }
     </style>
-<?php view('header', ['title' => 'Logout']); ?>
+
+<?php view('header', ['title' => 'Success']);
+session_unset();
+?>
 <div class="message-box">
-    <?php if (!empty($old_user)) : ?>
-        Logged out.<br />
-    <?php else : ?>
-        You were not logged in, and so have not been logged out.<br />
-    <?php endif; ?>
-    <a href="login.php">Back to login</a>
+    <p>Profile updated successfully.</p>
+    <p>Please <a href="login.php">login </a>again to see the updates on your profile</p>
 </div>
 <?php view('footer'); ?>

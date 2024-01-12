@@ -1,10 +1,17 @@
-de fixat pozele din products as fie de aceeasi dimenisune
-de fixat butonul de delete. de testat cu admin si seller
-de facut pagina pt produse individuale mai frumoasa
 
 
 
-admin pannel
-contul clientilor
-parsare de continut
-logout
+-filtrare produse
+-clean up code
+-clean up style in mod special!!
+-mesaje de eroare
+-mesaje pt pagini not found? routes?
+-de aranjat pag pt produse individuale, de facut boxurile de aceeasi marime
+-de fixat pozele din products as fie de aceeasi dimenisune
+-analytics (de verificat cerintele)
+
+
+
+
+
+De introdus date in baza de date de pe remote
