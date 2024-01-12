@@ -172,7 +172,7 @@ require __DIR__ . '/../src/delete_product.php';
                                     <h2><?= $product['name'] ?></h2>
                                 </a>
                                 <?php
-                                $defaultImage = '../resources/photos/default-no-product.jpg'; // Replace this with the path to your default image
+                                $defaultImage = '../resources/photos/no-photo.jpg'; // Replace this with the path to your default image
                                 if (!empty($product['image'])) {
                                     $imageSource = "data:image/jpeg;base64," . base64_encode($product['image']);
                                 } else {

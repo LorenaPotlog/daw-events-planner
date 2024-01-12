@@ -74,7 +74,9 @@
                 </li>
                 <li><a href="products.php"><i class="fas fa-shopping-bag"></i> Shop</a></li>
 
-                <li><a href="blog.php"><i class="fas fa-newspaper"></i> Blog / Reviews</a></li>
+                <li><a href="blog.php"><i class="fas fa-newspaper"></i> Blog</a></li>
+
+                <li><a href="reviews.php"><i class="fas fa-pen"></i> Reviews</a></li>
 
                 <li><a href="contact.php"><i class="fas fa-envelope"></i> Contact</a></li>
 
@@ -99,7 +101,7 @@
                     <?php endif; ?>
                     <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 <?php else : ?>
-                    <li><a href="login.php"><i class="fas fa-sign-in-alt"></i> Login/Register</a></li>
+                    <li><a href="login.php"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                 <?php endif; ?>
 
             </ul>

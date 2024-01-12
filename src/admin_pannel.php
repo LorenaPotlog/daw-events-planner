@@ -1,12 +1,11 @@
 <?php
 
-require __DIR__ . '/../src/bootstrap.php';
 require_once 'users.php';
 
 function get_all_users() {
     $conn = getDBConnection();
 
-    $sql = 'SELECT id, email, role, verified FROM users';
+    $sql = 'SELECT id, email, role, username, verified FROM users';
     $result = $conn->query($sql);
 
     $users = [];
@@ -27,16 +26,27 @@ if (is_post_request()) {
         $userId = $_POST['user_id'];
         $newRole = $_POST['new_role'];
 
-        // Assuming you have a function to update the user role in the database
         update_user_role($userId, $newRole);
+    } else if (isset($_POST['verify'])) {
+        $userId = $_POST['user_id'];
+
+        verify_user($userId);
     }
 }
 
-// Function to update user role
 function update_user_role($userId, $newRole) {
     $conn = getDBConnection();
 
     $sql = "UPDATE users SET role = '$newRole' WHERE id = $userId";
+    $result = $conn->query($sql);
+
+    $conn->close();
+}
+
+function verify_user($userId) {
+    $conn = getDBConnection();
+
+    $sql = "UPDATE users set verified = 1 WHERE id = $userId";
     $result = $conn->query($sql);
 
     $conn->close();

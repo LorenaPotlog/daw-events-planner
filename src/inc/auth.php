@@ -58,7 +58,7 @@ function find_user_by_username(string $username): ?array
 {
     $conn = getDBConnection();
 
-    $sql = 'SELECT id, username, password, role , verified FROM users WHERE username=?';
+    $sql = 'SELECT id, username, password, role, verified, email, lastname, firstname, photo FROM users WHERE username=?';
     $statement = $conn->prepare($sql);
 
     if (!$statement) {
@@ -74,7 +74,8 @@ function find_user_by_username(string $username): ?array
         return null; // No user found
     }
 
-    $statement->bind_result($fetchedId, $fetchedUsername, $fetchedPassword, $fetchedRole, $fetchedVerified);
+    $statement->bind_result($fetchedId, $fetchedUsername, $fetchedPassword, $fetchedRole,
+        $fetchedVerified, $fetchedEmail, $fetchedLastname, $fetchedFirstname, $fetchedPhoto);
     $statement->fetch();
 
     $result = [
@@ -82,7 +83,11 @@ function find_user_by_username(string $username): ?array
         'username' => $fetchedUsername,
         'password' => $fetchedPassword,
         'role' => $fetchedRole,
-        'verified' => $fetchedVerified
+        'verified' => $fetchedVerified,
+        'email' => $fetchedEmail,
+        'lastname' => $fetchedLastname,
+        'firstname' => $fetchedFirstname,
+        'photo' => $fetchedPhoto
     ];
 
     $statement->close();
@@ -132,12 +137,11 @@ function login(string $username, string $password): void
 {
     $user = find_user_by_username($username);
 
-    if(!$user){
+    if (!$user) {
         throw new Exception("Wrong username");
-
     }
 
-    if($user['verified'] == 0 ){
+    if ($user['verified'] == 0) {
         throw new Exception("Email not verified");
     }
 
@@ -145,9 +149,16 @@ function login(string $username, string $password): void
         throw new Exception("Wrong password");
     }
 
+    // Save user details in the session
     $_SESSION['valid_user'] = $user['username'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['user_id'] = $user['id'];
+
+    // Additional details
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['lastname'] = $user['lastname'];
+    $_SESSION['firstname'] = $user['firstname'];
+    $_SESSION['photo'] = $user['photo'];
 }
 
 function is_user_logged_in(): bool
