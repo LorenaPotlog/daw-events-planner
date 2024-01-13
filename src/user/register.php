@@ -97,8 +97,8 @@ if (is_post_request()) {
     exit();
 }
 
-[$inputs, $errors] = session_flash('inputs', 'errors');
 if (!empty($errors)) {
+    [$inputs, $errors] = session_flash('inputs', 'errors');
     foreach ($errors as $errorKey => $errorMessage) {
         flash('flash_' . uniqid(),  $errorMessage, FLASH_ERROR);
     }

@@ -55,6 +55,7 @@ function session_flash(...$keys): array
     foreach ($keys as $key) {
         if (isset($_SESSION[$key])) {
             $data[] = $_SESSION[$key];
+            unset($_SESSION[$key]);
         } else {
             $data[] = [];
         }
