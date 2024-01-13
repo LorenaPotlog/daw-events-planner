@@ -11,45 +11,44 @@ require __DIR__ . '/../src/bootstrap.php';
         }
     </style>
 
-    <h3 class="text-center" style="color: #900000; margin-bottom: 20px">Find your love percentage</h3>
-
     <div class="container-fluid heart-background"">
-        <div class="overlay"></div> <!-- Overlay for transparency -->
-        <div class="col-md-6">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8 round-container">
-                        <div class="container rounded-form">
-                            <div style="width: 50%; margin-left: 90px;">
-                                <form class="my-game-form" method="post" action="../src/game.php">
-                                    <div class="form-group text-center">
-                                        <label for="yourName">Your name</label>
-                                        <input type="text" class=" text-center" name="yourName" placeholder="Enter value">
-                                    </div>
-                                    <div class="form-group text-center">
-                                        <label for="partnerName">Partner's name</label>
-                                        <input type="text" class=" text-center" name="partnerName" placeholder="Enter value">
-                                    </div>
-                                    <div class="text-center" style="padding-top: 2%;">
-                                        <button type="submit" class="button" style="background-color:#900000;">
-                                            See percentage
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+    <div class="overlay"></div> <!-- Overlay for transparency -->
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 3%; margin-bottom: 3%;">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="container-wrap rounded-form">
+                    <form class="my-game-form" method="post" action="../src/game.php">
+                        <h3 class="text-center" style="color: #900000; background-color: white; margin-bottom: 10%">Find
+                            your love percentage</h3>
+                        <div class="form-group text-center">
+                            <label for="yourName">Your name</label>
+                            <input type="text" class=" text-center" name="yourName" style="color: black"
+                                   placeholder="...">
                         </div>
-                    </div>
-                    <div class="col-md-2"></div>
+                        <div class="form-group text-center">
+                            <label for="partnerName" style="padding-top: 20px; ">Partner's name</label>
+                            <input type="text" class="text-center" name="partnerName" style="color: black"
+                                   placeholder="...">
+                        </div>
+                        <div class="form-group" style="padding-top: 2%;">
+                            <button type="submit" class="button mt-2" style="background-color:#900000;">
+                                See percentage
+                            </button>
+                        </div>
+
+                        <?php
+                        if (isset($_GET['percentage']) && isset($_GET['result'])) { ?>
+                        <div class="result" style="position: absolute; bottom: 10%; left: 40%">
+                            <?php
+                            echo '<h1 class="text-center">' . $_GET['percentage'] . '</h1>';
+                            echo '<h4 class="text-center">' . $_GET['result'] . '</h4> </div>'; ?>
+                            <div class="form-group text-center" style="position: absolute; bottom: 10%; left: 50%;">
+                                <a href="game.php" style=" color: black; font-weight: bold;">try again</a></div>
+                            <?php } ?>
+                    </form>
+
                 </div>
-                <div class="result">
-                    <?php
-                    if (isset($_GET['percentage']) && isset($_GET['result'])) {
-                        echo '<h1 class="text-center">' . $_GET['percentage'] . '</h1>';
-                        echo '<h4 class="text-center">' . $_GET['result'] . '</h4>';
-                    }
-                    ?>
-                </div>
+
             </div>
         </div>
     </div>

@@ -6,115 +6,23 @@ require __DIR__ . '/../src/product/delete_product.php';
 ?>
 
 <?php view('header', ['title' => 'Our Products']); ?>
-
     <style>
-        #page-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        #content-wrap {
-            flex: 2; /* 2/3 of the page */
-            padding: 20px;
-        }
-
-        .product-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .product-image {
-            /*max-width: 100%;*/
-            height: 300px;
-            width: 350px /* Set a fixed height for the images */
-            /*object-fit: cover; !* Maintain the aspect ratio and cover the container *!*/
-        }
-
-        .product {
-            box-sizing: border-box;
-            width: calc(25% - 15px); /* 4 columns with 15px margin in between */
-            padding: 20px;
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative; /* Add relative positioning */
-        }
-
-        .product h2 {
-            margin-top: 0;
-        }
-
-        .photo img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 10px;
-        }
-
-        .product-details {
-            text-align: left;
-        }
-
-        /* Style for the checkbox */
-        .product input[type="checkbox"] {
-            position: absolute;
-            top: 10px; /* Adjust top position as needed */
-            right: 10px; /* Adjust right position as needed */
-        }
-
-        .pdf-form {
-            flex-direction: column;
-            align-items: flex-start;
-            margin-left: 20px;
-            margin-bottom: 30px;
-
-        }
-
-        .pdf-form ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            column-count: 3; /* Display in three columns */
-            column-gap: 20px; /* Adjust the gap between columns as needed */
-        }
-
-        .pdf-form li {
-            margin-bottom: 10px;
-            break-inside: avoid; /* Avoid breaking inside the li element */
-            display: flex;
-            align-items: center;
-            width: 40%;
-        }
-
-        .pdf-form li input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .pdf-form li a {
-            flex: 1;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .pdf-form li input[type="number"] {
-            width: 50px;
-        }
-
-    </style>
+        <?php include 'css/products.css' ?>
+</style>
 
 <?php if (is_seller() || is_admin()) : ?>
     <div class="admin-options">
     <!-- Admin options -->
-    <button class="button"><a href='./insert_product.php' style='text-decoration: none; color: white'>Add New
+    <button class="button" style="width: 25%;"><a href='./insert_product.php' style='text-decoration: none; color: white'>Add New
             Products</a></button>
     <form method='POST' action="../src/product/delete_product.php" style="display: inline;">
-    <button type='submit' name="delete_product" value="deleteProduct" class="button">Delete Selected
+    <button type='submit' name="delete_product" value="deleteProduct" class="button" style="width: 25%;">Delete Selected
         Products
     </button>
 <?php endif ?>
-    <a href="#scroll" class="styled-link">Calculate invoice <i class="fa fa-arrow-down" style="color: white"></i></a>
+    <a href="#scroll" class="styled-link" style="display:inline; width: 30%;">Calculate invoice <i class="fa fa-arrow-down" style="color: white"></i></a>
 
-    <div id="Lorena" style="display: flex"
+    <div style="display: flex"
     <div id="page-container" style="width: 50%">
         <div id="content-wrap">
             <div class="product-list">

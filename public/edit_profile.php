@@ -6,44 +6,7 @@ require __DIR__ . '/../src/user/edit_profile.php';
 <?php view('header', ['title' => 'Edit Profile']); ?>
 
     <style>
-        .profile-picture {
-            border: 2px solid pink;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            background-size: cover;
-        }
-
-        .account-details-box {
-            border: 2px solid pink;
-            border-radius: 10px;
-            padding: 20px;
-            width: 400px;
-            margin-right: auto;
-            margin-left: auto;
-            background-color: rgba(197, 213, 197, 0.6);
-        }
-
-        .account-details-box p {
-            font-weight: bolder;
-            font-size: large;
-        }
-
-        .details-table {
-            width: 100%;
-        }
-
-        .details-table td {
-            padding-left: ;
-            text-align: left;
-            padding-bottom: 10px;
-        }
-
-        .details-table td.right {
-            text-align: left;
-        }
-
+        <?php include 'css/edit_profile.css' ?>
     </style>
 
     <div style="text-align: center; position: relative;">
@@ -86,7 +49,7 @@ require __DIR__ . '/../src/user/edit_profile.php';
 
 
     </div>
-    <a href="user_account.php" class="styled-link" style="color: black"><i class="fas fa-arrow-left"></i> Go back to Your Account</a>
+    <a href="user_account.php" class="styled-link go-back"><i class="fas fa-arrow-left"></i> Go back to Your Account</a>
 
 
 <?php view('footer') ?>

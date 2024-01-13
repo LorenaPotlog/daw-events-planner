@@ -10,7 +10,6 @@ require __DIR__ . '/../src/user/register.php';
         }
 
 
-
         #page-grid {
             display: flex;
             flex-direction: column;
@@ -38,11 +37,6 @@ require __DIR__ . '/../src/user/register.php';
         }
 
 
-        #services p {
-            margin-bottom: 15px;
-
-        }
-
         #services img.photo {
             opacity: 0.9; /* Make the photo slightly transparent */
             border-radius: 10px; /* Add border radius to the photo */
@@ -60,6 +54,10 @@ require __DIR__ . '/../src/user/register.php';
             border-radius: 5px; /* Add border radius to the images */
             margin: 0 5px; /* Adjust the margin between images */
         }
+
+        p {
+            padding: 0.5%;
+        }
     </style>
     <div id="page-container">
         <div id="content-wrap">
@@ -67,70 +65,71 @@ require __DIR__ . '/../src/user/register.php';
                 <?php include 'js/slideshow.php'; ?>
                 <section>
                     <h2 style="padding-bottom: 20px">About Us</h2>
-                    <p>
+                    <p style="padding-bottom: 2%">
                         At DETAILS, we believe that every event is a unique celebration waiting to happen. Our dedicated
                         team of experienced planners is here to turn your vision into an unforgettable reality.
 
                     </p>
-                    <p></p>
-                    <p>
+                    <img src="../resources/photos/team.jpg" alt="Event Planning" class="photo"
+                         style="float: left; margin-right: 20px; width: 750px; height: 400px; border-radius: 5%">
+                    <p style="text-align: center">
                         From <b>weddings</b> to small gatherings, our meticulous attention to detail ensures that your
                         event
                         will be seamless and stress-free. Let us handle the logistics while you focus on creating
                         lasting
                         memories.
                     </p>
-                    <p></p>
-                    <img src="../resources/photos/team.jpg" alt="Event Planning" class="photo"
-                         style="float: left; margin-right: 20px; width: 750px; height: 400px;">
-                    <p style="padding-top: 50px; text-align: center">
-                        Our passion for creating exceptional experiences is what sets us apart. Whether it's a grand
+                    <p style="text-align: center">
+                        Our passion for creating exceptional experiences is what sets us apart. </p>
+
+                    <p style="text-align: center">
+                        Whether it's a grand
                         celebration or an intimate affair, we're committed to making every moment special.
                     </p>
-                    <p style="padding-top: 50px; text-align: center; font-weight: bold">
-                        We are here to help you
-                    </p>
-                    <p style="padding-top: 20px; text-align: center"><a href="#services" class="styled-link">Explore Our
-                            Services</a></p>
+                    <div style="display: flex; flex-direction: column">
+                        <p style="padding-top: 1.5%; text-align: center; font-weight: bold">
+                            We are here to help you </p>
+                        <p style="width: 100%;"><a href="services.php" class="styled-link">Explore Our
+                                Services</a></p>
+                    </div>
                 </section>
 
-                <section id="services">
+                <section id="services text-center">
                     <h2 style="text-align: center; padding-bottom: 20px">Our Services</h2>
-                    <p>
+                    <p class="text-center">
                         DETAILS takes pride in offering a complete suite of event organization services, meticulously
                         designed to make
                         your special occasions truly unforgettable. Whether it's a dreamy wedding, a corporate
                         extravaganza, or a
                         vibrant themed party, we have the expertise to turn your vision into reality.
                     </p>
-                    <div>
-                        <img src='../resources/photos/index-services.jpeg' alt="Decorations" class="photo"
-                             style="float: left; margin-right: 20px; width: 400px; height: 300px;">
-                        <p>
+                    <img src='../resources/photos/index-services.jpeg' alt="Decorations" class="photo"
+                         style="float: left; margin-right: 20px; width: 400px; height: 300px; border-radius: 5%">
+                    <div style="padding-left: 35%; padding-right: 5%">
+                        <p style="text-align: center;">
                             Our commitment to excellence is reflected in every detail. DETAILS collaborates with
                             top-tier vendors to ensure
                             the highest quality in venue selection, decorations, catering, and entertainment. The
                             result? A seamless
                             and immersive experience that exceeds your expectations.
                         </p>
+
+                        <p style="text-align: center; font-weight: bold">
+                            Discover the magic of DETAILS through our thoughtfully curated packages, each designed to
+                            provide a distinct ambiance and
+                            experience here </p>
+                        <p style="text-align: center; padding-bottom: 0">
+                            At DETAILS, we understand that each event is unique. That's why we offer customizable
+                            packages
+                            that can be tailored to suit your individual style and preferences.
+                        </p>
                     </div>
-                    <p>
-                        At DETAILS, we understand that each event is unique. That's why we offer customizable packages
-                        that can be
-                        tailored to suit your individual style and preferences. Whether you envision an intimate
-                        ceremony or a grand
-                        celebration, our team is dedicated to making your event one-of-a-kind.
-                    </p>
-                    <p>
-                        Discover the magic of DETAILS through our thoughtfully curated packages, each designed to
-                        provide a distinct ambiance and
-                        experience here
-                    <div>
-                        <a href="services.php?name=wedding" class="styled-link">Weddings</a>
-                        <a href="services.php?name=bachelor" class="styled-link">Bachelors Parties</a>
+                    <div style="display:flex; justify-content: space-evenly; padding-bottom:1%">
+                        <a href="services.php?name=wedding" class="styled-link" style="width: 30%;">Weddings</a>
+                        <a href="services.php?name=bachelor" class="styled-link" style="width: 30%;">Bachelor &
+                            Bachelorette</a>
                     </div>
-                    </p>
-                    <p>
+                    <p style="text-align: center;">
                         ..or <a href="contact.php"> contact us</a> - our commitment to personalization means that you
                         can always reach out to us
                         for a bespoke wedding that perfectly aligns with your dreams. Looking forward to hearing from
@@ -153,13 +152,13 @@ require __DIR__ . '/../src/user/register.php';
 
                     <div style="display: flex; justify-content: space-between;">
                         <div>
-                            <p style="font-style: italic; padding-top: 20px; margin: 0;">
+                            <p style="font-style: italic; padding: 20px 0 0;">
                                 Want to become our partner? Please <a href="contact.php">contact us here.</a>
                             </p>
                         </div>
 
-                        <div>
-                            <p style="font-weight: bold; padding-top: 20px; text-align: right; margin: 0;">
+                        <div>-
+                            <p style="font-weight: bold; padding: 20px 0 0;">
                                 <a href="#">See more</a>
                             </p>
                         </div>
@@ -171,11 +170,11 @@ require __DIR__ . '/../src/user/register.php';
                     <h2 style="text-align: left; padding-bottom: 20px;">Our products - buy directly!</h2>
 
                     <img src='../resources/photos/index-products1.jpg' alt="Decorations" class="photo"
-                         style="float: right; margin-left: 20px; width: 300px; height: 300px; border-radius: 15px;">
+                         style="float: right; margin-top: 20px; width: 320px; height: 350px; border-radius: 15px;">
                     <img src='../resources/photos/index-products2.jpg' alt="Decorations" class="photo"
-                         style="float: left; margin-right: 20px; width: 300px; height: 300px; border-radius: 15px;">
+                         style="float: left; margin-top: 20px; width: 320px; height: 350px; border-radius: 15px;">
 
-                    <div style="text-align: left;">
+                    <div style="text-align: center; padding-bottom: 20px">
                         <p>
                             At DETAILS, we understand that each event is unique. That's why we provide the flexibility
                             for you to choose
@@ -184,20 +183,20 @@ require __DIR__ . '/../src/user/register.php';
                             selection, including:
                         </p>
 
-                        <ul style="list-style: none; padding: 0; padding-right: 50px;">
-                            <li>&#9658; Cakes</li>
-                            <li>&#9658; Cocktail Bar Services</li>
-                            <li>&#9658; Live Music Bands</li>
-                            <li>&#9658; Floral Arrangements</li>
-                            <li>&#9658; Bridesmaid Dresses</li>
+                        <ul style="list-style: none; padding: 0 50px 0 0; text-align: center">
+                            <li style="padding-bottom: 10px">&#9658; Cakes</li>
+                            <li style="padding-bottom: 10px">&#9658; Cocktail Bar Services</li>
+                            <li style="padding-bottom: 10px">&#9658; Live Music Bands</li>
+                            <li style="padding-bottom: 10px">&#9658; Floral Arrangements</li>
+                            <li style="padding-bottom: 10px">&#9658; Bridesmaid Dresses</li>
                             <li>&#9658; and many more!</li>
                         </ul>
-
-                        <p>
-                            Discover the magic of DETAILS through our thoughtfully curated products, each designed to
-                            provide a distinct ambiance
-                            and enhance your event experience. <a href="products.php" class="styled-link">Shop now</a>.
-                        </p>
+                        <div style="display: flex;">
+                            <p style="text-align: right; padding-top: 20px; padding-right: 20px">
+                                Discover the magic of DETAILS through our thoughtfully curated products.
+                            </p>
+                            <a href="products.php" class="styled-link" style="width: 30%">Shop now</a>.
+                        </div>
                     </div>
                 </section>
 
@@ -206,13 +205,15 @@ require __DIR__ . '/../src/user/register.php';
                         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                             <h2 style="background-color: rgba(227, 224, 204, 0.3);">Plan your next event
                                 hassle-free</h2>
-                            <p style="background-color: rgba(227, 224, 204, 0.3);">
+                            <p style="background-color: rgba(227, 224, 204, 0.3); text-align: center">
                                 Ready to start planning your event? Contact us today, and our team will be happy to
                                 assist you.
                             </p>
-                            <p style="background-color: rgba(227, 224, 204, 0.3); font-size: 2rem; padding-top: 20px">
-                                PS: It's easier to find information if you <a href="login.php">login or register</a>.
-                            </p>
+                            <?php if (!is_user_logged_in()) { ?>
+                                <p style="background-color: rgba(227, 224, 204, 0.3); font-size: 2rem; padding-top: 20px">
+                                    PS: It's easier to find information if you <a href="login.php">login or register</a>.
+                                </p>
+                            <?php } ?>
                         </div>
 
                         <?php include 'contact_form.php'; ?>
@@ -225,36 +226,19 @@ require __DIR__ . '/../src/user/register.php';
                     </div>
 
                     <div style="width: 30%;">
-                        <p style="margin-bottom: 5px;">Or scan the QR code below</p>
+                        <p style="margin-bottom: 5px;">Scan the QR code below</p>
                         <img src="../resources/photos/qr.png" alt="QR Code" style="width: 200px; height: 200px;">
                     </div>
 
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 30%;">
-                        <p style="margin-bottom: 5px;">Click <a
+                        <p style="margin-bottom: 5px;">or click <a
                                     href="https://www.picktime.com/a8fbc788-13ae-47b7-9abd-e324ad177323"
                                     style="font-weight: bolder; color: #007bff; text-decoration: none;">here</a> to book
                             your time slot.</p>
                     </div>
 
                 </section>
-
             </div>
-            <h3 style="color: #900000"><?php
-                session_start();
-
-                // Check if the page view counter session variable exists
-
-                if (isset($_SESSION['page_views'])) {
-                    // Increment the page view counter
-                    $_SESSION['page_views']++;
-                } else {
-                    // Set the initial page view counter to 1
-                    $_SESSION['page_views'] = 1;
-                }
-
-                // Display the page view count
-                echo "Page Views: " . $_SESSION['page_views'];
-                ?></h3>
         </div>
     </div>
 

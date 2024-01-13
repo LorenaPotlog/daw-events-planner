@@ -21,6 +21,6 @@ require __DIR__ . '/../src/contact.php';
             <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="background-color: rgba(197, 213, 197, 0.6); color: black;  ">Tell us about your event</button>
+        <button type="submit" class="button" style="background-color: rgba(197, 213, 197, 0.6); color: black;  ">Tell us about your event</button>
     </form>
 </div>

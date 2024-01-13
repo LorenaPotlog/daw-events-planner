@@ -20,65 +20,7 @@ $photo = $_SESSION['photo'];
 ?>
 
     <style>
-        .profile-picture {
-            border: 2px solid pink;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            background-size: cover;
-        }
-
-        .account-details-box {
-            border: 2px solid pink;
-            border-radius: 10px;
-            padding: 20px;
-            width: 400px;
-            margin: 20px auto;
-            background-color: rgba(197, 213, 197, 0.6);
-        }
-
-        .account-details-box p {
-            font-weight: bolder;
-            font-size: larger;
-            padding: 18px;
-        }
-
-        .details-table {
-            width: 100%;
-
-        }
-
-        .details-table td {
-            text-align: left;
-            padding: 8px;
-            font-weight: bold;
-
-        }
-
-        .details-table td.right {
-            text-align: left;
-            font-weight: lighter;
-
-        }
-
-        .reviews-box p {
-            font-weight: bolder;
-            font-size: large;
-        }
-
-        .reviews-table th, .reviews-table td {
-            padding: 12px; /* Adjust the padding for better spacing */
-            border: 1px solid #ddd; /* Add borders between cells for better separation */
-        }
-
-        .reviews-table th {
-            background-color: #f2f2f2; /* Add background color to header */
-        }
-
-        .reviews-table td {
-            text-align: left;
-        }
+        <?php include 'css/account.css' ?>
     </style>
 
     <div style="text-align: center;position: relative;">

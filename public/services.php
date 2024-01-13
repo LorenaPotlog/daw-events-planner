@@ -23,128 +23,15 @@ $totalPages = ceil($totalServices / $servicesPerPage);
 ?>
 
 <?php view('header', ['title' => 'Our Services']); ?>
-
     <style>
-        #page-container {
-            position: relative;
-        }
-
-        .service-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .service {
-            box-sizing: border-box;
-            width: calc(33.33% - 20px); /* 3 columns with 20px margin in between */
-            padding: 50px;
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .delete-button {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background-color: rgba(231, 76, 60, 0.8); /* Use rgba with the desired transparency (0.8 in this case) */
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            width: 30%;
-        }
-
-        .service h2 {
-            margin-top: 0;
-        }
-
-        .photo img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 10px;
-        }
-
-        .service-details {
-            text-align: left;
-        }
-
-        .pdf-form {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .admin-options {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .pdf-form ul {
-            list-style: none;
-            padding: 0;
-            margin: 0; /* Remove default margin for the list */
-        }
-
-        .pdf-form li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .pdf-form li input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .pdf-form li a {
-            flex: 1; /* Make the name take remaining space */
-            text-decoration: none;
-            color: #333; /* Adjust text color as needed */
-        }
-
-        .pdf-form li input[type="number"] {
-            width: 50px;
-            /* You can add additional styling if needed */
-        }
-
-        .pagination {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .pagination a {
-            padding: 10px;
-            margin: 0 5px;
-            border: 1px solid #ccc;
-            text-decoration: none;
-            color: #333;
-            border-radius: 5px;
-        }
-
-        .pagination a.active {
-            background-color: #9fa9a3;
-            color: #fff;
-        }
-
-        .pagination a:hover {
-            background-color: #23527c;
-            color: #fff;
-        }
+        <?php include 'css/services.css' ?>
     </style>
     <div id="page-container">
         <div id="content-wrap">
             <?php if (is_admin()) : ?>
                 <div class="admin-options">
                     <!-- Admin options -->
-                    <button class="button"><a href='./insert_service.php'
+                    <button class="button" style="width: 20%"><a href='./insert_service.php'
                                                   style='text-decoration: none; color: white'>Add New
                             Packages</a></button>
                 </div>
@@ -166,11 +53,9 @@ $totalPages = ceil($totalServices / $servicesPerPage);
                             <p><strong>Description:</strong> <?= $service['description'] ?></p>
                             <p><strong>Price:</strong> $<?= $service['price'] ?></p>
                             <p><strong>Menu Types:</strong> <?= $service['menu_types'] ?></p>
-                            <p><strong>Max Guests:</strong> <?= $service['max_guests'] ?></p>
-                            <!--                            --><?php //if (is_seller() || is_admin()) : ?>
-                            <!--                                <input type='checkbox' name='serviceIDs[]' value='-->
-                            <? //= $service['id'] ?><!--'>-->
-                            <!--                            --><?php //endif; ?>
+                            <p style="margin-bottom: 5%"><strong>Max Guests:</strong> <?= $service['max_guests'] ?></p>
+
+
                             <?php if (is_admin()) : ?>
                                 <!-- Form for delete button visible only to admins -->
                                 <form method="POST" action="../src/package/delete_service.php">
@@ -182,7 +67,8 @@ $totalPages = ceil($totalServices / $servicesPerPage);
                             <form method='POST' action="../src/package/services_pdf.php">
                                 <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
                                 <button type="submit" name="generate_service_pdf" value="<?= $service['id'] ?>"
-                                        style='margin-top: 20px;'>More details (PDF)
+                                        style="width: 60%; position: absolute; bottom: 0;
+            left: 5px;">More details (PDF)
                                 </button>
                             </form>
                         </div>

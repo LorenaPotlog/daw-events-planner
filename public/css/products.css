@@ -1,0 +1,90 @@
+#page-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#content-wrap {
+    flex: 2; /* 2/3 of the page */
+    padding: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-image {
+    /*max-width: 100%;*/
+    height: 300px;
+    width: 350px /* Set a fixed height for the images */
+    /*object-fit: cover; !* Maintain the aspect ratio and cover the container *!*/
+}
+
+.product {
+    box-sizing: border-box;
+    width: calc(25% - 15px); /* 4 columns with 15px margin in between */
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative; /* Add relative positioning */
+}
+
+.product h2 {
+    margin-top: 0;
+}
+
+.photo img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.product-details {
+    text-align: left;
+}
+
+/* Style for the checkbox */
+.product input[type="checkbox"] {
+    position: absolute;
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+}
+
+.pdf-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+.pdf-form ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* Ensure items wrap to the next line when needed */
+    padding: 0;
+}
+
+.pdf-form li {
+    flex: 0 0 calc(33.33% - 20px); /* Each column takes up one-third of the container with a gap of 20px between items */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pdf-form li a {
+    text-decoration: none;
+    color: #333;
+    flex-grow: 1;
+}
+
+input {
+    width: 100px;
+}
+
+.pdf-form li input[type="number"] {
+    width: 50px;
+}

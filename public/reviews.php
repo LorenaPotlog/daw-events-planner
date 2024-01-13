@@ -6,42 +6,11 @@ require __DIR__ . '/../src/reviews.php';
 <?php view('header', ['title' => 'Reviews']) ?>
 
     <style>
-
-        .review {
-            margin-bottom: 40px;
-            background-color: rgba(159, 169, 163, 0.6);
-            border-radius: 8px;
-            color: black;
-            margin-right: auto;
-            margin-left: auto;
-            max-width: 600px; /* Set your desired maximum width */
-            padding: 15px;
-            text-align: left;
-            overflow: hidden;
-        }
-
-        .review img {
-            border-radius: 50%;
-            float: left;
-            margin-right: 15px;
-            width: 80px; /* Set the size of the round picture */
-            height: 80px; /* Set the size of the round picture */
-        }
-
-        .reviewer-name {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .review-text {
-            font-style: italic;
-            line-height: 1.6; /* Increase line height for better readability */
-        }
-
+        <?php include 'css/reviews.css' ?>
 
     </style>
 
-    <a href="leave_review.php" class="styled-link">Tell us what you think about our work!</a>
+    <a href="leave_review.php" class="styled-link" >Tell us what you think about our work!</a>
 
 
     <div class="review">

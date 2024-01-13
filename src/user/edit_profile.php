@@ -24,7 +24,7 @@ if (!is_user_logged_in()) { ?>
 
         // Update user data in the database
         if (edit_user($_SESSION['user_id'], $email, $firstname, $lastname, $photo)) {
-            redirect_with_message('../../public/message/edit_profile_success.php', 'Profile updated successfully.');
+            redirect_with_message('../../public/edit_profile_success.php', 'Profile updated successfully.');
 
         } else echo "Error";
 
