@@ -44,20 +44,6 @@ require __DIR__ . '/../src/edit_profile.php';
             text-align: left;
         }
 
-        .styled-link {
-            background-color: #9fa9a3;
-            color: white;
-            text-align: center;
-            padding: 8px;
-            text-decoration: none;
-            cursor: pointer;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .styled-link:hover {
-            background-color: #c5d5c5;
-        }
     </style>
 
     <div style="text-align: center; position: relative;">

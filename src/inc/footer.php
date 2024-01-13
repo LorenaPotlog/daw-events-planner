@@ -1,88 +1,5 @@
 <style>
-    body{
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-    footer{
-        margin-top: auto;
-    }
-
-    footer {
-        background-color: rgba(197, 213, 197, 0.8); /* Adjust the alpha value for transparency */
-        color: #fff;
-        padding: 15px 0;
-        /*position: sticky;*/
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 10px;
-    }
-
-    footer h3 {
-        font-size: 24px;
-    }
-
-    .address {
-        margin-bottom: 20px;
-        color: white; font-weight: bold; font-family: 'Ubuntu', cursive;
-    }
-
-    .address a {
-        color: #fff;
-        text-decoration: none;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .address a:hover {
-        text-decoration: underline;
-    }
-
-    .footer-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-
-    .footer-column h4 {
-        margin-bottom: 15px;
-        color: black;
-        font-weight: lighter;
-        font-family: 'Ubuntu', cursive; /* Apply the custom font */
-
-    }
-
-    .footer-column ul {
-        list-style: none;
-        padding-left: 1px;
-
-    }
-
-    .footer-column ul li {
-        margin-bottom: 10px;
-    }
-
-    /*social media*/
-
-    ul.social-icons {
-        list-style: none;
-        padding-left: 0;
-        color: white;
-        font-weight: bold;
-        font-family: 'Ubuntu', cursive;
-    }
-
-    ul.social-icons li {
-        margin-bottom: 10px; /* Adjust the space between lines as needed */
-    }
-
-    ul.social-icons li a {
-        text-decoration: none;
-    }
+    <?php include 'css/footer.css' ?>
 </style>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -108,7 +25,7 @@
 
             <div class="col-md-4 footer-column">
                 <h4>Privacy Policy</h4>
-                <ul style="color: white; font-weight: bold; font-family: 'Ubuntu', cursive;">
+                <ul style="color: white; font-weight: bold;">
                     <li>Who we are</a></li>
                     <li>Media</a></li>
                     <li>Cookies</a></li>
@@ -132,7 +49,7 @@
             </div>
 
         </div>
-        <div class="row" style="color: white; font-weight: bold; font-family: 'Ubuntu', cursive; padding-top: 10px">
+        <div class="row" style="color: white; font-weight: bold; padding-top: 10px">
             <div class="col-md-6">
                 <div class="footer-info">
                     <a href="#" style="color:black;"><span style="border: 1px solid black; padding:2px"><i class="fas fa-arrow-up"></i>Scroll up</span></a>

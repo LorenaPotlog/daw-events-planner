@@ -54,7 +54,7 @@ require __DIR__ . '/../src/admin_pannel.php';
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <select class="form-control text-center" name="new_role">
+                                                <select class="form-input text-center" name="new_role">
                                                     <option value="seller" <?php echo ($user['role'] === 'seller') ? 'selected' : ''; ?>>Seller</option>
                                                     <option value="admin" <?php echo ($user['role'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
                                                     <option value="common" <?php echo ($user['role'] === 'common') ? 'selected' : ''; ?>>Common</option>

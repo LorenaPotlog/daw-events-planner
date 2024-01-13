@@ -3,7 +3,7 @@ require __DIR__ . '/../src/bootstrap.php';
 require __DIR__ . '/../src/reviews.php';
 
 ?>
-<?php view('header', ['title' => 'Login']) ?>
+<?php view('header', ['title' => 'Reviews']) ?>
 
     <style>
 
@@ -38,23 +38,6 @@ require __DIR__ . '/../src/reviews.php';
             line-height: 1.6; /* Increase line height for better readability */
         }
 
-        .styled-link {
-            background-color: #e3e0cc;
-            color: black;
-            font-weight: bold;
-            text-align: center;
-            padding: 12px; /* Increased padding */
-            text-decoration: none;
-            cursor: pointer;
-            border-radius: 10px;
-            display: block; /* Convert to block element */
-            margin: 20px auto; /* Center the link and add margin for separation */
-            max-width: 600px; /* Set your desired maximum width */
-        }
-
-        .styled-link:hover {
-            background-color: #c5d5c5;
-        }
 
     </style>
 
@@ -167,6 +150,4 @@ foreach ($reviews as $review) {
     <?php
 }
 ?>
-
-
 <?php view('footer') ?>

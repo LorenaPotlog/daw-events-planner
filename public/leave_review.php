@@ -18,25 +18,14 @@ require __DIR__ . '/../src/bootstrap.php';
             margin-right: auto;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
 
         select,
-        textarea,
-        button {
+        textarea
+         {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
             margin-top: 5px;
-        }
-
-        button {
-            background-color: #9fa9a3;
-            color: #fff;
-            cursor: pointer;
-            margin-top: 10px;
         }
 
         button:hover {

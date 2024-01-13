@@ -62,21 +62,6 @@ $photo = $_SESSION['photo'];
 
         }
 
-        .styled-link {
-            background-color: #9fa9a3;
-            color: white;
-            text-align: left;
-            padding: 8px;
-            text-decoration: none;
-            cursor: pointer;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .styled-link:hover {
-            background-color: #c5d5c5;
-        }
-
         .reviews-box p {
             font-weight: bolder;
             font-size: large;

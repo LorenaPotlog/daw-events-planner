@@ -49,22 +49,6 @@ if (!is_seller() && !is_admin()) {
             padding: 10px;
         }
 
-        input[type="text"], input[type="file"], input[type="submit"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #9fa9a3;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #c5d5c5;
-        }
     </style>
     <div id="page-container">
         <div id="content-wrap">
@@ -92,7 +76,7 @@ if (!is_seller() && !is_admin()) {
                 <td><input type="file" name="productImage"></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Insert product"></td>
+                <td colspan="2"><input class="styled-link" type="submit" value="Insert product"></td>
             </tr>
         </table>
     </form>

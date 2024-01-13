@@ -6,48 +6,9 @@
     <?php include 'stylesheets.html' ?>
     <title><?= $title ?? 'Home' ?></title>
     <style>
-        /* Customize the navbar */
-        .navbar-inverse {
-            background-color:#c5d5c5;
-            border-color: #ddd;
-            color: black;
-            font-family: 'Ubuntu', cursive; /* Apply the custom font */
-        }
-        .navbar-inverse .navbar-nav > li > a {
-            color: black;
-            /*font-weight: bold;*/
-            font-family: 'Ubuntu', cursive; /* Apply the custom font */
-
-        }
-
-        .navbar-inverse .navbar-nav > li > a:active,
-        .navbar-inverse .navbar-nav > li > a:focus,
-        .navbar-inverse .navbar-nav > li > a:hover,
-        .navbar-inverse .navbar-nav > .active > a {
-            color: #336699; /* Change to the desired dark blue color */
-        }
-
-        .navbar-brand {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .navbar-brand img {
-            height: 20px; /* Set the height of your small picture */
-            width: auto; /* Adjust the width proportionally */
-            margin-right: 5px; /* Add space between the picture and text */
-        }
-
-        .navbar li{
-            margin-left: 5px;
-        }
-
-        body {
-            background-color: #f5f5f5; /* Change this to the desired background color */
-            color: #333; /* Text color for better readability */
-            margin: 20px; /* Add space around the body content */
-            min-height: 100vh; /* Ensure full viewport height */
-        }
-
+        <?php include 'css/reset.css' ?>
+        <?php include 'css/nav.css' ?>
+        <?php include 'css/general.css' ?>
     </style>
 </head>
 <body>
@@ -79,6 +40,8 @@
                 <li><a href="reviews.php"><i class="fas fa-pen"></i> Reviews</a></li>
 
                 <li><a href="contact.php"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="game.php"><i class="fas fa-gamepad"></i></a></li>
+
 
             </ul>
 

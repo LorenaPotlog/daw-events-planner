@@ -13,7 +13,7 @@ require __DIR__ . '/../src/bootstrap.php';
             margin-bottom: 20px;
         }
     </style>
-    <div class="container" style="margin-left: 500px; margin-right: 500px;  font-family: 'Ubuntu', cursive;">
+    <div class="container" style="margin-left: 500px; margin-right: 500px;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <section >

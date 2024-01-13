@@ -29,26 +29,6 @@ require __DIR__ . '/../src/enter_email.php';
             margin-bottom: 15px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="email"], button {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-
-        .login-btn {
-            background-color: #9fa9a3;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .login-btn:hover {
-            background-color: #c5d5c5;
-        }
     </style>
     <div id="page-container">
         <div id="content-wrap">
@@ -59,7 +39,7 @@ require __DIR__ . '/../src/enter_email.php';
                     <input type="email" name="email">
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="reset-password" class="login-btn">Submit</button>
+                    <button type="submit" name="reset-password">Submit</button>
                 </div>
             </form>
         </div>

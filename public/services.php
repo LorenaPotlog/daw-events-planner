@@ -56,6 +56,7 @@ $totalPages = ceil($totalServices / $servicesPerPage);
             padding: 5px 10px;
             border-radius: 3px;
             cursor: pointer;
+            width: 30%;
         }
 
         .service h2 {
@@ -86,19 +87,6 @@ $totalPages = ceil($totalServices / $servicesPerPage);
             align-items: flex-start;
         }
 
-        .pdf-form button {
-            display: block;
-            padding: 10px 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #9fa9a3; /* New color */
-            border: none;
-            cursor: pointer;
-            width: 100%; /* Make the button fill the container width */
-        }
-
         .pdf-form ul {
             list-style: none;
             padding: 0;
@@ -124,22 +112,6 @@ $totalPages = ceil($totalServices / $servicesPerPage);
         .pdf-form li input[type="number"] {
             width: 50px;
             /* You can add additional styling if needed */
-        }
-
-        .custom-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #9fa9a3;
-            border: none;
-            cursor: pointer;
-        }
-
-        .custom-btn:hover {
-            background-color: #23527c;
         }
 
         .pagination {
@@ -172,7 +144,7 @@ $totalPages = ceil($totalServices / $servicesPerPage);
             <?php if (is_admin()) : ?>
                 <div class="admin-options">
                     <!-- Admin options -->
-                    <button class="custom-btn"><a href='./insert_service.php'
+                    <button class="button"><a href='./insert_service.php'
                                                   style='text-decoration: none; color: white'>Add New
                             Packages</a></button>
                 </div>

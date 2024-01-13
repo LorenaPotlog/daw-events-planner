@@ -37,36 +37,6 @@ require __DIR__ . '/../src/register.php';
             margin-right: auto;
         }
 
-        h2, h3 {
-            color: #333333; /* Dark text color for headings */
-        }
-
-        p {
-            color: #666666;
-            font-size: 1.5rem;
-            font-family: 'Ubuntu', cursive; /* Apply the custom font */
-            /*
-                        Gray text color for paragraphs */
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #337ab7; /* Blue button color */
-        }
-
-        .btn:hover {
-            background-color: #23527c;
-        }
-
-        #services {
-            text-align: justify;
-
-        }
 
         #services p {
             margin-bottom: 15px;
@@ -76,26 +46,6 @@ require __DIR__ . '/../src/register.php';
         #services img.photo {
             opacity: 0.9; /* Make the photo slightly transparent */
             border-radius: 10px; /* Add border radius to the photo */
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 100px;
-            border: 1px solid black;
-            margin: 10px 0;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 10px; /* Add border radius to the buttons */
-            background-color: rgba(159, 169, 163, 0.8); /* Updated color with 0.8 transparency */
-            color: black;
-            font-family: 'Ubuntu', cursive;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: rgba(197, 213, 197, 0.8); /* Adjust the hover background color */
-            color: white; /* Adjust the hover text color */
         }
 
         .partners-container {
@@ -140,7 +90,7 @@ require __DIR__ . '/../src/register.php';
                     <p style="padding-top: 50px; text-align: center; font-weight: bold">
                         We are here to help you
                     </p>
-                    <p style="padding-top: 20px; text-align: center"><a href="#services" class="btn">Explore Our
+                    <p style="padding-top: 20px; text-align: center"><a href="#services" class="styled-link">Explore Our
                             Services</a></p>
                 </section>
 
@@ -176,8 +126,8 @@ require __DIR__ . '/../src/register.php';
                         provide a distinct ambiance and
                         experience here
                     <div>
-                        <a href="services.php?name=wedding" class="btn">Weddings</a>
-                        <a href="services.php?name=bachelor" class="btn">Bachelors Parties</a>
+                        <a href="services.php?name=wedding" class="styled-link">Weddings</a>
+                        <a href="services.php?name=bachelor" class="styled-link">Bachelors Parties</a>
                     </div>
                     </p>
                     <p>
@@ -246,7 +196,7 @@ require __DIR__ . '/../src/register.php';
                         <p>
                             Discover the magic of DETAILS through our thoughtfully curated products, each designed to
                             provide a distinct ambiance
-                            and enhance your event experience. <a href="products.php" class="btn">Shop now</a>.
+                            and enhance your event experience. <a href="products.php" class="styled-link">Shop now</a>.
                         </p>
                     </div>
                 </section>
@@ -256,7 +206,7 @@ require __DIR__ . '/../src/register.php';
                         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                             <h2 style="background-color: rgba(227, 224, 204, 0.3);">Plan your next event
                                 hassle-free</h2>
-                            <p style="background-color: rgba(227, 224, 204, 0.3); font-size: 2rem">
+                            <p style="background-color: rgba(227, 224, 204, 0.3);">
                                 Ready to start planning your event? Contact us today, and our team will be happy to
                                 assist you.
                             </p>
