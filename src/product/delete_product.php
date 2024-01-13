@@ -3,6 +3,8 @@
 require_once __DIR__ . '/../bootstrap.php';
 require_once 'products.php';
 
+//validate and sanitize data
+
 if (is_post_request()) {
     if(empty($_POST['productIDs'])){
         redirect_with_message(
@@ -24,15 +26,12 @@ if (is_post_request()) {
         foreach ($_POST['productIDs'] as $productID) {
             deleteProduct($productID);
         }
-        $_SESSION['alert'] = "Products successfully deleted!";
         unset($_POST['productIDs']);
         redirect_with_message(
             '../../public/products.php',
-            'The product has been succesfully deleted.'
+            'The product has been successfully deleted.'
         );
     } else {
-        $_SESSION['alert'] = "You do not have rights to delete this!";
-        echo "<script>alert('Deleted Products: You do not have rights to delete this!');</script>";
         redirect_with_message(
             '../../public/products.php',
             'You do not have rights to delete this!', FLASH_ERROR);

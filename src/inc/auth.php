@@ -176,12 +176,6 @@ function is_seller(): bool
     return ($_SESSION['role'] === 'seller');
 }
 
-function require_login(): void
-{
-    if (!is_user_logged_in()) {
-        redirect_to('login.php');
-    }
-}
 function current_user()
 {
     if (is_user_logged_in()) {

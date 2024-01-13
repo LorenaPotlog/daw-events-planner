@@ -7,10 +7,33 @@ require __DIR__ . '/../src/user/admin/admin_panel.php';
 
 <?php view('header', ['title' => ' Users']); ?>
 
+    <style>
+        .table-wrapper {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        .title {
+            padding-bottom: 2%;
+        }
+
+        .action-btn {
+            background-color: #9fa9a3;
+            margin-top: 0;
+        }
+
+        th {
+            text-align: center;
+        }
+    </style>
+
     <div class="container-fluid">
-        <h2 class="text-center">All Users</h2>
+        <h2 class="text-center title">All Users</h2>
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="table-wrapper">
                 <table class="table table-bordered">
                     <thead>
                     <th>Id</th>
@@ -19,6 +42,7 @@ require __DIR__ . '/../src/user/admin/admin_panel.php';
                     <th>Verified</th>
                     <th>Role</th>
                     <th>Update role</th>
+                    <th>Remove user</th>
                     </thead>
                     <tbody>
                     <?php $users = get_all_users();
@@ -41,7 +65,7 @@ require __DIR__ . '/../src/user/admin/admin_panel.php';
                                     ?>
                                     <form method="POST" action="" style="padding-top: 10%;">
                                         <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
-                                        <button class="btn btn-primary btn-update btn-sm" type="submit" name="verify" style="background-color: #9fa9a3;">Verify</button>
+                                        <button class="btn btn-primary action-btn btn-sm" type="submit" name="verify">Verify</button>
                                     </form>
                                     <?php
                                 }
@@ -54,17 +78,23 @@ require __DIR__ . '/../src/user/admin/admin_panel.php';
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <select class="form-input text-center" name="new_role">
+                                                <select class="form-input form-control text-center" name="new_role">
                                                     <option value="seller" <?php echo ($user['role'] === 'seller') ? 'selected' : ''; ?>>Seller</option>
                                                     <option value="admin" <?php echo ($user['role'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
                                                     <option value="common" <?php echo ($user['role'] === 'common') ? 'selected' : ''; ?>>Common</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <button class="btn btn-primary btn-update" type="submit" name="update_role" style="background-color: #9fa9a3;">Update Role</button>
+                                                <button class="btn btn-primary action-btn btn-sm" type="submit" name="update_role">Update Role</button>
                                             </div>
                                         </div>
                                     </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="POST" action="">
+                                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                    <button class="btn btn-primary btn-sm action-btn" type="submit" name="delete_user">Delete</button>
                                 </form>
                             </td>
                         </tr>

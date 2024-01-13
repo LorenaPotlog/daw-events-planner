@@ -6,13 +6,15 @@ require_once __DIR__ . '/../bootstrap.php';
 
 <?php
 
-// Handling form submission
 if (is_post_request()) {
     $name = $_POST['name'];
     $user_id = $_SESSION['user_id'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
+
+
+    //validate and sanitize data
 
     if(isset($_FILES['productImage']) && $_FILES['productImage']['error'] !== UPLOAD_ERR_NO_FILE) {
         $productImage = file_get_contents($_FILES['productImage']['tmp_name']);

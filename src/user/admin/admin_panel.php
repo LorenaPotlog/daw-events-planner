@@ -4,13 +4,10 @@ require_once __DIR__ .'/../users.php';
 
 if (is_post_request()) {
     if (isset($_POST['update_role'])) {
-        $userId = $_POST['user_id'];
-        $newRole = $_POST['new_role'];
-
-        update_user_role($userId, $newRole);
+        update_user_role($_POST['user_id'], $_POST['new_role']);
     } else if (isset($_POST['verify'])) {
-        $userId = $_POST['user_id'];
-
-        verify_user($userId);
+        verify_user($_POST['user_id']);
+    } else if (isset($_POST['delete_user'])) {
+        delete_user($_POST['user_id']);
     }
 }

@@ -69,12 +69,6 @@ function retrieveProducts() {
 
                 ];
 
-//                if (!empty($row["photo"])) {
-//                    $basePhotoURL = "resources/photos/";
-//                    $photoName = $row["photo"];
-//                    $fullPhotoURL = $basePhotoURL . $photoName;
-//                    $product['photo'] = htmlspecialchars($fullPhotoURL);
-//                }
 
                 $products[] = $product;
             }

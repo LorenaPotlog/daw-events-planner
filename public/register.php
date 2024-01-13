@@ -13,7 +13,9 @@ require __DIR__ . '/../src/user/register.php';
         max-width: 400px;
         width: 100%;
         box-sizing: border-box;
-        margin-left: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 3%;
     }
 </style>
     <div id="page-container">

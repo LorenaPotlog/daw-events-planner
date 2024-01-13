@@ -3,7 +3,7 @@ require __DIR__ . '/../bootstrap.php';
 
 function deleteServiceById($serviceId)
 {
-    $db = new mysqli('localhost', 'root', '', 'details');
+    $db = getDBConnection();
 
     $serviceId = intval($serviceId);
 
@@ -62,4 +62,3 @@ if (is_post_request() && is_admin()) {
         FLASH_ERROR
     );
 }
-?>

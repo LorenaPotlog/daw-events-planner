@@ -37,5 +37,4 @@ if (is_post_request()) {
     } else {
         echo 'Please check on the reCAPTCHA box.';
     }
-
 }

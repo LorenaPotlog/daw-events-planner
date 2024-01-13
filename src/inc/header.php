@@ -78,5 +78,47 @@
         </div>
     </div>
 <?php endif; ?>
+<?php
+$page_url = $_SERVER['REQUEST_URI'];
+
+$connection = getDBConnection();
+$selectQuery = $connection->prepare("SELECT view_count FROM page_views WHERE page_url = ?");
+$selectQuery->bind_param("s", $page_url);
+$selectQuery->execute();
+$selectQuery->store_result();
+
+if ($selectQuery->num_rows > 0) {
+    $updateQuery = $connection->prepare("UPDATE page_views SET view_count = view_count + 1 WHERE page_url = ?");
+    $updateQuery->bind_param("s", $page_url);
+    $updateQuery->execute();
+    $updateQuery->close();
+} else {
+    $insertQuery = $connection->prepare("INSERT INTO page_views (page_url, view_count) VALUES (?, 1)");
+    $insertQuery->bind_param("s", $page_url);
+    $insertQuery->execute();
+    $insertQuery->close();
+}
+
+$selectQuery->close();
+
+$query = "SELECT view_count, (SELECT SUM(view_count) FROM page_views) AS total_views FROM page_views WHERE page_url = ?;";
+$selectQuery = $connection->prepare($query);
+$selectQuery->bind_param("s", $page_url);
+$selectQuery->execute();
+$selectQuery->bind_result($view_count, $total_views);
+
+if (is_admin()) {
+    if ($selectQuery->fetch()) {
+        echo "This page has been viewed $view_count times. Total views: $total_views";
+    } else {
+        echo "No view count available for this page.";
+    }
+}
+
+$selectQuery->close();
+$connection->close();
+?>
+
 <main>
+
 

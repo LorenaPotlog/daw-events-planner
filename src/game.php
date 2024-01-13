@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/../src/bootstrap.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $yourName = $_POST['yourName'] ?? '';
@@ -33,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo 'Error calculating love percentage.';
         }
     } else {
-        echo 'Please provide both names.';
+        redirect_with_message('../public/game.php', "Please enter both names", FLASH_ERROR);
     }
 } else {
-    echo 'Invalid request method.';
+    redirect_with_message('../public/game.php', "Invalid request", FLASH_ERROR);
 }

@@ -6,7 +6,6 @@ require_once __DIR__ . '/../libs/helpers.php';
 
 session_start();
 
-//TODO - FIX ERROR MESSAGES and REDIRECT!!!!!!!!
 $inputs=[];
 $errors = [];
 if (isset($_POST['reset-password'])) {
@@ -48,7 +47,6 @@ if (isset($_POST['reset-password'])) {
     $_SESSION['errors'] = $errors;
     $_SESSION['inputs'] = $inputs;
     redirect_to('../../public/enter_email.php');
-
 }
 
 [$inputs, $errors] = session_flash('inputs', 'errors');
@@ -59,7 +57,7 @@ if (!empty($errors)) {
 }
 
 if (isset($_POST['new_password'])) {
-    $db = getDBConnection(); // Retrieve the database connection
+    $db = getDBConnection();
 
     $new_pass = mysqli_real_escape_string($db, $_POST['new_pass']);
     $new_pass_c = mysqli_real_escape_string($db, $_POST['new_pass_c']);
@@ -67,8 +65,7 @@ if (isset($_POST['new_password'])) {
     $token = htmlspecialchars($_POST['token']);
 
     // Grab to token that came from the email link
-
-    if (empty($new_pass) || empty($new_pass_c)) echo "Password is required, this it your token:". $_POST['token'];
+    if (empty($new_pass) || empty($new_pass_c)) echo "Password is required, this is your token:". $_POST['token'];
     if ($new_pass !== $new_pass_c) echo "Password do not match" ;
 
     if (count($errors) == 0) {

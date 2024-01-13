@@ -20,30 +20,22 @@ if (!is_admin()) {
 ?>
 
     <style>
-        #page-container {
-            position: relative;
-        }
 
         form {
             background-color: #fff;
             border: 1px solid #ddd;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 500px;
             width: 100%;
             box-sizing: border-box;
-            margin-left: 600px;
-            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 5%;
         }
 
         table {
             width: 100%;
-        }
-
-        caption {
-            text-align: left;
-            font-size: 1.5em;
-            margin-bottom: 10px;
         }
 
         td {
@@ -57,15 +49,6 @@ if (!is_admin()) {
             box-sizing: border-box;
         }
 
-        input[type="submit"] {
-            background-color: #9fa9a3;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #c5d5c5;
-        }
     </style>
 
 
@@ -73,7 +56,7 @@ if (!is_admin()) {
         <div id="content-wrap">
             <form action="../src/package/insert_service.php" method="post" enctype="multipart/form-data" style="text-align: center">
                 <table style="align-self: center">
-                    <caption><h3>Add New Service</h3></caption>
+                    <h3 style="margin-bottom: 2%">Add New Service</h3>
                     <tr>
                         <td>Name</td>
                         <td><input type="text" name="name" maxlength="50" size="50"></td>
@@ -87,7 +70,7 @@ if (!is_admin()) {
                         <td><input type="text" name="price" maxlength="7" size="7"></td>
                     </tr>
                     <tr>
-                        <td>Menu Types</td>
+                        <td>Menus</td>
                         <td><input type="text" name="menu_types" maxlength="60" size="30"></td>
                     </tr>
                     <tr>
@@ -95,7 +78,7 @@ if (!is_admin()) {
                         <td><input type="text" name="max_guests" maxlength="3" size="3"></td>
                     </tr>
                     <tr>
-                        <td>Long Description</td>
+                        <td>Description</td>
                         <td><textarea name="long_description" maxlength="500"></textarea></td>
                     </tr>
                     <tr>
@@ -103,7 +86,7 @@ if (!is_admin()) {
                         <td><input type="file" name="serviceImages[]" multiple></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><input type="submit" value="Insert Service"></td>
+                        <td colspan="2"><input type="submit" class="styled-link" value="Insert Service"></td>
                     </tr>
                 </table>
             </form>

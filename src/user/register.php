@@ -5,8 +5,6 @@ require_once __DIR__ . '/../../phpmailer/mail_cod.php';
 
 $nameErr = "";
 
-///redirect user to login if email already exists
-
 if (is_post_request()) {
 
     if (($_POST["firstname"])=='') {

@@ -3,7 +3,7 @@ require __DIR__ . '/../bootstrap.php';
 
 function retrieveServices(): array
 {
-    $db = new mysqli('localhost', 'root', '', 'details');
+    $db = getDBConnection();
 
     $filter_menu_type = $_GET['menu_type'] ?? '';
     $sort_order = $_GET['sort'] ?? 'ASC';
@@ -71,7 +71,7 @@ function retrieveServices(): array
 }
 
 function retrieveServiceById($serviceId) {
-    $db = new mysqli('localhost', 'root', '', 'details');
+    $db = getDBConnection();
 
     $serviceId = intval($serviceId);
 
@@ -110,30 +110,9 @@ function retrieveServiceById($serviceId) {
     }
 }
 
-function displayServices(): void
-{
-    $services = retrieveServices();
-    foreach ($services as $service) {
-        ?>
-        <div class="service" style="padding: 50px">
-            <h2><?= $service['name'] ?></h2>
-            <p><strong>Description:</strong> <?= $service['description'] ?></p>
-            <p><strong>Price:</strong> $<?= $service['price'] ?></p>
-            <p><strong>Menu Types:</strong> <?= $service['menu_types'] ?></p>
-            <p><strong>Max Guests:</strong> <?= $service['max_guests'] ?></p>
-            <?php if (!empty($service['image'])) : ?>
-                <div class="photo">
-                    <img src="data:image/jpeg;base64,<?= base64_encode($service['image']) ?>" alt="Product Photo">
-                </div>
-            <?php endif; ?>
-        </div>
-        <?php
-    }
-}
-
 function retrieveServicesWithLimit($limit, $offset): array
 {
-    $db = new mysqli('localhost', 'root', '', 'details');
+    $db = getDBConnection();
 
     $filter_menu_type = $_GET['menu_type'] ?? '';
     $sort_order = $_GET['sort'] ?? 'ASC';
@@ -207,7 +186,7 @@ function retrieveServicesWithLimit($limit, $offset): array
 
 function countServices(): int
 {
-    $db = new mysqli('localhost', 'root', '', 'details');
+    $db = getDBConnection();
 
     $filter_menu_type = $_GET['menu_type'] ?? '';
 
@@ -254,7 +233,7 @@ function countServices(): int
 
 function insertService($name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage): string
 {
-    $db = new mysqli('localhost', 'root', '', 'details');
+    $db = getDBConnection();
 
     // Prepare the statement
     $stmt = $db->prepare("INSERT INTO package (name, description, price, menu_types, max_guests, longDesc, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
