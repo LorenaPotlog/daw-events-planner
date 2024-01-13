@@ -4,31 +4,10 @@ require __DIR__ . '/../src/user/enter_email.php';
 ?>
 <?php view('header', ['title' => 'Password reset']) ?>
     <style>
-
-        #page-container {
-            position: relative;
-        }
-
-
+        <?php include 'css/new_pass.css' ?>
         form {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-left: 600px;
+            margin :10% auto;
         }
-
-        .form-title {
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
     </style>
     <div id="page-container">
         <div id="content-wrap">
