@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/products.php';
+require __DIR__ . '/../src/product/products.php';
 
 view('header', ['title' => 'Our Product']);
 

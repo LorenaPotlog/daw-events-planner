@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/edit_profile.php';
+require __DIR__ . '/../src/user/edit_profile.php';
 ?>
 
 <?php view('header', ['title' => 'Edit Profile']); ?>
@@ -58,7 +58,7 @@ require __DIR__ . '/../src/edit_profile.php';
                 $imageSource = $defaultImage;
             } ?>
             <img src="<?= $imageSource ?>" alt="Profile Photo" class="profile-picture" style="margin-bottom: 8px">
-            <form method="post" action="../src/edit_profile.php" enctype="multipart/form-data">
+            <form method="post" action="../src/user/edit_profile.php" enctype="multipart/form-data">
                 <table class="details-table">
                     <tr>
                         <td>Photo:</td>

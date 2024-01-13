@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/services.php';
-require __DIR__ . '/../src/services_pdf.php';
+require __DIR__ . '/../src/package/services.php';
+require __DIR__ . '/../src/package/services_pdf.php';
 
 // Define the number of services to display per page
 $servicesPerPage = 3;
@@ -173,13 +173,13 @@ $totalPages = ceil($totalServices / $servicesPerPage);
                             <!--                            --><?php //endif; ?>
                             <?php if (is_admin()) : ?>
                                 <!-- Form for delete button visible only to admins -->
-                                <form method="POST" action="../src/delete_service.php">
+                                <form method="POST" action="../src/package/delete_service.php">
                                     <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
                                     <button type="submit" name="delete_service" class="delete-button">Delete</button>
                                 </form>
                             <?php endif; ?>
 
-                            <form method='POST' action="../src/services_pdf.php">
+                            <form method='POST' action="../src/package/services_pdf.php">
                                 <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
                                 <button type="submit" name="generate_service_pdf" value="<?= $service['id'] ?>"
                                         style='margin-top: 20px;'>More details (PDF)

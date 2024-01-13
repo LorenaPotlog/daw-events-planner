@@ -1,0 +1,84 @@
+html{
+    --bg-color: #f5f5f5; /* very light green */
+    --btn-color: #9fa9a3; /* dark green */
+    --header-color: #c5d5c5; /* minty green */
+    --text-color: #333;
+    --text-header-color: #33333;
+    --margin-spacing: 5em;
+
+    --light-yellow: rgba(227, 224, 204, 0.3);
+    --light-green: rgba(197, 213, 197, 0.6);
+}
+
+.form-input{
+    background-color:var(--light-yellow)
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 20px;
+    min-height: 100vh;
+    font-family: 'Ubuntu', cursive;
+    font-size: 1.1vw;
+}
+
+h1 {
+    font-size: 2.5vw;
+}
+
+
+h2, h3 {
+    font-size: 2vw;
+    color: var(--text-header-color);
+}
+
+p {
+    color: #666666;
+}
+
+
+/*buttons in general*/
+
+button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    /*box-sizing: border-box;*/
+    background-color: #9fa9a3;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #c5d5c5;
+}
+
+
+/*links that look like buttons*/
+.styled-link {
+    display: block;
+    background-color: #9fa9a3;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 4%;
+    border: outset grey;
+}
+
+.styled-link:hover {
+    background-color: #c5d5c5;
+}
+
+/*form inputs*/
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+

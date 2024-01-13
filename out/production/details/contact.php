@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 require_once '../phpmailer/mail_cod.php';
 
 
@@ -38,6 +38,4 @@ if (is_post_request()) {
         echo 'Please check on the reCAPTCHA box.';
     }
 
-    }  else {
-    echo "Access denied.";
 }

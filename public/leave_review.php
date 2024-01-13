@@ -37,7 +37,7 @@ require __DIR__ . '/../src/bootstrap.php';
 <?php if (is_user_logged_in()) { ?>
     <div id="page-container">
         <div id="content-wrap">
-            <form class="review-form" action="../src/leave_review.php" method="post">
+            <form class="review-form" action="../src/user/leave_review.php" method="post">
                 <h1 class="text-center">Leave a Review</h1>
 
                 <label for="rating">Rating (out of 5):</label>

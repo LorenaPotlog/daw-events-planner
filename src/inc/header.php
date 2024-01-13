@@ -55,7 +55,7 @@
                     <?php
                     if (is_admin()) :
                         ?>
-                        <li><a href="admin_pannel.php"><i class="fas fa-user-shield"></i> Admin panel</a></li>
+                        <li><a href="admin_panel.php"><i class="fas fa-user-shield"></i> Admin panel</a></li>
                     <?php endif; ?>
                     <?php
                     if (is_admin()) :

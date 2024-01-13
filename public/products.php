@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/products.php';
-require __DIR__ . '/../src/products_pdf.php';
-require __DIR__ . '/../src/delete_product.php';
+require __DIR__ . '/../src/product/products.php';
+require __DIR__ . '/../src/product/products_pdf.php';
+require __DIR__ . '/../src/product/delete_product.php';
 ?>
 
 <?php view('header', ['title' => 'Our Products']); ?>
@@ -107,7 +107,7 @@ require __DIR__ . '/../src/delete_product.php';
     <!-- Admin options -->
     <button class="button"><a href='./insert_product.php' style='text-decoration: none; color: white'>Add New
             Products</a></button>
-    <form method='POST' action="../src/delete_product.php" style="display: inline;">
+    <form method='POST' action="../src/product/delete_product.php" style="display: inline;">
     <button type='submit' name="delete_product" value="deleteProduct" class="button">Delete Selected
         Products
     </button>
@@ -158,7 +158,7 @@ require __DIR__ . '/../src/delete_product.php';
 
     <div class="pdf-form" id="scroll">
         <!-- PDF generation form -->
-        <form method='POST' action="../src/products_pdf.php">
+        <form method='POST' action="../src/product/products_pdf.php">
             <button type="submit" name="generate_pdf" value="generatePdf" class="button">Calculate invoice</button>
             <ul>
                 <?php foreach ($products as $product) : ?>

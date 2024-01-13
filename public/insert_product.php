@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/register.php';
+require __DIR__ . '/../src/user/register.php';
 ?>
 
 <?php view('header', ['title' => 'Add new product']);
@@ -52,7 +52,7 @@ if (!is_seller() && !is_admin()) {
     </style>
     <div id="page-container">
         <div id="content-wrap">
-    <form action="../src/insert_product.php" method="post" enctype="multipart/form-data" style="text-align: center">
+    <form action="../src/product/insert_product.php" method="post" enctype="multipart/form-data" style="text-align: center">
         <table style="align-self: center">
             <caption><h3>Add New Product</h3></caption>
             <tr>

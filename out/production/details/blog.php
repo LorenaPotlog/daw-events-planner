@@ -1,5 +1,5 @@
 <?php
-$page = file_get_contents('http://www.indiegogo.com/projects/ubuntu-edg');
+$page = file_get_contents('https://blog.eventador.ro/de-ce-e-important-sa-participi-la-targurile-de-nunti/');
 
 $doc = new DOMDocument;
 libxml_use_internal_errors(true);
@@ -7,24 +7,19 @@ $doc->loadHTML($page);
 
 $finder = new DomXPath($doc);
 
-// find class="money-raised"
-$nodes = $finder->query("//*[contains(@class, 'money-raised')]");
+// Find the main content area (specific to the blog post)
+$nodes = $finder->query("//div[contains(@class, 'entry-content')]");
 
-// get the children of the first match  (class="money-raised")
-$raised_children = $nodes->item(0)->childNodes;
+// Initialize an empty string to store the extracted content
+$content = '';
 
-// get the children of the second match (class="money-raised goal")
-$goal_children = $nodes->item(1)->childNodes;
+if ($nodes->length > 0) {
+    // Loop through paragraphs within the content area
+    foreach ($nodes->item(0)->getElementsByTagName('p') as $paragraph) {
+        // Append paragraph content to the final extracted content
+        $content .= $doc->saveHTML($paragraph);
+    }
+}
 
-// get the amount value
-$money_earned = $raised_children->item(1)->nodeValue;
-
-// get the amount value
-preg_match('/\$[\d,]+/', $goal_children->item(0)->nodeValue, $m);
-$money_earned_goal = $m[0];
-
-
-echo "Money earned: $money_earned\n";
-echo "Goal: $money_earned_goal\n";
-
+echo $content; // Output the extracted content
 ?>

@@ -41,7 +41,7 @@ function register_user(string $firstname, string $lastname, string $email, strin
 function send_activation_email(string $email): bool
 {
     $verificationCode = md5($email);
-    $verificationLink = "http://localhost/details/src/verify.php?code=$verificationCode";
+    $verificationLink = "http://localhost/details/user/src/verify.php?code=$verificationCode";
     $subject = "Verify Your Email Address";
     $message = "Click the link below to verify your email address:\n$verificationLink";
 

@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/register.php';
+require __DIR__ . '/../src/user/register.php';
 ?>
 
 <?php
@@ -71,7 +71,7 @@ if (!is_admin()) {
 
     <div id="page-container">
         <div id="content-wrap">
-            <form action="../src/insert_service.php" method="post" enctype="multipart/form-data" style="text-align: center">
+            <form action="../src/package/insert_service.php" method="post" enctype="multipart/form-data" style="text-align: center">
                 <table style="align-self: center">
                     <caption><h3>Add New Service</h3></caption>
                     <tr>

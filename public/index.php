@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../src/register.php';
+require __DIR__ . '/../src/user/register.php';
 ?>
 
 <?php view('header', ['title' => 'Register']); ?>

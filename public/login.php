@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/login.php';
+require __DIR__ . '/../src/user/login.php';
 
 ?>
 <?php view('header', ['title' => 'Login']) ?>
@@ -25,7 +25,7 @@ require __DIR__ . '/../src/login.php';
         <div class="row" style="margin-top: 3%; margin-bottom: 3%;">
             <div class="col-md-6 col-md-offset-3">
                 <div id="content-wrap">
-                    <form action="../src/login.php" method="post" style="display: block; margin-left: auto; margin-right: auto;">
+                    <form action="../src/user/login.php" method="post" style="display: block; margin-left: auto; margin-right: auto;">
                         <h1 class="text-center">Login</h1>
                         <div class="form-group">
                             <label for="username">Username:</label>

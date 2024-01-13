@@ -1,0 +1,31 @@
+/* Customize the navbar */
+.navbar-inverse {
+    background-color:#c5d5c5;
+    border-color: #ddd;
+    color: black;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+
+}
+
+.navbar-inverse .navbar-nav > li > a:active,
+.navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > .active > a {
+    color: #336699; /* Change to the desired dark blue color */
+}
+
+.navbar-brand {
+    display: inline-block;
+    vertical-align: middle;
+}
+.navbar-brand img {
+    height: 20px; /* Set the height of your small picture */
+    width: auto; /* Adjust the width proportionally */
+    margin-right: 5px; /* Add space between the picture and text */
+}
+
+.navbar li{
+    margin-left: 5px;
+}

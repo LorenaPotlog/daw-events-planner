@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
-require __DIR__ . '/../src/enter_email.php';
+require __DIR__ . '/../src/user/enter_email.php';
 ?>
 <?php view('header', ['title' => 'Password reset']) ?>
 
@@ -33,7 +33,7 @@ require __DIR__ . '/../src/enter_email.php';
 
     <div id="page-container">
         <div id="content-wrap">
-            <form class="login-form" action="../src/enter_email.php" method="post">
+            <form class="login-form" action="../src/user/enter_email.php" method="post">
                 <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
                 <h2 class="form-title">New password</h2>
                 <div class="form-group">

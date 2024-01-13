@@ -7,5 +7,4 @@ require_once __DIR__ . '/libs/helpers.php';
 //require_once __DIR__ . '/libs/connection.php';
 //require_once __DIR__ . '/libs/filter.php';
 require_once __DIR__ . '/inc/flash.php';
-require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/inc/auth.php';

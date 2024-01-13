@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $percentage = $result["percentage match: "];
             $loveResult = $result["result: "];
 
-            header("Location: ../public/game.php?percentage=$percentage&result=$loveResult");
+            header("Location: ../../public/game.php?percentage=$percentage&result=$loveResult");
             exit();
         } else {
             echo 'Error calculating love percentage.';
