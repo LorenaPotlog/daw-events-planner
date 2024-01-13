@@ -64,7 +64,7 @@ require __DIR__ . '/../src/user/register.php';
     <div id="page-container">
         <div id="content-wrap">
             <div id="page-grid">
-                <?php include 'slideshow.php'; ?>
+                <?php include 'js/slideshow.php'; ?>
                 <section>
                     <h2 style="padding-bottom: 20px">About Us</h2>
                     <p>

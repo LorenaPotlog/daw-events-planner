@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../../src/bootstrap.php';
 ?>
 
 <?php view('header', ['title' => 'Registration successfully']); ?>

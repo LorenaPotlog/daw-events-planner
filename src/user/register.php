@@ -41,7 +41,7 @@ if (is_post_request()) {
         try {
             if (register_user($firstname, $lastname, $email, $username, $password)) {
                 redirect_to(
-                    '../../public/registration_success.php',
+                    '../../public/message/registration_success.php',
                 );
             }
         } catch (Exception $e) {

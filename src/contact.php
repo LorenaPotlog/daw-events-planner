@@ -27,7 +27,7 @@ if (is_post_request()) {
             $mail_to_company = send_email($company_email,$company_subject,$company_message,$email);
             if ($mail_to_customer && $mail_to_company) {
                 echo "Thank you! Your message has been sent.";
-                header('Location: ../../public/thank_you.php');
+                header('Location: ../../public/../message/thank_you.php');
             } else {
                 echo "Oops! Something went wrong, please try again later.";
             }
