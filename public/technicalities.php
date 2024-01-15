@@ -1,12 +1,13 @@
 
 <?php
 require __DIR__ . '/../src/bootstrap.php';
- if(is_admin()){
-?>
+if ( !is_admin() ) {
+    header("Location: index.php");
+    exit;
+}?>
 <?php view('header', ['title' => 'Technicalities']) ?>
 
     <style>
-        /* Custom CSS for the page */
         section {
             border: 1px solid #ccc;
             padding: 20px;
@@ -86,7 +87,5 @@ require __DIR__ . '/../src/bootstrap.php';
             </div>
         </div>
     </div>
-
-<?php } else redirect_to('index.php'); ?>
 
 <?php view('footer') ?>

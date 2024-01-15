@@ -1,6 +1,12 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
 require __DIR__ . '/../src/user/edit_profile.php';
+
+if (!is_user_logged_in()) {
+    header("Location: login.php");
+    exit;
+}
+
 ?>
 
 <?php view('header', ['title' => 'Edit Profile']); ?>
@@ -8,7 +14,6 @@ require __DIR__ . '/../src/user/edit_profile.php';
     <style>
         <?php include 'css/edit_profile.css' ?>
     </style>
-
     <div style="text-align: center; position: relative;">
 
         <div class="account-details-box">
@@ -50,6 +55,5 @@ require __DIR__ . '/../src/user/edit_profile.php';
 
     </div>
     <a href="user_account.php" class="styled-link go-back"><i class="fas fa-arrow-left"></i> Go back to Your Account</a>
-
 
 <?php view('footer') ?>

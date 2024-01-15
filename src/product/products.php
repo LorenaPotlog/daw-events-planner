@@ -41,10 +41,11 @@ function retrieveProductById($productId) {
     }
 }
 
-function retrieveProducts() {
+function retrieveProducts($sortOrder = 'asc') {
     $db = getDBConnection(); // Get database connection
 
-    $query = "SELECT * FROM products";
+    $orderBy = ($sortOrder === 'desc') ? 'DESC' : 'ASC';
+    $query = "SELECT * FROM products ORDER BY price $orderBy";
 
     // Prepare the statement
     if ($stmt = $db->prepare($query)) {
@@ -86,6 +87,45 @@ function retrieveProducts() {
 
     return $products;
 }
+
+function retrieveProductByName($productName) {
+    $db = getDBConnection(); // Get database connection
+
+    $query = "SELECT * FROM products WHERE name = ?";
+    $stmt = $db->prepare($query);
+
+    if (!$stmt) {
+        return null; // Or handle the error as required
+    }
+
+    $stmt->bind_param("s", $productName);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $product = [
+            'name' => htmlspecialchars($row["name"]),
+            'description' => htmlspecialchars($row["description"]),
+            'price' => htmlspecialchars($row["price"]),
+            'quantity' => htmlspecialchars($row["quantity"]),
+            'id' => htmlspecialchars($row["id"]),
+            'image' => $row["image"],
+            'longDesc' => $row["longDesc"]
+        ];
+
+        $stmt->close();
+        $db->close();
+
+        return $product; // Return the retrieved product details
+    } else {
+        $stmt->close();
+        $db->close();
+        return null; // Product not found with the given name
+    }
+}
+
 
 function insertProduct($name, $description, $price, $quantity, $userID,$productImage) {
     $db = getDBConnection(); // Retrieve the database connection

@@ -5,18 +5,7 @@ require __DIR__ . '/../src/user/register.php';
 
 <?php view('header', ['title' => 'Register']); ?>
     <style>
-        form {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-right: auto;
-            margin-left: auto;
-            margin-bottom: 3%;
-        }
+        <?php include 'css/register.css' ?>
     </style>
     <div id="page-container">
         <div id="content-wrap">
@@ -62,8 +51,7 @@ require __DIR__ . '/../src/user/register.php';
 
                 <div class="checkbox-group">
                     <label for="agree" style="text-align: center">I agree with the <a>terms of services.</a></label>
-                    <input type="checkbox" name="agree"
-                           id="agree" <?= isset($_SESSION['inputs']['agree']) && $_SESSION['inputs']['agree'] ? 'checked' : '' ?>>
+                    <input type="checkbox" name="agree" id="agree" <?= isset($_SESSION['inputs']['agree']) && $_SESSION['inputs']['agree'] ? 'checked' : '' ?> value="on">
                 </div>
 
                 <button type="submit" name="register">Register</button>

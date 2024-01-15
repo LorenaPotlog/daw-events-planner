@@ -20,15 +20,25 @@ require __DIR__ . '/../src/product/delete_product.php';
         Products
     </button>
 <?php endif ?>
-    <a href="#scroll" class="styled-link" style="display:inline; width: 30%;">Calculate invoice <i class="fa fa-arrow-down" style="color: white"></i></a>
 
     <div style="display: flex"
     <div id="page-container" style="width: 50%">
         <div id="content-wrap">
+            <form method="GET" action="#">
+                <label for="sort">Sort by Price:</label>
+                <select name="sort" id="sort">
+                    <option value="asc" <?= ($_GET['sort'] ?? '') === 'asc' ? 'selected' : '' ?>>Ascending</option>
+                    <option value="desc" <?= ($_GET['sort'] ?? '') === 'desc' ? 'selected' : '' ?>>Descending</option>
+                </select>
+                <button type="submit" style="width: 10%">Apply</button>
+                <a href="#scroll" class="styled-link" style="display:inline; width: 30%; background-color: darkslategrey">Calculate invoice <i class="fa fa-arrow-down" style="color: white"></i></a>
+
+            </form>
             <div class="product-list">
                 <!-- Display products -->
                 <?php
-                $products = retrieveProducts();
+                $sortOrder = isset($_GET['sort']) && ($_GET['sort'] === 'asc' || $_GET['sort'] === 'desc') ? $_GET['sort'] : 'asc';
+                $products = retrieveProducts($sortOrder);
                 foreach ($products as $product) : ?>
                     <div class="product">
                         <!-- Product details -->
@@ -44,7 +54,7 @@ require __DIR__ . '/../src/product/delete_product.php';
                         } ?>
 
                         <div class="photo">
-                            <img src="<?= $imageSource ?>" alt="Product Photo" class="product-image">
+                            <img src="<?= $imageSource ?>" alt="Product Photo" id="product-image">
                         </div>
 
                         <div class="product-details">

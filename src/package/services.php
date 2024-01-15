@@ -70,7 +70,8 @@ function retrieveServices(): array
     return $services;
 }
 
-function retrieveServiceById($serviceId) {
+function retrieveServiceById($serviceId)
+{
     $db = getDBConnection();
 
     $serviceId = intval($serviceId);
@@ -90,7 +91,7 @@ function retrieveServiceById($serviceId) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $service = [
-                'id' => htmlspecialchars($row["id"]),
+            'id' => htmlspecialchars($row["id"]),
             'name' => htmlspecialchars($row["name"]),
             'description' => htmlspecialchars($row["description"]),
 //            'price' => htmlspecialchars($row["price"]),
@@ -110,7 +111,7 @@ function retrieveServiceById($serviceId) {
     }
 }
 
-function retrieveServicesWithLimit($limit, $offset): array
+function retrieveServicesWithLimit($limit, $offset, $nameFilter = ''): array
 {
     $db = getDBConnection();
 
@@ -172,14 +173,14 @@ function retrieveServicesWithLimit($limit, $offset): array
         echo "Error in prepared statement";
     }
 
-    if (isset($_GET['name'])) {
-        $nameFilter = $_GET['name'];
+    $db->close();
+
+    // Apply name filter in PHP
+    if (!empty($nameFilter)) {
         $services = array_filter($services, function ($service) use ($nameFilter) {
             return stripos($service['name'], $nameFilter) !== false;
         });
     }
-
-    $db->close();
 
     return $services;
 }
@@ -242,32 +243,19 @@ function insertService($name, $description, $price, $menu_types, $max_guests, $l
         return "Error in prepared statement: " . $db->error;
     }
 
-    // Check if the image is uploaded
-    if ($serviceImage) {
-        // If image is uploaded, bind the image parameter
-        $stmt->bind_param("ssissbs", $name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage);
-    } else {
-        // If image is not uploaded, set image parameter to NULL
-        $nullValue = null;
-        $stmt->bind_param("ssissb", $name, $description, $price, $menu_types, $max_guests, $long_description, $nullValue);
-    }
 
-    // Execute the statement
+    $stmt->bind_param("ssissbs", $name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage);
     $stmt->execute();
 
-    // Check for errors
-    if ($stmt->error) {
-        return "Error executing statement: " . $stmt->error;
+    $affected_rows = $stmt->affected_rows;
+    if ($stmt->affected_rows > 0) {
+        $stmt->close();
+        $db->close();
+        return $affected_rows . " package inserted into the database.";
+    } else {
+        $stmt->close();
+        $db->close();
+        return "An error has occurred. The package was not added.";
     }
-
-    // Get the ID of the inserted service
-    $serviceId = $stmt->insert_id;
-
-    // Close statement
-    $stmt->close();
-
-    $db->close();
-
-    return "Service successfully inserted into the database with ID: " . $serviceId;
 }
 

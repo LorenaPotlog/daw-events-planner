@@ -34,8 +34,18 @@ function create_flash_message(string $name, string $message, string $type): void
  */
 function format_flash_message(array $flash_message): string
 {
+    $alertType = 'info'; // Default to info if type is not recognized
+
+    if ($flash_message['type'] == FLASH_ERROR) {
+        $alertType = 'danger';
+    } elseif ($flash_message['type'] == FLASH_SUCCESS) {
+        $alertType = 'success';
+    } elseif ($flash_message['type'] == FLASH_WARNING) {
+        $alertType = 'warning';
+    }
+
     return sprintf('<div class="alert alert-%s alert-sm" role="alert">%s</div>',
-        $flash_message['type'] == FLASH_ERROR ? 'danger' : 'success',
+        $alertType,
         $flash_message['message']);
 }
 

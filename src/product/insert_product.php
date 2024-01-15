@@ -2,41 +2,70 @@
 require_once __DIR__ . '/../bootstrap.php';
  require __DIR__ . '/products.php'; ?>
 
-
-
 <?php
 
 if (is_post_request()) {
-    $name = $_POST['name'];
+
+    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $user_id = $_SESSION['user_id'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
-    $quantity = $_POST['quantity'];
+    $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+    $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $quantity = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT);
 
 
-    //validate and sanitize data
-
-    if(isset($_FILES['productImage']) && $_FILES['productImage']['error'] !== UPLOAD_ERR_NO_FILE) {
+    if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] !== UPLOAD_ERR_NO_FILE) {
         $productImage = file_get_contents($_FILES['productImage']['tmp_name']);
     } else {
-        // Handle case where productImage doesn't exist or wasn't uploaded
-        $productImage = ''; // Set a default value or handle the absence of the image
+        $productImage = ''; // Default for no image
     }
-    $result = insertProduct($name,$description,$price,$quantity,$user_id,$productImage);
 
-    echo $result;
-    if (strpos($result, 'inserted into') !== false) {
-        // Redirect with success message
+    $errors = [];
+
+    if (empty($name)) {
+        $errors[] = 'Product name is required.';
+    }
+
+    if (empty($description)) {
+        $errors[] = 'Product description is required.';
+    }
+
+    if ($price === false || $price <= 0) {
+        $errors[] = 'Invalid price. Please enter a valid positive number.';
+    }
+
+    if ($quantity === false || $quantity <= 0) {
+        $errors[] = 'Invalid quantity. Please enter a valid positive integer.';
+    }
+
+    $existingProduct = retrieveProductByName($name);
+    if ($existingProduct) {
+        $errors[] = 'A product with the same name already exists.';
+    }
+
+    if (!empty($errors)) {
+        // Redirect with error messages
         redirect_with_message(
             '../../public/insert_product.php',
-            'The product has been inserted.'
-        );
-    }  else {
-        redirect_with_message(
-            '../../public/insert_product.php',
-            $result,
+            implode('<br>', $errors),
             FLASH_ERROR
         );
+    } else {
+
+        $result = insertProduct($name, $description, $price, $quantity, $user_id, $productImage);
+
+        if (str_contains($result, 'inserted into')) {
+            // Redirect with success message
+            redirect_with_message(
+                '../../public/insert_product.php',
+                'The product has been inserted.'
+            );
+        } else {
+            // Redirect with error message
+            redirect_with_message(
+                '../../public/insert_product.php',
+                $result,
+                FLASH_ERROR
+            );
+        }
     }
 }
-?>

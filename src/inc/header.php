@@ -1,8 +1,23 @@
+<?php
+require_once 'auth.php';
+
+$currentRoute = $_SERVER['REQUEST_URI'];
+
+// Check if the current route is authorized
+if (!isAuthorizedRoute($currentRoute)) {
+    redirect_to('../../details/public/404.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a website for event organization">
+    <meta name="keywords" content="event, wedding, party">
+    <meta name="author" content="Lorena Potlog">
     <?php include 'stylesheets.html' ?>
     <title><?= $title ?? 'Home' ?></title>
     <style>

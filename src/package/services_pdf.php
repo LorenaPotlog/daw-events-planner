@@ -36,7 +36,8 @@ function generate_services_pdf($services): void
         $pdf->Cell(0, 10, 'Service: ' . $service['name'], 0, 1);
         $pdf->Cell(0, 10, 'Description: ' . $service['description'], 0, 1);
         $pdf->Cell(0, 10, 'Price: $' . $service['price'], 0, 1);
-        $pdf->Cell(0, 10, 'More info: ' . $service['longDesc'], 0, 1);
+        $wrappedText = wordwrap($service['longDesc'], 60, "\n", true);
+        $pdf->MultiCell(0, 10, 'More info: ' . $wrappedText);
 
         // Add more details as needed
 

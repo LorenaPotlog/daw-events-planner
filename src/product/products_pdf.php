@@ -6,25 +6,50 @@ require_once 'products.php';
 
 if (is_post_request()) {
     $productIDs = $_POST['productIDs'] ?? [];
+    $quantities = $_POST['quantities'];
     $products = [];
 
-    if (!empty($productIDs)) {
-        foreach ($productIDs as $productID) {
-            $product = retrieveProductById($productID);
-            if ($product) {
-                $products[] = $product;
-            }
+
+    foreach ($productIDs as $productID) {
+        $product = retrieveProductById($productID);
+        if ($product) {
+            $products[] = $product;
         }
     }
 
-    if (empty($products)) {
+    // check for negative quantities
+    if (in_array(true, array_map(function($quantity) {
+        return $quantity < 0;
+    }, $quantities))) {
         redirect_with_message(
             '../../public/products.php',
-            'No product selected', FLASH_WARNING
+            'Invalid quantity. Quantities cannot be negative.',
+            FLASH_WARNING
         );
     }
 
-    generate_products_pdf($products, $_POST['quantities'] ?? []);
+    //check if quantity exceed db quantity
+    foreach ($quantities as $productID => $quantity) {
+        $product = retrieveProductById($productID);
+        if ($product && $quantity > $product['quantity']) {
+            redirect_with_message(
+                '../../public/products.php',
+                'Quantity for ' . $product['name'] . ' exceeds available quantity',
+                FLASH_WARNING
+            );
+        }
+    }
+
+    //check if any product selected
+    if (empty($products)) {
+        redirect_with_message(
+            '../../public/products.php',
+            'No product selected',
+            FLASH_WARNING
+        );
+    }
+
+    generate_products_pdf($products, $quantities ?? []);
 }
 
 function generate_products_pdf($products, $quantities): void

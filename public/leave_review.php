@@ -18,6 +18,11 @@ require __DIR__ . '/../src/bootstrap.php';
             margin-right: auto;
         }
 
+        #page-container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 8%;
+        }
 
         select,
         textarea

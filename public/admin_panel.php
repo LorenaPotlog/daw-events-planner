@@ -2,32 +2,16 @@
 require __DIR__ . '/../src/bootstrap.php';
 require __DIR__ . '/../src/package/services.php';
 require __DIR__ . '/../src/user/admin/admin_panel.php';
-
+if ( !is_admin() ) {
+    header("Location: index.php");
+    exit;
+}
 ?>
 
 <?php view('header', ['title' => ' Users']); ?>
 
     <style>
-        .table-wrapper {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 10%;
-            padding-right: 10%;
-        }
-
-        .title {
-            padding-bottom: 2%;
-        }
-
-        .action-btn {
-            background-color: #9fa9a3;
-            margin-top: 0;
-        }
-
-        th {
-            text-align: center;
-        }
+        <?php include 'css/admin.css' ?>
     </style>
 
     <div class="container-fluid">

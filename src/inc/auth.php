@@ -183,3 +183,57 @@ function current_user()
     }
     return null;
 }
+
+
+function isAuthorizedRoute($currentRoute)
+{
+    // List of authorized routes
+    $authorizedRoutes = [
+        '/details/public/',
+        '/details/public/index.php',
+        '/details/public/login.php',
+        '/details/public/admin_panel.php',
+        '/details/public/blog.php',
+        '/details/public/contact.php',
+        '/details/public/edit_profile.php',
+        '/details/public/edit_profile_success.php',
+        '/details/public/enter_email.php',
+        '/details/public/index.php',
+        '/details/public/insert_product.php',
+        '/details/public/insert_service.php',
+        '/details/public/leave_review.php',
+        '/details/public/logout.php',
+        '/details/public/new_password.php',
+        '/details/public/pending.php',
+        '/details/public/product_details.php',
+        '/details/public/products.php',
+        '/details/public/register.php',
+        '/details/public/registration_success.php',
+        '/details/public/reviews.php',
+        '/details/public/services.php',
+        '/details/public/technicalities.php',
+        '/details/public/thank_you.php',
+        '/details/public/user_account.php',
+        '/details/public/game.php',
+    ];
+
+    if (in_array($currentRoute, $authorizedRoutes)) {
+        return true;
+    }
+
+    // Allow routes with query parameters
+    $parsedUrl = parse_url($currentRoute);
+    $path = $parsedUrl['path'];
+    $query = $parsedUrl['query'] ?? '';
+
+    return in_array($path, $authorizedRoutes) && !empty($query);
+}
+
+///**
+// * @throws Exception
+// */
+//function checkCSRFtoken(): void{
+//    if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])){
+//        throw new Exception("CSRF attack");
+//    }
+//}

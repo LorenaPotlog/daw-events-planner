@@ -5,8 +5,6 @@ require_once __DIR__ . '/../../phpmailer/mail_cod.php';
 
 $nameErr = "";
 
-///redirect user to login if email already exists
-///
 
 function isValidEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -55,9 +53,9 @@ function validateRegistration($firstname, $lastname, $username, $email, $passwor
         $errors[] = 'Passwords do not match.';
     }
 
-//    if (!$acceptedTermsOfService) {
-//        $errors[] = 'Please agree with the terms of services.';
-//    }
+    if (!$acceptedTermsOfService) {
+        $errors[] = 'Please accept the terms and conditions';
+    }
 
     return $errors;
 }
@@ -76,14 +74,14 @@ if (is_post_request()) {
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
     $password2 = htmlspecialchars($_POST['password2']);
-    $acceptedTermsOfService = $_POST['agree'] === 'on';
+    $acceptedTermsOfService = isset($_POST['agree']) && $_POST['agree'] === 'on';
 
     $errors = validateRegistration($firstname, $lastname, $username, $email, $password, $password2, $acceptedTermsOfService);
 
     if (empty($errors)) {
         try {
             if (register_user($firstname, $lastname, $email, $username, $password)) {
-                flash('flash_' . uniqid(),  'Registration is successful!', FLASH_SUCCESS);
+                redirect_to('../../public/registration_success.php');
                 unset($_SESSION['inputs']);
             }
         } catch (Exception $e) {

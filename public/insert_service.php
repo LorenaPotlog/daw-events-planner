@@ -1,56 +1,19 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
 require __DIR__ . '/../src/user/register.php';
-?>
 
-<?php
-view('header', ['title' => 'Add New Service']);
-
-// Check if the user is logged in
-if (!is_user_logged_in()) {
-    echo "<div style='color: black; padding: 20px; border: 2px solid black; text-align: center; font-size: 18px; font-weight: bold;'>You need to be logged in to access this page. <a href='./authenticate.php' style='color: black;'>Please log in.</a></div>";
+if (!is_user_logged_in() || !is_admin()) {
+    header("Location: index.php");
     exit;
 }
 
-// Check if the user has roles
-if (!is_admin()) {
-    echo "<div style='background-color: pink; color: white; padding: 20px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid red; text-align: center; font-size: 18px; font-weight: bold;'>You do not have permission to access this page. <a href='index.php' style='color: black;'>Go back to HOME</a></div>";
-    exit();
-}
 ?>
 
+<?php view('header', ['title' => 'Add New Service']); ?>
+
     <style>
-
-        form {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 5%;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        td {
-            padding: 10px;
-        }
-
-        input[type="text"], input[type="file"], input[type="submit"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
+        <?php include 'css/insert_service.css' ?>
     </style>
-
 
     <div id="page-container">
         <div id="content-wrap">
@@ -71,7 +34,14 @@ if (!is_admin()) {
                     </tr>
                     <tr>
                         <td>Menus</td>
-                        <td><input type="text" name="menu_types" maxlength="60" size="30"></td>
+                        <td>
+                            <select name="menu_types" style="width: 100%">
+                                <option value="all">All</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="customizable">Customizable</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Max Guests</td>
@@ -79,11 +49,11 @@ if (!is_admin()) {
                     </tr>
                     <tr>
                         <td>Description</td>
-                        <td><textarea name="long_description" maxlength="500"></textarea></td>
+                        <td><textarea name="long_description" maxlength="500" style="width: 100%;"></textarea></td>
                     </tr>
                     <tr>
-                        <td>Photos</td>
-                        <td><input type="file" name="serviceImages[]" multiple></td>
+                        <td>Photo</td>
+                        <td><input type="file" name="serviceImage"></td>
                     </tr>
                     <tr>
                         <td colspan="2"><input type="submit" class="styled-link" value="Insert Service"></td>

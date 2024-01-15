@@ -3,22 +3,18 @@ require __DIR__ . '/../src/bootstrap.php';
 require __DIR__ . '/../src/package/services.php';
 require __DIR__ . '/../src/package/services_pdf.php';
 
-// Define the number of services to display per page
 $servicesPerPage = 3;
 
-// Get the current page number from the URL, default to 1 if not set
 $pageNumber = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 
-// Calculate the offset for the services retrieval based on the page number
+$serviceName = $_GET['name'] ?? null;
+
 $offset = ($pageNumber - 1) * $servicesPerPage;
 
-// Retrieve a limited number of services based on the page number and services per page
-$services = retrieveServicesWithLimit($servicesPerPage, $offset);
+$services = retrieveServicesWithLimit($servicesPerPage, $offset, $serviceName);
 
-// Calculate the total number of services for pagination
-$totalServices = countServices(); // You need to implement a countServices function
+$totalServices = countServices($serviceName); // You need to implement a countServices function with optional filter
 
-// Calculate the total number of pages
 $totalPages = ceil($totalServices / $servicesPerPage);
 ?>
 
@@ -32,7 +28,7 @@ $totalPages = ceil($totalServices / $servicesPerPage);
                 <div class="admin-options">
                     <!-- Admin options -->
                     <button class="button" style="width: 20%"><a href='./insert_service.php'
-                                                  style='text-decoration: none; color: white'>Add New
+                                                                 style='text-decoration: none; color: white'>Add New
                             Packages</a></button>
                 </div>
             <?php endif; ?>
@@ -54,7 +50,6 @@ $totalPages = ceil($totalServices / $servicesPerPage);
                             <p><strong>Price:</strong> $<?= $service['price'] ?></p>
                             <p><strong>Menu Types:</strong> <?= $service['menu_types'] ?></p>
                             <p style="margin-bottom: 5%"><strong>Max Guests:</strong> <?= $service['max_guests'] ?></p>
-
 
                             <?php if (is_admin()) : ?>
                                 <!-- Form for delete button visible only to admins -->
@@ -82,11 +77,11 @@ $totalPages = ceil($totalServices / $servicesPerPage);
                 <?php endif; ?>
 
                 <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                    <a href="?page=<?= $i ?>" <?= ($i == $pageNumber) ? 'class="active"' : '' ?>><?= $i ?></a>
+                    <a href="?page=<?= $i ?>&name=<?= $serviceName ?>" <?= ($i == $pageNumber) ? 'class="active"' : '' ?>><?= $i ?></a>
                 <?php endfor; ?>
 
                 <?php if ($pageNumber < $totalPages) : ?>
-                    <a href="?page=<?= $pageNumber + 1 ?>">Next</a>
+                    <a href="?page=<?= $pageNumber + 1 ?>&name=<?= $serviceName ?>">Next</a>
                 <?php endif; ?>
             </div>
         </div>
