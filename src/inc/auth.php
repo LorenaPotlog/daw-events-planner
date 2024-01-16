@@ -187,7 +187,7 @@ function isAuthorizedRoute($currentRoute)
 {
     // List of authorized routes
     $authorizedRoutes = [
-        '/details/public/',
+        '/details/public/' => '/public/',
         '/details/public/index.php',
         '/details/public/login.php',
         '/details/public/admin_panel.php',
