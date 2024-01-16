@@ -54,8 +54,9 @@ require __DIR__ . '/../src/contact.php';
                      data-sitekey="<?php echo $siteKey; ?>"></div>
 
                 <div class="text-center">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <button type="submit" class="button">
-                        Tell us about your event
+                        Send message
                     </button>
                 </div>
             </form>

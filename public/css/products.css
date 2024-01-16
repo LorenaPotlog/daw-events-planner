@@ -46,11 +46,10 @@
     text-align: left;
 }
 
-/* Style for the checkbox */
 .product input[type="checkbox"] {
     position: absolute;
-    top: 10px; /* Adjust top position as needed */
-    right: 10px; /* Adjust right position as needed */
+    right: 0px;
+    top: 0;
 }
 
 .pdf-form {

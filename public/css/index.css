@@ -1,0 +1,54 @@
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+
+#page-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%; /* Set a fixed width, adjust as needed */
+    box-sizing: border-box;
+}
+
+section:nth-child(odd) {
+    background-color: rgba(197, 213, 197, 0.6); /* #c5d5c5 background with 80% opacity */
+    text-align: right;
+    margin-left: auto;
+}
+
+section:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.3); /* White background with 80% opacity for even sections */
+    text-align: left;
+    margin-right: auto;
+}
+
+
+#services img.photo {
+    opacity: 0.9; /* Make the photo slightly transparent */
+    border-radius: 10px; /* Add border radius to the photo */
+}
+
+.partners-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.partner-img {
+    width: 100px; /* Adjust the width of the images as needed */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 5px; /* Add border radius to the images */
+    margin: 0 5px; /* Adjust the margin between images */
+}
+
+p {
+    padding: 0.5%;
+}

@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../fpdf/fpdf.php';
 require_once 'services.php';
 
 if (is_post_request()) {
+    check_csrf_token();
     $services = [];
     $serviceId = $_POST['service_id'];
     if($serviceId){

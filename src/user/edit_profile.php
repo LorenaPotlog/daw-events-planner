@@ -5,6 +5,7 @@ include 'users.php';
 $user = get_user_by_id($_SESSION['user_id']);
 
 if (is_post_request()) {
+    check_csrf_token();
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
     $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
@@ -19,7 +20,6 @@ if (is_post_request()) {
         exit;
     }
 
-    // Validate first name and last name
     if (empty($firstname) || empty($lastname)) {
         redirect_with_message(
             '../../public/edit_profile.php',
@@ -43,7 +43,6 @@ if (is_post_request()) {
             exit;
         }
 
-        // Additional validation logic for file size, etc., can be added here
     } else {
         $photo = $_SESSION['photo'];
     }
@@ -55,4 +54,3 @@ if (is_post_request()) {
         redirect_with_message('../../public/edit_profile.php', 'Error when updating profile', FLASH_ERROR);
     }
 }
-?>

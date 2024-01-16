@@ -56,6 +56,7 @@ if (!is_user_logged_in() || !is_admin()) {
                         <td><input type="file" name="serviceImage"></td>
                     </tr>
                     <tr>
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <td colspan="2"><input type="submit" class="styled-link" value="Insert Service"></td>
                     </tr>
                 </table>

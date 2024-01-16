@@ -7,14 +7,15 @@ $db = getDBConnection();
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
 
-    // Update user status to verified
-    $sql = "UPDATE users SET verified = 1 WHERE MD5(email) = '$code'";
+    $stmt = $db->prepare("UPDATE users SET verified = 1 WHERE MD5(email) = ?");
 
-    if ($db->query($sql) === TRUE) {
+    $stmt->bind_param("s", $code);
+
+    if ($stmt->execute()) {
         echo "Email verified successfully.";
     } else {
-        echo "Error verifying email: " . $db->error;
+        echo "Error verifying email: " . $stmt->error;
     }
-}
 
-// Close database connection (same as before)
+    $stmt->close();
+}

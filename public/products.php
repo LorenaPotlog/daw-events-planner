@@ -10,17 +10,6 @@ require __DIR__ . '/../src/product/delete_product.php';
         <?php include 'css/products.css' ?>
 </style>
 
-<?php if (is_seller() || is_admin()) : ?>
-    <div class="admin-options">
-    <!-- Admin options -->
-    <button class="button" style="width: 25%;"><a href='./insert_product.php' style='text-decoration: none; color: white'>Add New
-            Products</a></button>
-    <form method='POST' action="../src/product/delete_product.php" style="display: inline;">
-    <button type='submit' name="delete_product" value="deleteProduct" class="button" style="width: 25%;">Delete Selected
-        Products
-    </button>
-<?php endif ?>
-
     <div style="display: flex"
     <div id="page-container" style="width: 50%">
         <div id="content-wrap">
@@ -32,9 +21,20 @@ require __DIR__ . '/../src/product/delete_product.php';
                 </select>
                 <button type="submit" style="width: 10%">Apply</button>
                 <a href="#scroll" class="styled-link" style="display:inline; width: 30%; background-color: darkslategrey">Calculate invoice <i class="fa fa-arrow-down" style="color: white"></i></a>
-
             </form>
+
+            <?php if (is_seller() || is_admin()) : ?>
+            <div class="admin-options">
+                <button class="button" style="width: 25%;"><a href='./insert_product.php' style='text-decoration: none; color: white'>Add New
+                        Products</a></button>
+                <form method='POST' action="../src/product/delete_product.php" style="display: inline;">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                    <button type='submit' name="delete_product" value="deleteProduct" class="button" style="width: 25%;">Delete Selected
+                        Products
+                    </button>
+                    <?php endif ?>
             <div class="product-list">
+
                 <!-- Display products -->
                 <?php
                 $sortOrder = isset($_GET['sort']) && ($_GET['sort'] === 'asc' || $_GET['sort'] === 'desc') ? $_GET['sort'] : 'asc';
@@ -88,6 +88,7 @@ require __DIR__ . '/../src/product/delete_product.php';
                     </li>
                 <?php endforeach; ?>
             </ul>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         </form>
     </div>
     </div>

@@ -39,6 +39,7 @@ if (!is_user_logged_in() || (!is_seller() && !is_admin() )) {
                 <td><input type="file" name="productImage"></td>
             </tr>
             <tr>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <td colspan="2"><input class="styled-link" type="submit" value="Insert product"></td>
             </tr>
         </table>

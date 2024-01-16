@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../fpdf/fpdf.php';
 require_once 'products.php';
 
 if (is_post_request()) {
+    check_csrf_token();
     $productIDs = $_POST['productIDs'] ?? [];
     $quantities = $_POST['quantities'];
     $products = [];

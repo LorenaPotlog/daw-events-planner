@@ -3,12 +3,12 @@ require_once __DIR__ . '/../../phpmailer/mail_cod.php';
 require_once __DIR__ . '/../inc/db_connect.php';
 require_once __DIR__ . '/../libs/helpers.php';
 
-
 session_start();
 
 $inputs=[];
 $errors = [];
 if (isset($_POST['reset-password'])) {
+    check_csrf_token();
     $db = getDBConnection();
     $email = $_POST['email'];
 
@@ -49,14 +49,8 @@ if (isset($_POST['reset-password'])) {
     redirect_to('../../public/enter_email.php');
 }
 
-[$inputs, $errors] = session_flash('inputs', 'errors');
-if (!empty($errors)) {
-    foreach ($errors as $errorKey => $errorMessage) {
-        flash('flash_' . uniqid(),  $errorMessage, FLASH_ERROR);
-    }
-}
-
 if (isset($_POST['new_password'])) {
+    check_csrf_token();
     $db = getDBConnection();
 
     $new_pass = mysqli_real_escape_string($db, $_POST['new_pass']);
@@ -64,9 +58,17 @@ if (isset($_POST['new_password'])) {
 
     $token = htmlspecialchars($_POST['token']);
 
-    // Grab to token that came from the email link
-    if (empty($new_pass) || empty($new_pass_c)) echo "Password is required, this is your token:". $_POST['token'];
-    if ($new_pass !== $new_pass_c) echo "Password do not match" ;
+    if (empty($token))
+        $errors[''] = 'This link is incorrect. Please try accessing again from your email';
+
+    if (!(strlen($new_pass) >= 6) )
+        $errors[''] = 'Password should have at least 6 characters.';
+
+    if (empty($new_pass) || empty($new_pass_c))
+        $errors[''] = 'Enter a password';
+    if ($new_pass !== $new_pass_c)
+        $errors[''] = 'Password does not match';
+
 
     if (count($errors) == 0) {
         // select email address of user from the password_reset table
@@ -75,10 +77,25 @@ if (isset($_POST['new_password'])) {
         $email = mysqli_fetch_assoc($results)['email'];
 
         if ($email) {
-            $new_hashed_pass = password_hash( $new_pass, PASSWORD_BCRYPT);
+            $new_hashed_pass = password_hash($new_pass, PASSWORD_BCRYPT);
             $sql = "UPDATE users SET password='$new_hashed_pass' WHERE email='$email'";
             $results = mysqli_query($db, $sql);
-            echo $_POST['token'];    }
-    } else echo 'error';
+            $_SESSION['flash_message'] = 'Password has been successfully updated';
+            header('Location: ../../public/password_reset_success.php');
+            exit();
+        } else $errors[''] = 'Error updating password';
+    }
+
+
+    $_SESSION['errors'] = $errors;
+    $_SESSION['inputs'] = $inputs;
+    redirect_to('../../public/new_password.php?token=' . $token);
+}
+
+[$inputs, $errors] = session_flash('inputs', 'errors');
+if (!empty($errors)) {
+    foreach ($errors as $errorKey => $errorMessage) {
+        flash('flash_' . uniqid(),  $errorMessage, FLASH_ERROR);
+    }
 }
 

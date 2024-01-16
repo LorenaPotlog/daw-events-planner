@@ -1,8 +1,11 @@
 <?php
 
 session_start();
-if(!isset($_SESSION['csrf_token'])){
-    $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(64));
+if (!isset($_SESSION['csrf_token'])) {
+    try {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    } catch (Exception $e) {
+    }
 }
 
 require_once __DIR__ . '/libs/helpers.php';

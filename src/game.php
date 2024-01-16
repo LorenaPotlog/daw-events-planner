@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (is_post_request()) {
+    check_csrf_token();
     $yourName = $_POST['yourName'] ?? '';
     $partnerName = $_POST['partnerName'] ?? '';
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../public/game.php?percentage=$percentage&result=$loveResult");
             exit();
         } else {
-            echo 'Error calculating love percentage.';
+            redirect_with_message('../public/game.php', "Error calculating. Please try again.", FLASH_ERROR);
         }
     } else {
         redirect_with_message('../public/game.php', "Please enter both names", FLASH_ERROR);

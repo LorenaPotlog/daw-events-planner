@@ -54,6 +54,8 @@ require __DIR__ . '/../src/user/register.php';
                     <input type="checkbox" name="agree" id="agree" <?= isset($_SESSION['inputs']['agree']) && $_SESSION['inputs']['agree'] ? 'checked' : '' ?> value="on">
                 </div>
 
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
                 <button type="submit" name="register">Register</button>
                 <a href="login.php" class="styled-link" style="color: white">Already a member? Login here</a>
             </form>

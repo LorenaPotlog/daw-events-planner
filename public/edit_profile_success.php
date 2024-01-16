@@ -1,7 +1,4 @@
 <?php require __DIR__ . '/../src/bootstrap.php'; ?>
-    <meta charset="UTF-8">
-    <title>Logout</title>
-
 <?php view('header', ['title' => 'Success']);
 session_unset();
 ?>

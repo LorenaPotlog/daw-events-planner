@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
- require __DIR__ . '/products.php'; ?>
-
-<?php
+require __DIR__ . '/products.php';
 
 if (is_post_request()) {
+
+    check_csrf_token();
 
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $user_id = $_SESSION['user_id'];

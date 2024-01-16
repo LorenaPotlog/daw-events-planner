@@ -13,7 +13,7 @@ $offset = ($pageNumber - 1) * $servicesPerPage;
 
 $services = retrieveServicesWithLimit($servicesPerPage, $offset, $serviceName);
 
-$totalServices = countServices($serviceName); // You need to implement a countServices function with optional filter
+$totalServices = countServices($serviceName);
 
 $totalPages = ceil($totalServices / $servicesPerPage);
 ?>
@@ -26,7 +26,6 @@ $totalPages = ceil($totalServices / $servicesPerPage);
         <div id="content-wrap">
             <?php if (is_admin()) : ?>
                 <div class="admin-options">
-                    <!-- Admin options -->
                     <button class="button" style="width: 20%"><a href='./insert_service.php'
                                                                  style='text-decoration: none; color: white'>Add New
                             Packages</a></button>
@@ -55,12 +54,15 @@ $totalPages = ceil($totalServices / $servicesPerPage);
                                 <!-- Form for delete button visible only to admins -->
                                 <form method="POST" action="../src/package/delete_service.php">
                                     <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
+                                    <input type="hidden" name="csrf_token"
+                                           value="<?php echo $_SESSION['csrf_token']; ?>">
                                     <button type="submit" name="delete_service" class="delete-button">Delete</button>
                                 </form>
                             <?php endif; ?>
 
                             <form method='POST' action="../src/package/services_pdf.php">
                                 <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
+                                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                 <button type="submit" name="generate_service_pdf" value="<?= $service['id'] ?>"
                                         style="width: 60%; position: absolute; bottom: 0;
             left: 5px;">More details (PDF)

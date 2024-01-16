@@ -13,71 +13,71 @@ require __DIR__ . '/../src/reviews.php';
     <a href="leave_review.php" class="styled-link" >Tell us what you think about our work!</a>
 
 
-    <div class="review">
-        <img src="../resources/photos/review1.jpg" alt='Reviewer 1'>
-        <div class="review-info">
-            <div class="reviewer-name">John Doe</div>
-            <div class="review-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales elementum
-                finibus."
-            </div>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-        </div>
-    </div>
-
-    <div class="review">
-        <img src="../resources/photos/review2.jpg" alt="Reviewer 2">
-        <div class="review-info">
-            <div class="reviewer-name">Michael Smith</div>
-            <div class="review-text">"Sed ullamcorper orci sit amet aliquet vulputate. Pellentesque vel consequat
-                nisl."
-            </div>
-            <div class="star-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-            </div>
-        </div>
-    </div>
-
-    <div class="review">
-        <img src="../resources/photos/no-photo.jpg" alt="Reviewer 2">
-        <div class="review-info">
-            <div class="reviewer-name">Jade Mith</div>
-            <div class="review-text">"Sed ullamcorper orci sit amet aliquet vulputate. Pellentesque vel consequat
-                nisl."
-            </div>
-            <div class="star-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-            </div>
-        </div>
-    </div>
-
-    <div class="review">
-        <img src="../resources/photos/review3.jpg" alt="Reviewer 2">
-        <div class="review-info">
-            <div class="reviewer-name">Jane Smith</div>
-            <div class="review-text">"Sed ullamcorper orci sit amet aliquet vulputate. Pellentesque vel consequat
-                nisl."
-            </div>
-            <div class="star-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-            </div>
-        </div>
-    </div>
+<!--    <div class="review">-->
+<!--        <img src="../resources/photos/review1.jpg" alt='Reviewer 1'>-->
+<!--        <div class="review-info">-->
+<!--            <div class="reviewer-name">John Doe</div>-->
+<!--            <div class="review-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales elementum-->
+<!--                finibus."-->
+<!--            </div>-->
+<!--            <i class="fas fa-star"></i>-->
+<!--            <i class="fas fa-star"></i>-->
+<!--            <i class="fas fa-star"></i>-->
+<!--            <i class="fas fa-star"></i>-->
+<!--            <i class="fas fa-star"></i>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--    <div class="review">-->
+<!--        <img src="../resources/photos/review2.jpg" alt="Reviewer 2">-->
+<!--        <div class="review-info">-->
+<!--            <div class="reviewer-name">Michael Smith</div>-->
+<!--            <div class="review-text">"Sed ullamcorper orci sit amet aliquet vulputate. Pellentesque vel consequat-->
+<!--                nisl."-->
+<!--            </div>-->
+<!--            <div class="star-rating">-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="far fa-star"></i>-->
+<!--                <i class="far fa-star"></i>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--    <div class="review">-->
+<!--        <img src="../resources/photos/no-photo.jpg" alt="Reviewer 2">-->
+<!--        <div class="review-info">-->
+<!--            <div class="reviewer-name">Jade Mith</div>-->
+<!--            <div class="review-text">"Sed ullamcorper orci sit amet aliquet vulputate. Pellentesque vel consequat-->
+<!--                nisl."-->
+<!--            </div>-->
+<!--            <div class="star-rating">-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="far fa-star"></i>-->
+<!--                <i class="far fa-star"></i>-->
+<!--                <i class="far fa-star"></i>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--    <div class="review">-->
+<!--        <img src="../resources/photos/review3.jpg" alt="Reviewer 2">-->
+<!--        <div class="review-info">-->
+<!--            <div class="reviewer-name">Jane Smith</div>-->
+<!--            <div class="review-text">"Sed ullamcorper orci sit amet aliquet vulputate. Pellentesque vel consequat-->
+<!--                nisl."-->
+<!--            </div>-->
+<!--            <div class="star-rating">-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="fas fa-star"></i>-->
+<!--                <i class="far fa-star"></i>-->
+<!--                <i class="far fa-star"></i>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
 <?php
@@ -90,7 +90,7 @@ foreach ($reviews as $review) {
     ?>
     <div class="review">
         <?php
-        $defaultImage = '../resources/photos/no-photo.png'; // Replace this with the path to your default image
+        $defaultImage = '../resources/photos/no-photo.png';
         if (!empty($review['photo'])) {
         $imageSource = "data:image/jpeg;base64," . base64_encode($review['photo']);
         } else {
@@ -105,10 +105,8 @@ foreach ($reviews as $review) {
                 $stars = $review['stars'];
                 for ($i = 1; $i <= 5; $i++) {
                     if ($i <= $stars) {
-                        // Display a filled star (Font Awesome class)
                         echo '<i class="fas fa-star"></i>';
                     } else {
-                        // Display an empty star (Font Awesome class)
                         echo '<i class="far fa-star"></i>';
                     }
                 }

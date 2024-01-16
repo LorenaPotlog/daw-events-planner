@@ -31,6 +31,7 @@ require __DIR__ . '/../src/bootstrap.php';
                                    placeholder="...">
                         </div>
                         <div class="form-group" style="padding-top: 2%;">
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <button type="submit" class="button mt-2" style="background-color:#900000;">
                                 See percentage
                             </button>

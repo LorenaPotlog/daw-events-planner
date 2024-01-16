@@ -1,20 +1,14 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
 
-//try {
-//    checkCSRFtoken();
-//} catch (Exception $e) {
-//    $errors['login'] = $e->getMessage();
-//    $_SESSION['errors'] = $errors;
-//    redirect_to('../../public/login.php');
-//}
-
 if (is_user_logged_in()) {
     redirect_to('index.php');
 }
 
 $inputs = [];
 $errors = [];
+
+check_csrf_token();
 
 if (is_post_request()) {
     $username = $_POST['username'];

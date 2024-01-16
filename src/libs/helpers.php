@@ -62,3 +62,12 @@ function session_flash(...$keys): array
     }
     return $data;
 }
+
+function check_csrf_token(): void
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die('CSRF Attack Detected!');
+        }
+    }
+}

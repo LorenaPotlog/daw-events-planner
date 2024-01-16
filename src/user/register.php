@@ -62,6 +62,9 @@ function validateRegistration($firstname, $lastname, $username, $email, $passwor
 
 if (is_post_request()) {
 
+    check_csrf_token();
+
+
     if (($_POST["firstname"])=='') {
         $nameErr = "Name is required";
     } else {

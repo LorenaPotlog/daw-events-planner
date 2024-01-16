@@ -5,20 +5,7 @@ require __DIR__ . '/../src/user/login.php';
 ?>
 <?php view('header', ['title' => 'Login']) ?>
 <style>
-    form {
-        border: 1px solid #ddd;
-        max-width: 400px;
-        width: 100%;
-        box-sizing: border-box;
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-    }
+    <?php include 'css/login.css' ?>
 </style>
 
     <div class="container-fluid">
@@ -37,6 +24,7 @@ require __DIR__ . '/../src/user/login.php';
                             <input type="password" name="password" id="password" class="form-input text-center">
                         </div>
                         <div class="form-group" style="padding-top: 2%;">
+                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <button type="submit" class="mt-2">Login</button>
                             <a href="register.php" class="styled-link mt-2">Register</a>
                             <a href="enter_email.php" class="styled-link mt-2">Forgot your password?</a>

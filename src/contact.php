@@ -6,6 +6,7 @@ $siteKey = '6LesZEgpAAAAABMhjfYhPEsDD-7TN3ZfJl18QqDQ';
 $secretKey = '6LesZEgpAAAAALwD4sgieWSCkBCd0wFBaQL1jKnL';
 
 if (is_post_request()) {
+    check_csrf_token();
     $errors = [];
 
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);

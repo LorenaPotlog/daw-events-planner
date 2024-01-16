@@ -2,8 +2,10 @@
 require_once __DIR__ . '/../bootstrap.php';
 include 'services.php';
 
-// Validate and sanitize data
 if (is_post_request()) {
+
+    check_csrf_token();
+
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
     $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
@@ -18,7 +20,6 @@ if (is_post_request()) {
         $serviceImage = ''; // Default for no image
     }
 
-    // Validate user input before inserting into the database
     $errors = [];
 
     if (empty($name)) {
@@ -50,7 +51,6 @@ if (is_post_request()) {
             FLASH_ERROR
         );
     } else {
-        // Insert the service into the database
         $result = insertService($name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage);
 
         if (str_contains($result, 'inserted into')) {

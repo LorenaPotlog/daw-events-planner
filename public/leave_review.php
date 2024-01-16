@@ -1,45 +1,20 @@
 <?php
 require __DIR__ . '/../src/bootstrap.php';
+
+view ('header', ['title' => 'Add review']);
+
+if (!is_user_logged_in()){ ?>
+    <div class="message-box">
+        <p>You need to be logged in to leave a review.</p>
+        <a href="login.php">Go to login</a>
+    </div>
+    <?php exit; }
 ?>
-
-<?php view('header', ['title' => 'Add review']); ?>
-
     <style>
-
-        .review-form {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #page-container {
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 8%;
-        }
-
-        select,
-        textarea
-         {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-
-        button:hover {
-            background-color: #c5d5c5;
-        }
+        <?php include 'css/leave_review.css' ?>
 
     </style>
 
-<?php if (is_user_logged_in()) { ?>
     <div id="page-container">
         <div id="content-wrap">
             <form class="review-form" action="../src/user/leave_review.php" method="post">
@@ -56,16 +31,10 @@ require __DIR__ . '/../src/bootstrap.php';
 
                 <label for="message">Your Message:</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
-
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <button type="submit">Submit Review</button>
             </form>
         </div>
     </div>
-<?php } else { ?>
-    <div class="message-box">
-        <p>You need to be logged in to leave a review.</p>
-        <a href="login.php">Go to login</a>
-    </div>
-<?php } ?>
 
 <?php view('footer') ?>

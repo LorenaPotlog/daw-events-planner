@@ -197,6 +197,7 @@ function isAuthorizedRoute($currentRoute)
         '/details/public/contact.php',
         '/details/public/edit_profile.php',
         '/details/public/edit_profile_success.php',
+        '/details/public/password_reset_success.php',
         '/details/public/enter_email.php',
         '/details/public/index.php',
         '/details/public/insert_product.php',
@@ -228,12 +229,3 @@ function isAuthorizedRoute($currentRoute)
 
     return in_array($path, $authorizedRoutes) && !empty($query);
 }
-
-///**
-// * @throws Exception
-// */
-//function checkCSRFtoken(): void{
-//    if(!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])){
-//        throw new Exception("CSRF attack");
-//    }
-//}

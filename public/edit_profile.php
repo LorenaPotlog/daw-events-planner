@@ -47,8 +47,9 @@ if (!is_user_logged_in()) {
                                                  required></td>
                     </tr>
                 </table>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <button type="submit" class="styled-link">Update Profile</button>
-
+                <a href="enter_email.php" class="styled-link">Password reset</a>
             </form>
         </div>
 

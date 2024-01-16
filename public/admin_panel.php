@@ -30,7 +30,12 @@ if ( !is_admin() ) {
                     </thead>
                     <tbody>
                     <?php $users = get_all_users();
-                    foreach ($users as $user): ?>
+                    $current_user_id = $_SESSION['user_id'];
+                    foreach ($users as $user):
+//                        don't show the current user
+                        if ($user['id'] == $current_user_id) {
+                            continue;
+                        }?>
                         <tr>
                             <td><?php echo $user['id']; ?></td>
                             <td><?php echo $user['username']; ?></td>
@@ -49,6 +54,7 @@ if ( !is_admin() ) {
                                     ?>
                                     <form method="POST" action="" style="padding-top: 10%;">
                                         <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                         <button class="btn btn-primary action-btn btn-sm" type="submit" name="verify">Verify</button>
                                     </form>
                                     <?php
@@ -69,6 +75,7 @@ if ( !is_admin() ) {
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
+                                                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                                 <button class="btn btn-primary action-btn btn-sm" type="submit" name="update_role">Update Role</button>
                                             </div>
                                         </div>
@@ -78,6 +85,7 @@ if ( !is_admin() ) {
                             <td>
                                 <form method="POST" action="">
                                     <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                     <button class="btn btn-primary btn-sm action-btn" type="submit" name="delete_user">Delete</button>
                                 </form>
                             </td>

@@ -20,7 +20,7 @@ require __DIR__ . '/../src/contact.php';
             <!-- Google reCAPTCHA box -->
             <div class="g-recaptcha" data-sitekey="<?php echo $siteKey; ?>"></div>
         </div>
-
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <button type="submit" class="button" style="background-color: rgba(197, 213, 197, 0.6); color: black;  ">Tell us about your event</button>
     </form>
 </div>
