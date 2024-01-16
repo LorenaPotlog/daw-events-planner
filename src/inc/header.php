@@ -5,7 +5,7 @@ $currentRoute = $_SERVER['REQUEST_URI'];
 
 // 404 if not authorized roots
 if (!isAuthorizedRoute($currentRoute)) {
-    redirect_to('../../details/public/404.php');
+    redirect_to('../../public/404.php');
     exit;
 }
 

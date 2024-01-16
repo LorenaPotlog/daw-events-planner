@@ -28,7 +28,7 @@ function register_user(string $firstname, string $lastname, string $email, strin
         return false;
     }
 
-    if(!send_activation_email($email)){
+    if (!send_activation_email($email)) {
         return false;
     }
 
@@ -40,11 +40,11 @@ function register_user(string $firstname, string $lastname, string $email, strin
 function send_activation_email(string $email): bool
 {
     $verificationCode = md5($email);
-    $verificationLink = "http://localhost/details/user/src/verify.php?code=$verificationCode";
+    $verificationLink = "http://daw-events-planner-ed298d55c5bd.herokuapp.com/user/src/verify.php?code=$verificationCode";
     $subject = "Verify Your Email Address";
     $message = "Click the link below to verify your email address:\n$verificationLink";
 
-    $mailed = send_email($email,$subject,$message);
+    $mailed = send_email($email, $subject, $message);
 
     if (!$mailed) {
         return false;
@@ -188,32 +188,31 @@ function isAuthorizedRoute($currentRoute)
     // List of authorized routes
     $authorizedRoutes = [
         '/details/public/' => '/public/',
-        '/details/public/index.php',
-        '/details/public/login.php',
-        '/details/public/admin_panel.php',
-        '/details/public/blog.php',
-        '/details/public/contact.php',
-        '/details/public/edit_profile.php',
-        '/details/public/edit_profile_success.php',
-        '/details/public/password_reset_success.php',
-        '/details/public/enter_email.php',
-        '/details/public/index.php',
-        '/details/public/insert_product.php',
-        '/details/public/insert_service.php',
-        '/details/public/leave_review.php',
-        '/details/public/logout.php',
-        '/details/public/new_password.php',
-        '/details/public/pending.php',
-        '/details/public/product_details.php',
-        '/details/public/products.php',
-        '/details/public/register.php',
-        '/details/public/registration_success.php',
-        '/details/public/reviews.php',
-        '/details/public/services.php',
-        '/details/public/technicalities.php',
-        '/details/public/thank_you.php',
-        '/details/public/user_account.php',
-        '/details/public/game.php',
+        '/details/public/index.php' => '/public/index.php',
+        '/details/public/login.php' => '/public/login.php',
+        '/details/public/admin_panel.php' => '/public/admin_panel.php',
+        '/details/public/blog.php' => '/public/blog.php',
+        '/details/public/contact.php' => '/public/contact.php',
+        '/details/public/edit_profile.php' => '/public/edit_profile.php',
+        '/details/public/edit_profile_success.php' => '/public/edit_profile_success.php',
+        '/details/public/password_reset_success.php' => '/public/password_reset_success.php',
+        '/details/public/enter_email.php' => '/public/enter_email.php',
+        '/details/public/insert_product.php' => '/public/insert_product.php',
+        '/details/public/insert_service.php' => '/public/insert_service.php',
+        '/details/public/leave_review.php' => '/public/leave_review.php',
+        '/details/public/logout.php' => '/public/logout.php',
+        '/details/public/new_password.php' => '/public/new_password.php',
+        '/details/public/pending.php' => '/public/pending.php',
+        '/details/public/product_details.php' => '/public/product_details.php',
+        '/details/public/products.php' => '/public/products.php',
+        '/details/public/register.php' => '/public/register.php',
+        '/details/public/registration_success.php' => '/public/registration_success.php',
+        '/details/public/reviews.php' => '/public/reviews.php',
+        '/details/public/services.php' => '/public/services.php',
+        '/details/public/technicalities.php' => '/public/technicalities.php',
+        '/details/public/thank_you.php' => '/public/thank_you.php',
+        '/details/public/user_account.php' => '/public/user_account.php',
+        '/details/public/game.php' => '/public/game.php=',
     ];
 
     if (in_array($currentRoute, $authorizedRoutes)) {

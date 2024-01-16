@@ -32,7 +32,7 @@ if (isset($_POST['reset-password'])) {
                 mysqli_stmt_execute($stmt);
 
                 $subject = "Reset your password on details.com";
-                $msg = "Hi there, click on this <a href=\"http://localhost/details/public/new_password.php?token=" . $token . "\">link</a> to reset your password on our site";
+                $msg = "Hi there, click on this <a href=\"http://daw-events-planner-ed298d55c5bd.herokuapp.com/public/new_password.php?token=" . $token . "\">link</a> to reset your password on our site";
                 $msg = wordwrap($msg, 70);
                 send_email($email, $subject, $msg);
                 $_SESSION['flash_message'] = 'Password reset link sent to your email';
