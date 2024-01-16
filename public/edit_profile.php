@@ -34,7 +34,9 @@ if (!is_user_logged_in()) {
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td class="right"><input type="text" name="email" value="<?= $user['email'] ?>" required></td>
+                        <td class="right">
+                            <input type="text" name="email" value="<?= $user['email'] ?>" required readonly>
+                        </td>
                     </tr>
                     <tr>
                         <td>Last name:</td>
