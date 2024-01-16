@@ -35,13 +35,11 @@ require __DIR__ . '/../src/product/delete_product.php';
                     <?php endif ?>
             <div class="product-list">
 
-                <!-- Display products -->
                 <?php
                 $sortOrder = isset($_GET['sort']) && ($_GET['sort'] === 'asc' || $_GET['sort'] === 'desc') ? $_GET['sort'] : 'asc';
                 $products = retrieveProducts($sortOrder);
                 foreach ($products as $product) : ?>
                     <div class="product">
-                        <!-- Product details -->
                         <a href="product_details.php?productId=<?= $product['id'] ?>" style="color:black">
                             <h2><?= $product['name'] ?></h2>
                         </a>

@@ -24,7 +24,6 @@ if (is_post_request()) {
 function generate_services_pdf($services): void
 
 {
-    // Instantiate and use the FPDF class
     $pdf = new FPDF();
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
@@ -40,9 +39,8 @@ function generate_services_pdf($services): void
         $wrappedText = wordwrap($service['longDesc'], 60, "\n", true);
         $pdf->MultiCell(0, 10, 'More info: ' . $wrappedText);
 
-        // Add more details as needed
 
-        $pdf->Ln(); // Move to the next line for the next product
+        $pdf->Ln();
     }
 
     // Output the PDF to the browser with a filename

@@ -1,4 +1,3 @@
-/* Customize the navbar */
 .navbar-inverse {
     background-color:#c5d5c5;
     border-color: #ddd;
@@ -13,7 +12,7 @@
 .navbar-inverse .navbar-nav > li > a:focus,
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > .active > a {
-    color: #336699; /* Change to the desired dark blue color */
+    color: #336699;
 }
 
 .navbar-brand {
@@ -21,9 +20,9 @@
     vertical-align: middle;
 }
 .navbar-brand img {
-    height: 20px; /* Set the height of your small picture */
-    width: auto; /* Adjust the width proportionally */
-    margin-right: 5px; /* Add space between the picture and text */
+    height: 20px;
+    width: auto;
+    margin-right: 5px;
 }
 
 .navbar li{

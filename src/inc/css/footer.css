@@ -3,9 +3,8 @@ footer{
 }
 
 footer {
-    background-color: rgba(197, 213, 197, 0.8); /* Adjust the alpha value for transparency */
+    background-color: rgba(197, 213, 197, 0.8);
     padding: 15px 0;
-    /*position: sticky;*/
     left: 0;
     bottom: 0;
     width: 100%;
@@ -65,7 +64,7 @@ ul.social-icons {
 }
 
 ul.social-icons li {
-    margin-bottom: 10px; /* Adjust the space between lines as needed */
+    margin-bottom: 10px;
 }
 
 ul.social-icons li a {

@@ -1,7 +1,6 @@
 <?php
 function view(string $filename, array $data = []): void
 {
-    // create variables from the associative array
     foreach ($data as $key => $value) {
         $$key = $value;
     }
@@ -32,15 +31,6 @@ function redirect_to(string $url): void
 {
     header('Location:' . $url);
     exit;
-}
-
-function redirect_with(string $url, array $items): void
-{
-    foreach ($items as $key => $value) {
-        $_SESSION[$key] = $value;
-    }
-
-    redirect_to($url);
 }
 
 function redirect_with_message(string $url, string $message, string $type=FLASH_SUCCESS)

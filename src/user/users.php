@@ -5,9 +5,8 @@ function get_user_by_id($user_id) {
 
     $sql = 'SELECT id, email, role, verified, firstname, lastname, photo FROM users WHERE id = ?';
 
-    // Using prepared statement to prevent SQL injection
     if ($statement = $connection->prepare($sql)) {
-        $statement->bind_param('i', $user_id);  // 'i' represents integer type
+        $statement->bind_param('i', $user_id);
         $statement->execute();
 
         $result = $statement->get_result();
@@ -26,24 +25,20 @@ function edit_user($user_id, $email, $firstname, $lastname, $photo) {
 
     $sql = 'UPDATE users SET email = ?, firstname = ?, lastname = ?, photo = ? WHERE id = ?';
 
-    // Using prepared statement to prevent SQL injection
     if ($statement = $connection->prepare($sql)) {
         $statement->bind_param('ssssi', $email, $firstname, $lastname, $photo, $user_id);  // 's' represents string, 'i' represents integer type
 
-        // Check if the query executed successfully
         if ($statement->execute()) {
             $statement->close();
             $connection->close();
-            return true;  // Return true on success
+            return true;
         } else {
-            // Handle the error if the query fails (you might want to log it)
             echo "Error: " . $statement->error;
         }
     }
 
-    // Close the connection in case of an error
     $connection->close();
-    return false;  // Return false if the query fails
+    return false;
 }
 
 function delete_user($userId) {

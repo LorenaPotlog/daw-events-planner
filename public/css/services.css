@@ -12,7 +12,7 @@
 
 .service {
     box-sizing: border-box;
-    width: calc(33.33% - 20px); /* 3 columns with 20px margin in between */
+    width: calc(33.33% - 20px);
     padding: 50px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
@@ -24,7 +24,7 @@
     position: absolute;
     bottom: 5px;
     right: 5px;
-    background-color: rgba(231, 76, 60, 0.8); /* Use rgba with the desired transparency (0.8 in this case) */
+    background-color: rgba(231, 76, 60, 0.8);
     color: #fff;
     padding: 5px 10px;
     border-radius: 10px;
@@ -57,7 +57,7 @@
 .pdf-form ul {
     list-style: none;
     padding: 0;
-    margin: 0; /* Remove default margin for the list */
+    margin: 0;
 }
 
 .pdf-form li {
@@ -71,14 +71,13 @@
 }
 
 .pdf-form li a {
-    flex: 1; /* Make the name take remaining space */
+    flex: 1;
     text-decoration: none;
-    color: #333; /* Adjust text color as needed */
+    color: #333;
 }
 
 .pdf-form li input[type="number"] {
     width: 50px;
-    /* You can add additional styling if needed */
 }
 
 .pagination {

@@ -3,10 +3,15 @@ require_once 'auth.php';
 
 $currentRoute = $_SERVER['REQUEST_URI'];
 
-// Check if the current route is authorized
+// 404 if not authorized roots
 if (!isAuthorizedRoute($currentRoute)) {
     redirect_to('../../details/public/404.php');
     exit;
+}
+
+//check for cookies
+if (!isset($_COOKIE['cookiesAccepted']) || $_COOKIE['cookiesAccepted'] !== 'true') {
+    echo 'Please accept the cookies';
 }
 ?>
 

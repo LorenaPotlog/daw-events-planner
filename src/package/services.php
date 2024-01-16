@@ -15,26 +15,20 @@ function retrieveServices(): array
         $query .= " WHERE menu_types = ?";
     }
 
-    // Apply sorting
     $query .= " ORDER BY price " . $sort_order;
 
-    // Prepare the statement
     if ($stmt = $db->prepare($query)) {
-        // Bind parameter if filter_menu_type is not empty
         if (!empty($filter_menu_type)) {
             $stmt->bind_param("s", $filter_menu_type);
         }
 
-        // Execute the statement
         $stmt->execute();
 
-        // Get result set
         $result = $stmt->get_result();
 
         $services = [];
 
         if ($result->num_rows > 0) {
-            // Fetch data and store in services array
             while ($row = $result->fetch_assoc()) {
                 $service = [
                     'id' => htmlspecialchars($row["id"]),
@@ -52,7 +46,6 @@ function retrieveServices(): array
             echo "0 results";
         }
 
-        // Close statement
         $stmt->close();
     } else {
         echo "Error in prepared statement";
@@ -80,7 +73,7 @@ function retrieveServiceById($serviceId)
     $stmt = $db->prepare($query);
 
     if (!$stmt) {
-        return null; // Or handle the error as required
+        return null;
     }
 
     $stmt->bind_param("i", $serviceId);
@@ -101,11 +94,11 @@ function retrieveServiceById($serviceId)
         $stmt->close();
         $db->close();
 
-        return $service; // Return the retrieved product details
+        return $service;
     } else {
         $stmt->close();
         $db->close();
-        return null; // Product not found with the given ID
+        return null;
     }
 }
 
@@ -154,7 +147,6 @@ function retrieveServicesWithLimit($limit, $offset, $category): array
 
         $stmt->close();
     } catch (Exception $e) {
-        // Handle exceptions (log or rethrow)
         throw new Exception("Error retrieving services: " . $e->getMessage());
     } finally {
         $db->close();
@@ -201,7 +193,6 @@ function countServices( $category = ''): int
 
         $stmt->close();
     } catch (Exception $e) {
-        // Handle exceptions (log or rethrow)
         throw new Exception("Error counting services: " . $e->getMessage());
     } finally {
         $db->close();

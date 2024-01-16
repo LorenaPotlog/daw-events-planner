@@ -19,7 +19,7 @@ if (!is_user_logged_in()) {
         <div class="account-details-box">
             <p>Edit your profile:</p>
             <?php
-            $defaultImage = '../resources/photos/no-photo2.png'; // Replace this with the path to your default image
+            $defaultImage = '../resources/photos/no-photo2.png';
             if (!empty($user['photo'])) {
                 $imageSource = "data:image/jpeg;base64," . base64_encode($user['photo']);
             } else {

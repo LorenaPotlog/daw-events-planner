@@ -1,8 +1,7 @@
 <?php
-//require('../fpdf/fpdf.php');
 
 function retrieveProductById($productId) {
-    $db = getDBConnection(); // Get database connection
+    $db = getDBConnection();
 
     $productId = intval($productId);
 
@@ -10,7 +9,7 @@ function retrieveProductById($productId) {
     $stmt = $db->prepare($query);
 
     if (!$stmt) {
-        return null; // Or handle the error as required
+        return null;
     }
 
     $stmt->bind_param("i", $productId);
@@ -33,26 +32,23 @@ function retrieveProductById($productId) {
         $stmt->close();
         $db->close();
 
-        return $product; // Return the retrieved product details
+        return $product;
     } else {
         $stmt->close();
         $db->close();
-        return null; // Product not found with the given ID
+        return null;
     }
 }
 
 function retrieveProducts($sortOrder = 'asc') {
-    $db = getDBConnection(); // Get database connection
+    $db = getDBConnection();
 
     $orderBy = ($sortOrder === 'desc') ? 'DESC' : 'ASC';
     $query = "SELECT * FROM products ORDER BY price $orderBy";
 
-    // Prepare the statement
     if ($stmt = $db->prepare($query)) {
-        // Execute the statement
         $stmt->execute();
 
-        // Get result set
         $result = $stmt->get_result();
 
         $products = [];
@@ -77,7 +73,6 @@ function retrieveProducts($sortOrder = 'asc') {
             echo "0 results";
         }
 
-        // Close statement
         $stmt->close();
     } else {
         echo "Error in prepared statement";
@@ -89,13 +84,13 @@ function retrieveProducts($sortOrder = 'asc') {
 }
 
 function retrieveProductByName($productName) {
-    $db = getDBConnection(); // Get database connection
+    $db = getDBConnection();
 
     $query = "SELECT * FROM products WHERE name = ?";
     $stmt = $db->prepare($query);
 
     if (!$stmt) {
-        return null; // Or handle the error as required
+        return null;
     }
 
     $stmt->bind_param("s", $productName);
@@ -118,17 +113,17 @@ function retrieveProductByName($productName) {
         $stmt->close();
         $db->close();
 
-        return $product; // Return the retrieved product details
+        return $product;
     } else {
         $stmt->close();
         $db->close();
-        return null; // Product not found with the given name
+        return null;
     }
 }
 
 
 function insertProduct($name, $description, $price, $quantity, $userID,$productImage) {
-    $db = getDBConnection(); // Retrieve the database connection
+    $db = getDBConnection();
 
     $name = htmlspecialchars(trim($name));
     $description = htmlspecialchars(trim($description));
@@ -163,12 +158,8 @@ function insertProduct($name, $description, $price, $quantity, $userID,$productI
 }
 
 function deleteProduct($productID) {
-    $db = getDBConnection(); // Get database connection
+    $db = getDBConnection();
 
-//    // Sanitize the input
-//    $productID = intval($productID);
-
-    // Prepare the delete statement
     $query = "DELETE FROM products WHERE id = ?";
     $stmt = $db->prepare($query);
 
@@ -176,7 +167,6 @@ function deleteProduct($productID) {
         echo "Error: Couldn't prepare the statement.";
     }
 
-    // Bind the productID parameter
     $stmt->bind_param("i", $productID);
     $stmt->execute();
 
@@ -191,7 +181,7 @@ function deleteProduct($productID) {
 }
 
 function hasProduct($productID, $userID) {
-    $db = getDBConnection(); // Get database connection
+    $db = getDBConnection();
 
     $productID = intval($productID);
     $userID = intval($userID);
@@ -211,82 +201,5 @@ function hasProduct($productID, $userID) {
 
     $db->close();
 
-    return $count > 0; // Returns true if the product exists for the user, otherwise false
-}
-
-function countProducts() {
-    $db = getDBConnection(); // Get database connection
-
-    // Query to count the total number of products
-    $query = "SELECT COUNT(*) AS total FROM products";
-
-    // Prepare the statement
-    $stmt = $db->prepare($query);
-
-    if (!$stmt) {
-        return 0; // Or handle the error as required
-    }
-
-    // Execute the statement
-    $stmt->execute();
-
-    // Get the result set
-    $result = $stmt->get_result();
-
-    // Fetch the result
-    $row = $result->fetch_assoc();
-
-    // Close the statement and database connection
-    $stmt->close();
-    $db->close();
-
-    // Return the total number of products
-    return $row['total'];
-}
-
-function retrieveProductsWithLimit($productsPerPage, $offset) {
-    $db = getDBConnection(); // Get database connection
-
-    // Query to retrieve a limited number of products based on pagination parameters
-    $query = "SELECT * FROM products LIMIT ?, ?";
-
-    // Prepare the statement
-    $stmt = $db->prepare($query);
-
-    if (!$stmt) {
-        return []; // Or handle the error as required
-    }
-
-    // Bind the parameters
-    $stmt->bind_param("ii", $offset, $productsPerPage);
-
-    // Execute the statement
-    $stmt->execute();
-
-    // Get result set
-    $result = $stmt->get_result();
-
-    $products = [];
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $product = [
-                'name' => htmlspecialchars($row["name"]),
-                'description' => htmlspecialchars($row["description"]),
-                'price' => htmlspecialchars($row["price"]),
-                'quantity' => htmlspecialchars($row["quantity"]),
-                'id' => htmlspecialchars($row["id"]),
-                'image' => $row["image"],
-                'longDesc' => $row["longDesc"]
-            ];
-
-            $products[] = $product;
-        }
-    }
-
-    // Close statement
-    $stmt->close();
-    $db->close();
-
-    return $products;
+    return $count > 0;
 }

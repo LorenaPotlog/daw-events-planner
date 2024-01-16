@@ -7,6 +7,5 @@ require __DIR__ . '/../src/bootstrap.php';
     <div class="message-box">
         <p>Password has been successfully reset.</p>
         <p>You can <a href="login.php">login </a>now.</p>
-        <!-- You can add additional content or links here -->
     </div>
 <?php view('footer') ?>

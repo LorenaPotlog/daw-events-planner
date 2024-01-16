@@ -14,7 +14,6 @@ if (is_post_request()) {
     $username = $_POST['username'];
     $password  = $_POST['password'];
 
-    // if login fails
     try {
       login($username, $password);
     } catch (Exception $e) {
@@ -24,7 +23,6 @@ if (is_post_request()) {
         redirect_to('../../public/login.php');
     }
 
-    // login successfully
     redirect_to('../../public/index.php');
 
 } else if (is_get_request()) {

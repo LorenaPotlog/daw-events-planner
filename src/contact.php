@@ -36,13 +36,13 @@ if (is_post_request()) {
     }
 
     if (empty($errors)) {
-        $company_email = 'proiectproiect61@gmail.com';
         $client_message = "Hi $name,\n\nYour message is: $message.\nWe will get back to you soon!";
-        $company_message = "You got a new message from $name, $email: $message.";
         $subject = "Thank you for your message!";
-        $company_subject = 'You have a new message';
-
         $mail_to_customer = send_email($email, $subject, $client_message);
+
+        $company_email = 'proiectproiect61@gmail.com';
+        $company_message = "You got a new message from $name, $email: $message.";
+        $company_subject = 'You have a new message';
         $mail_to_company = send_email($company_email, $company_subject, $company_message, $email);
 
         if ($mail_to_customer && $mail_to_company) {

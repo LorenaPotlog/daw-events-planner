@@ -1,11 +1,11 @@
 <style>
     .slideshow-container {
         display: flex;
-        justify-content: space-between; /* Adjust the alignment as needed */
+        justify-content: space-between;
     }
 
     .slideshow-cell {
-        width: 30vw; /* Each slideshow takes up 30% of the viewport width */
+        width: 30vw;
         vertical-align: top;
     }
 
@@ -37,22 +37,19 @@
             }, 3000);
         }
 
-        // Loop for three slideshows with delay
         <?php
-        // Folders for each slideshow
         $folders = [
             "../resources/slideshow/1",
             "../resources/slideshow/2",
             "../resources/slideshow/3"
         ];
 
-        // Loop for three slideshows
         for ($i = 0; $i < 3; $i++):
         $dir = $folders[$i];
         ?>
         setTimeout(function () {
             animateSlideshows('.slideshow-cell:nth-child(<?php echo $i + 1; ?>)');
-        }, <?php echo $i * 5000; ?>); // Adjust the delay time as needed
+        }, <?php echo $i * 5000; ?>);
         <?php endfor; ?>
     });
 </script>
@@ -60,14 +57,12 @@
 <div id="my_slideshow" class="slideshow-container" style="padding: 20px">
     <?php
 
-    // Loop for three slideshows
     for ($i = 0; $i < 3; $i++):
         $dir = $folders[$i];
         ?>
         <div class="slideshow-cell">
             <div class="fadein">
                 <?php
-                // display images from directory
                 $scan_dir = scandir($dir);
                 foreach($scan_dir as $img):
                     if(in_array($img, array('.', '..')))

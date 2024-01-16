@@ -10,7 +10,6 @@ if (is_post_request()) {
     $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
     $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
 
-    // Validate email
     if ($email === false) {
         redirect_with_message(
             '../../public/edit_profile.php',
@@ -29,9 +28,7 @@ if (is_post_request()) {
         exit;
     }
 
-    // Validate photo if uploaded
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE) {
-        // Add further validation for the photo if needed
         $allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
         if (!in_array($_FILES['photo']['type'], $allowedFileTypes)) {
@@ -47,7 +44,6 @@ if (is_post_request()) {
         $photo = $_SESSION['photo'];
     }
 
-    // Update the user profile
     if (edit_user($_SESSION['user_id'], $email, $firstname, $lastname, $photo)) {
         redirect_with_message('../../public/edit_profile_success.php', 'Profile updated successfully.');
     } else {

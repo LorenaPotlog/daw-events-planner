@@ -46,7 +46,7 @@ if (!$product) {
                             <div class="similar-product">
 
                                 <?php
-                                $defaultImage = '../resources/photos/no-photo.jpg'; // Replace this with the path to your default image
+                                $defaultImage = '../resources/photos/no-photo.jpg';
                                 if (!empty($similarProduct['image'])) {
                                     $imageSource = "data:image/jpeg;base64," . base64_encode($similarProduct['image']);
                                 } else {

@@ -7,16 +7,14 @@ require __DIR__ . '/../src/reviews.php';
 <?php
 session_start();
 
-// Retrieve user details from the session or database (assuming it's stored in $_SESSION)
 $username = $_SESSION['valid_user'];
 $role = $_SESSION['role'];
 $user_id = $_SESSION['user_id'];
-$email = $_SESSION['email']; // Add this line
-$lastname = $_SESSION['lastname']; // Add this line
+$email = $_SESSION['email'];
+$lastname = $_SESSION['lastname'];
 $firstname = $_SESSION['firstname'];
 $photo = $_SESSION['photo'];
 
-// Add this line
 ?>
 
     <style>
@@ -26,7 +24,7 @@ $photo = $_SESSION['photo'];
     <div style="text-align: center;position: relative;">
 
         <?php
-        $defaultImage = '../resources/photos/no-photo2.png'; // Replace this with the path to your default image
+        $defaultImage = '../resources/photos/no-photo2.png';
         if (!empty($photo)) {
             $imageSource = "data:image/jpeg;base64," . base64_encode($photo);
         } else {

@@ -12,7 +12,7 @@ require __DIR__ . '/../src/bootstrap.php';
     </style>
 
     <div class="container-fluid heart-background"">
-    <div class="overlay"></div> <!-- Overlay for transparency -->
+    <div class="overlay"></div>
     <div class="container-fluid">
         <div class="row" style="margin-top: 3%; margin-bottom: 3%;">
             <div class="col-md-6 col-md-offset-3">

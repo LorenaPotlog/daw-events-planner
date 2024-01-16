@@ -32,7 +32,6 @@ function register_user(string $firstname, string $lastname, string $email, strin
         return false;
     }
 
-    // Close the statement and connection
     $stmt->close();
     $conn->close();
     return true;
@@ -149,7 +148,6 @@ function login(string $username, string $password): void
         throw new Exception("Wrong password");
     }
 
-    // Save user details in the session
     $_SESSION['valid_user'] = $user['username'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['user_id'] = $user['id'];
@@ -222,7 +220,6 @@ function isAuthorizedRoute($currentRoute)
         return true;
     }
 
-    // Allow routes with query parameters
     $parsedUrl = parse_url($currentRoute);
     $path = $parsedUrl['path'];
     $query = $parsedUrl['query'] ?? '';

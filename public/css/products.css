@@ -4,7 +4,7 @@
 }
 
 #content-wrap {
-    flex: 2; /* 2/3 of the page */
+    flex: 2;
     padding: 20px;
 }
 
@@ -24,12 +24,12 @@
 
 .product {
     box-sizing: border-box;
-    width: calc(25% - 15px); /* 4 columns with 15px margin in between */
+    width: calc(25% - 15px);
     padding: 10px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
     text-align: center;
-    position: relative; /* Add relative positioning */
+    position: relative;
 }
 
 .product h2 {

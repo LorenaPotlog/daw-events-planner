@@ -3,8 +3,6 @@
 require_once __DIR__ . '/../bootstrap.php';
 require_once 'products.php';
 
-//validate and sanitize data
-
 if (is_post_request()) {
     check_csrf_token();
     if(empty($_POST['productIDs'])){

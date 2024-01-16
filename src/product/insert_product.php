@@ -43,7 +43,6 @@ if (is_post_request()) {
     }
 
     if (!empty($errors)) {
-        // Redirect with error messages
         redirect_with_message(
             '../../public/insert_product.php',
             implode('<br>', $errors),
@@ -54,13 +53,11 @@ if (is_post_request()) {
         $result = insertProduct($name, $description, $price, $quantity, $user_id, $productImage);
 
         if (str_contains($result, 'inserted into')) {
-            // Redirect with success message
             redirect_with_message(
                 '../../public/insert_product.php',
                 'The product has been inserted.'
             );
         } else {
-            // Redirect with error message
             redirect_with_message(
                 '../../public/insert_product.php',
                 $result,
