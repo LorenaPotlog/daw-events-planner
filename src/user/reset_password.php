@@ -25,7 +25,7 @@ if (isset($_POST['reset-password'])) {
             $errors['no_email'] = 'Sorry, no user exists on our system with that email';
         } else {
             try {
-                $token = bin2hex(random_bytes(50));
+                $token = bin2hex(openssl_random_pseudo_bytes(50));
                 $sql = "INSERT INTO password_reset (email, token) VALUES (?, ?)";
                 $stmt = mysqli_prepare($db, $sql);
                 mysqli_stmt_bind_param($stmt, "ss", $email, $token);
