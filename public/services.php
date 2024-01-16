@@ -9,6 +9,10 @@ $pageNumber = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 
 $category = $_GET['category'] ?? null;
 
+if(!($category == 'wedding' || $category == 'bachelor' || $category == null) ){
+    redirect_to('services.php');
+}
+
 $offset = ($pageNumber - 1) * $servicesPerPage;
 
 try {
