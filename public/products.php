@@ -44,7 +44,7 @@ require __DIR__ . '/../src/product/delete_product.php';
                             <h2><?= $product['name'] ?></h2>
                         </a>
                         <?php
-                        $defaultImage = '../resources/photos/no-photo.jpg'; // Replace this with the path to your default image
+                        $defaultImage = 'https://i.ibb.co/0tFtV35/no-photo.jpg'; // Replace this with the path to your default image
                         if (!empty($product['image'])) {
                             $imageSource = "data:image/jpeg;base64," . base64_encode($product['image']);
                         } else {

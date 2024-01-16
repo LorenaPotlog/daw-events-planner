@@ -19,7 +19,7 @@ if (!is_user_logged_in()) {
         <div class="account-details-box">
             <p>Edit your profile:</p>
             <?php
-            $defaultImage = '../resources/photos/no-photo2.png';
+            $defaultImage = 'https://i.ibb.co/yV6Wnzb/no-photo2.png';
             if (!empty($user['photo'])) {
                 $imageSource = "data:image/jpeg;base64," . base64_encode($user['photo']);
             } else {

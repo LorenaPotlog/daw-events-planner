@@ -73,12 +73,12 @@ if ( !is_admin() ) {
                     <h2>DB & Diagrams</h2>
 
                     <figure>
-                        <img src="../resources/UML.png" alt="logo" style="width: 700px; height: 400px">
+                        <img src="../resources/diagrams/UML.png" alt="logo" style="width: 700px; height: 400px">
                         <figcaption>Database entities & realtionships</figcaption>
                     </figure>
 
                     <figure>
-                        <img src="../resources/UML.png" alt="logo" style="width: 700px; height: 400px">
+                        <img src="../resources/diagrams/UML.png" alt="logo" style="width: 700px; height: 400px">
                         <figcaption>Place an order</figcaption>
                     </figure>
 

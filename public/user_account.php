@@ -24,7 +24,7 @@ $photo = $_SESSION['photo'];
     <div style="text-align: center;position: relative;">
 
         <?php
-        $defaultImage = '../resources/photos/no-photo2.png';
+        $defaultImage = 'https://i.ibb.co/yV6Wnzb/no-photo2.png';
         if (!empty($photo)) {
             $imageSource = "data:image/jpeg;base64," . base64_encode($photo);
         } else {

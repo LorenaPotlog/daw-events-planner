@@ -46,7 +46,7 @@ if (!$product) {
                             <div class="similar-product">
 
                                 <?php
-                                $defaultImage = '../resources/photos/no-photo.jpg';
+                                $defaultImage = 'https://i.ibb.co/0tFtV35/no-photo.jpg';
                                 if (!empty($similarProduct['image'])) {
                                     $imageSource = "data:image/jpeg;base64," . base64_encode($similarProduct['image']);
                                 } else {

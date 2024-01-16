@@ -18,7 +18,7 @@ require __DIR__ . '/../src/user/register.php';
                         team of experienced planners is here to turn your vision into an unforgettable reality.
 
                     </p>
-                    <img src="../resources/photos/team.jpg" alt="Event Planning" class="photo"
+                    <img src="https://i.ibb.co/kHTWvSq/team.jpg" alt="Event Planning" class="photo"
                          style="float: left; margin-right: 20px; width: 750px; height: 400px; border-radius: 5%">
                     <p style="text-align: center">
                         From <b>weddings</b> to small gatherings, our meticulous attention to detail ensures that your
@@ -51,7 +51,7 @@ require __DIR__ . '/../src/user/register.php';
                         extravaganza, or a
                         vibrant themed party, we have the expertise to turn your vision into reality.
                     </p>
-                    <img src='../resources/photos/index-services.jpeg' alt="Decorations" class="photo"
+                    <img src='https://i.ibb.co/bRLzDcV/index-services.jpg' alt="Decorations" class="photo"
                          style="float: left; margin-right: 20px; width: 400px; height: 300px; border-radius: 5%">
                     <div style="padding-left: 35%; padding-right: 5%">
                         <p style="text-align: center;">
@@ -89,13 +89,13 @@ require __DIR__ . '/../src/user/register.php';
                     <h2 style="text-align: center; padding-bottom: 20px;">Our partners</h2>
 
                     <div class="partners-container">
-                        <img src="../resources/photos/logo3.jpeg" alt="Partner 3" class="partner-img">
-                        <img src="../resources/photos/logo1.jpg" alt="Partner 1" class="partner-img">
-                        <img src="../resources/photos/logo2.png" alt="Partner 2" class="partner-img">
-                        <img src="../resources/photos/logo4.jpg" alt="Partner 4" class="partner-img">
-                        <img src="../resources/photos/logo2.png" alt="Partner 2" class="partner-img">
-                        <img src="../resources/photos/logo3.jpeg" alt="Partner 3" class="partner-img">
-                        <img src="../resources/photos/logo1.jpg" alt="Partner 1" class="partner-img">
+                        <img src="https://i.ibb.co/GVNkPXW/logo3.jpg" alt="Partner 3" class="partner-img">
+                        <img src="https://i.ibb.co/PDNy4FJ/logo1.jpg" alt="Partner 1" class="partner-img">
+                        <img src="https://i.ibb.co/NstXFHf/logo2.png" alt="Partner 2" class="partner-img">
+                        <img src="https://i.ibb.co/T8y2978/logo4.jpg" alt="Partner 4" class="partner-img">
+                        <img src="https://i.ibb.co/NstXFHf/logo2.png" alt="Partner 2" class="partner-img">
+                        <img src="https://i.ibb.co/GVNkPXW/logo3.jpg" alt="Partner 3" class="partner-img">
+                        <img src="https://i.ibb.co/PDNy4FJ/logo1.jpg" alt="Partner 1" class="partner-img">
                     </div>
 
                     <div style="display: flex; justify-content: space-between;">
@@ -117,9 +117,9 @@ require __DIR__ . '/../src/user/register.php';
                 <section id="products">
                     <h2 style="text-align: left; padding-bottom: 20px;">Our products - buy directly!</h2>
 
-                    <img src='../resources/photos/index-products1.jpg' alt="Decorations" class="photo"
+                    <img src='https://i.ibb.co/3kkfTLD/index-products1.jpg' alt="Decorations" class="photo"
                          style="float: right; margin-top: 20px; width: 320px; height: 350px; border-radius: 15px;">
-                    <img src='../resources/photos/index-products2.jpg' alt="Decorations" class="photo"
+                    <img src='https://i.ibb.co/w0RqYXs/index-products2.jpg' alt="Decorations" class="photo"
                          style="float: left; margin-top: 20px; width: 320px; height: 350px; border-radius: 15px;">
 
                     <div style="text-align: center; padding-bottom: 20px">
@@ -175,7 +175,7 @@ require __DIR__ . '/../src/user/register.php';
 
                     <div style="width: 30%;">
                         <p style="margin-bottom: 5px;">Scan the QR code below</p>
-                        <img src="../resources/photos/qr.png" alt="QR Code" style="width: 200px; height: 200px;">
+                        <img src="https://i.ibb.co/x8kgRcL/qr.png" alt="QR Code" style="width: 200px; height: 200px;">
                     </div>
 
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 30%;">

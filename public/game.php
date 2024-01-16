@@ -7,7 +7,7 @@ require __DIR__ . '/../src/bootstrap.php';
     <style>
         <?php include 'css/game.css' ?>
         .heart-background {
-            background-image: url('../resources/photos/heart-bg.jpg');
+            background-image: url('https://i.ibb.co/8YcyJCh/heart-bg.jpg');
         }
     </style>
 
