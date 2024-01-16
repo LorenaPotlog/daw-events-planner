@@ -212,7 +212,7 @@ function isAuthorizedRoute($currentRoute)
         '/details/public/technicalities.php' => '/public/technicalities.php',
         '/details/public/thank_you.php' => '/public/thank_you.php',
         '/details/public/user_account.php' => '/public/user_account.php',
-        '/details/public/game.php' => '/public/game.php=',
+        '/details/public/game.php' => '/public/game.php',
     ];
 
     if (in_array($currentRoute, $authorizedRoutes)) {
