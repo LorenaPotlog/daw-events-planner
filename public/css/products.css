@@ -64,12 +64,12 @@
 .pdf-form ul {
     list-style: none;
     display: flex;
-    flex-wrap: wrap; /* Ensure items wrap to the next line when needed */
+    flex-wrap: wrap;
     padding: 0;
 }
 
 .pdf-form li {
-    flex: 0 0 calc(33.33% - 20px); /* Each column takes up one-third of the container with a gap of 20px between items */
+    flex: 0 0 calc(33.33% - 20px);
     display: flex;
     align-items: center;
     margin-bottom: 10px;

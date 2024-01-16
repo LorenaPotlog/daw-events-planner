@@ -12,6 +12,7 @@ if (is_post_request()) {
     $menu_types = filter_input(INPUT_POST, 'menu_types', FILTER_SANITIZE_STRING);
     $max_guests = filter_input(INPUT_POST, 'max_guests', FILTER_SANITIZE_NUMBER_INT);
     $long_description = filter_input(INPUT_POST, 'long_description', FILTER_SANITIZE_STRING);
+    $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
     // Check if an image is uploaded
     if (isset($_FILES['serviceImage']) && $_FILES['serviceImage']['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -39,6 +40,11 @@ if (is_post_request()) {
         $errors[] = 'Invalid menu type selected.';
     }
 
+    $valid_category = ['wedding', 'bachelor'];
+    if (empty($category) || !in_array($category, $valid_category)) {
+        $errors[] = 'Invalid category selected.';
+    }
+
     if ($max_guests === false || $max_guests <= 0) {
         $errors[] = 'Invalid maximum guests value. Cannot be negative.';
     }
@@ -51,7 +57,7 @@ if (is_post_request()) {
             FLASH_ERROR
         );
     } else {
-        $result = insertService($name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage);
+        $result = insertService($name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage, $category);
 
         if (str_contains($result, 'inserted into')) {
             // Redirect with success message

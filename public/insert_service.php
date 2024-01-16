@@ -48,6 +48,15 @@ if (!is_user_logged_in() || !is_admin()) {
                         <td><input type="text" name="max_guests" maxlength="3" size="3"></td>
                     </tr>
                     <tr>
+                        <td>Category</td>
+                        <td>
+                            <select name="category" style="width: 100%">
+                                <option value="wedding">Wedding</option>
+                                <option value="bachelor">Bachelor & Bachelorette</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Description</td>
                         <td><textarea name="long_description" maxlength="500" style="width: 100%;"></textarea></td>
                     </tr>

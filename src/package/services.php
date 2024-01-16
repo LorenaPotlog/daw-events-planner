@@ -94,9 +94,7 @@ function retrieveServiceById($serviceId)
             'id' => htmlspecialchars($row["id"]),
             'name' => htmlspecialchars($row["name"]),
             'description' => htmlspecialchars($row["description"]),
-//            'price' => htmlspecialchars($row["price"]),
-//            'quantity' => htmlspecialchars($row["menu_types"]),
-//            'id' => htmlspecialchars($row["max_guests"]),
+            'price' => htmlspecialchars($row["price"]),
             'longDesc' => $row["longDesc"]
         ];
 
@@ -111,45 +109,34 @@ function retrieveServiceById($serviceId)
     }
 }
 
-function retrieveServicesWithLimit($limit, $offset, $nameFilter = ''): array
+function retrieveServicesWithLimit($limit, $offset, $category): array
 {
     $db = getDBConnection();
 
-    $filter_menu_type = $_GET['menu_type'] ?? '';
-    $sort_order = $_GET['sort'] ?? 'ASC';
-
     $query = "SELECT * FROM package";
 
-    // Apply filters if selected
-    if (!empty($filter_menu_type)) {
-        $query .= " WHERE menu_types = ?";
+    if (!empty($category)) {
+        $query .= " WHERE category = ?";
     }
 
-    // Apply sorting
-    $query .= " ORDER BY price " . $sort_order;
-
-    // Add LIMIT and OFFSET for pagination
     $query .= " LIMIT ? OFFSET ?";
 
-    // Prepare the statement
-    if ($stmt = $db->prepare($query)) {
-        // Bind parameters
-        if (!empty($filter_menu_type)) {
-            $stmt->bind_param("si", $filter_menu_type, $limit);
+    $services = [];
+
+    try {
+        $stmt = $db->prepare($query);
+
+        if (!empty($category)) {
+            $stmt->bind_param('sii', $category, $limit, $offset);
         } else {
-            $stmt->bind_param("ii", $limit, $offset);
+            $stmt->bind_param('ii', $limit, $offset);
         }
 
-        // Execute the statement
         $stmt->execute();
 
-        // Get result set
         $result = $stmt->get_result();
 
-        $services = [];
-
         if ($result->num_rows > 0) {
-            // Fetch data and store in services array
             while ($row = $result->fetch_assoc()) {
                 $service = [
                     'id' => htmlspecialchars($row["id"]),
@@ -157,94 +144,83 @@ function retrieveServicesWithLimit($limit, $offset, $nameFilter = ''): array
                     'description' => htmlspecialchars($row["description"]),
                     'price' => htmlspecialchars($row["price"]),
                     'menu_types' => htmlspecialchars($row["menu_types"]),
-                    'max_guests' => htmlspecialchars($row["max_guests"])
-                    // Add other fields as needed
+                    'max_guests' => htmlspecialchars($row["max_guests"]),
+                    'category' => htmlspecialchars($row["category"])
                 ];
 
                 $services[] = $service;
             }
-        } else {
-            echo "0 results";
         }
 
-        // Close statement
         $stmt->close();
-    } else {
-        echo "Error in prepared statement";
-    }
-
-    $db->close();
-
-    // Apply name filter in PHP
-    if (!empty($nameFilter)) {
-        $services = array_filter($services, function ($service) use ($nameFilter) {
-            return stripos($service['name'], $nameFilter) !== false;
-        });
+    } catch (Exception $e) {
+        // Handle exceptions (log or rethrow)
+        throw new Exception("Error retrieving services: " . $e->getMessage());
+    } finally {
+        $db->close();
     }
 
     return $services;
 }
 
-function countServices(): int
+function countServices( $category = ''): int
 {
     $db = getDBConnection();
 
-    $filter_menu_type = $_GET['menu_type'] ?? '';
-
     $query = "SELECT COUNT(*) as count FROM package";
 
-    // Apply filters if selected
-    if (!empty($filter_menu_type)) {
-        $query .= " WHERE menu_types = ?";
+    $whereClause = '';
+
+    if (!empty($category)) {
+        $whereClause .= (!empty($whereClause) ? " AND" : "") . " category = ?";
     }
 
-    // Prepare the statement
-    if ($stmt = $db->prepare($query)) {
-        // Bind parameter if filter_menu_type is not empty
-        if (!empty($filter_menu_type)) {
-            $stmt->bind_param("s", $filter_menu_type);
+    if (!empty($whereClause)) {
+        $query .= " WHERE" . $whereClause;
+    }
+
+    $count = 0;
+
+    try {
+        $stmt = $db->prepare($query);
+
+        $paramCount = 0;
+
+        if (!empty($category)) {
+            $stmt->bind_param("s", $category);
+            $paramCount++;
         }
 
-        // Execute the statement
         $stmt->execute();
-
-        // Get result set
         $result = $stmt->get_result();
 
-        $count = 0;
-
         if ($result->num_rows > 0) {
-            // Fetch data and store the count
             $row = $result->fetch_assoc();
             $count = $row['count'];
-        } else {
-            echo "0 results";
         }
 
-        // Close statement
         $stmt->close();
-    } else {
-        echo "Error in prepared statement";
+    } catch (Exception $e) {
+        // Handle exceptions (log or rethrow)
+        throw new Exception("Error counting services: " . $e->getMessage());
+    } finally {
+        $db->close();
     }
-
-    $db->close();
 
     return $count;
 }
 
-function insertService($name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage): string
+function insertService($name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage, $category): string
 {
     $db = getDBConnection();
 
-    // Prepare the statement
-    $stmt = $db->prepare("INSERT INTO package (name, description, price, menu_types, max_guests, longDesc, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $db->prepare("INSERT INTO package (name, description, price, menu_types, max_guests, longDesc, image, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
     if (!$stmt) {
         return "Error in prepared statement: " . $db->error;
     }
 
-
-    $stmt->bind_param("ssissbs", $name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage);
+    $stmt->bind_param("ssissbss", $name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage, $category);
     $stmt->execute();
 
     $affected_rows = $stmt->affected_rows;

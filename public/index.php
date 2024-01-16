@@ -73,8 +73,8 @@ require __DIR__ . '/../src/user/register.php';
                         </p>
                     </div>
                     <div style="display:flex; justify-content: space-evenly; padding-bottom:1%">
-                        <a href="services.php?name=wedding" class="styled-link" style="width: 30%;">Weddings</a>
-                        <a href="services.php?name=bachelor" class="styled-link" style="width: 30%;">Bachelor &
+                        <a href="services.php?category=wedding" class="styled-link" style="width: 30%;">Weddings</a>
+                        <a href="services.php?category=bachelor" class="styled-link" style="width: 30%;">Bachelor &
                             Bachelorette</a>
                     </div>
                     <p style="text-align: center;">

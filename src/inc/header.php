@@ -43,8 +43,8 @@ if (!isAuthorizedRoute($currentRoute)) {
                     <a href="services.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-gift"></i> Services <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="services.php">All</a></li>
-                        <li><a href="services.php?name=wedding"><i class="fas fa-ring"></i> Wedding</a></li>
-                        <li><a href="services.php?name=bachelor"><i class="fas fa-glass-cheers"></i> Bachelor & Bachelorette</a></li>
+                        <li><a href="services.php?category=wedding"><i class="fas fa-ring"></i> Wedding</a></li>
+                        <li><a href="services.php?category=bachelor"><i class="fas fa-glass-cheers"></i> Bachelor & Bachelorette</a></li>
                         <!-- Add more dropdown items if needed -->
                     </ul>
                 </li>
