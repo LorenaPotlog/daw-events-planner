@@ -10,10 +10,10 @@ if (is_post_request()) {
     $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
     $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
 
-    if ($email === false) {
+    if ($email !== $_SESSION['email']) {
         redirect_with_message(
             '../../public/edit_profile.php',
-            'Invalid email format.',
+            'Please contact us if you want to change your email.',
             FLASH_ERROR
         );
         exit;
@@ -59,7 +59,7 @@ if (is_post_request()) {
         $photo = $_SESSION['photo'];
     }
 
-    if (edit_user($_SESSION['user_id'], $email, $firstname, $lastname, $photo)) {
+    if (edit_user($_SESSION['user_id'], $firstname, $lastname, $photo)) {
         redirect_with_message('../../public/edit_profile_success.php', 'Profile updated successfully.');
     } else {
         redirect_with_message('../../public/edit_profile.php', 'Error when updating profile', FLASH_ERROR);
