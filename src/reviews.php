@@ -1,7 +1,7 @@
 <?php
 function retrieveReviews()
 {
-    $db = getDBConnection(); // Get database connection
+    $db = getDBConnection();
 
     $query = "SELECT reviews.user_id, users.firstname, users.photo, reviews.message, reviews.stars FROM reviews
               JOIN users ON reviews.user_id = users.id";

@@ -28,10 +28,8 @@ function generate_services_pdf($services): void
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
 
-    // Add a title
     $pdf->Cell(0, 10, 'Our offer', 0, 1, 'C');
 
-    // Display product information in the PDF
     foreach ($services as $service) {
         $pdf->Cell(0, 10, 'Service: ' . $service['name'], 0, 1);
         $pdf->Cell(0, 10, 'Description: ' . $service['description'], 0, 1);
@@ -43,6 +41,5 @@ function generate_services_pdf($services): void
         $pdf->Ln();
     }
 
-    // Output the PDF to the browser with a filename
     $pdf->Output('service_list.pdf', 'D');
 }

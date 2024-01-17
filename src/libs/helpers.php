@@ -17,16 +17,6 @@ function is_post_request(): bool
     return strtoupper($_SERVER['REQUEST_METHOD']) === 'POST';
 }
 
-function is_put_request(): bool
-{
-    return strtoupper($_SERVER['REQUEST_METHOD']) === 'PUT';
-}
-
-function error_class(array $errors, string $field): string
-{
-    return isset($errors[$field]) ? 'error' : '';
-}
-
 function redirect_to(string $url): void
 {
     header('Location:' . $url);
