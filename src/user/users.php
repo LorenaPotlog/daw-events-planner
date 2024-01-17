@@ -20,13 +20,13 @@ function get_user_by_id($user_id) {
     return $user;
 }
 
-function edit_user($user_id, $email, $firstname, $lastname, $photo) {
+function edit_user($user_id, $firstname, $lastname, $photo) {
     $connection = getDBConnection();
 
-    $sql = 'UPDATE users SET email = ?, firstname = ?, lastname = ?, photo = ? WHERE id = ?';
+    $sql = 'UPDATE users SET  firstname = ?, lastname = ?, photo = ? WHERE id = ?';
 
     if ($statement = $connection->prepare($sql)) {
-        $statement->bind_param('ssssi', $email, $firstname, $lastname, $photo, $user_id);  // 's' represents string, 'i' represents integer type
+        $statement->bind_param('sssi', $firstname, $lastname, $photo, $user_id);  // 's' represents string, 'i' represents integer type
 
         if ($statement->execute()) {
             $statement->close();
