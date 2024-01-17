@@ -13,15 +13,12 @@ function register_user(string $firstname, string $lastname, string $email, strin
         throw new Exception("Email already registered. Please login.");
     }
 
-    // Prepare SQL statement
     $sql = "INSERT INTO users (username, lastname, firstname, email, password) VALUES (?, ?, ?, ?, ?)";
 
-    // Create a prepared statement
     $stmt = $conn->prepare($sql);
 
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    // Bind parameters and execute the statement
     $stmt->bind_param("sssss", $username, $lastname, $firstname, $email, $hashedPassword);
 
     if (!$stmt->execute()) {

@@ -8,7 +8,9 @@ if (!is_user_logged_in()){ ?>
         <p>You need to be logged in to leave a review.</p>
         <a href="login.php">Go to login</a>
     </div>
-    <?php exit; }
+    <?php
+    view('footer');
+    exit;}
 ?>
     <style>
         <?php include 'css/leave_review.css' ?>

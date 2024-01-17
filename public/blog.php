@@ -2,7 +2,7 @@
 require __DIR__ . '/../src/bootstrap.php';
 
 ?>
-<?php view('header', ['title' => 'Login']) ?>
+<?php view('header', ['title' => 'Blog']) ?>
 
 
     <style>
