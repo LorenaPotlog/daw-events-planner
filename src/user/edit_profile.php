@@ -28,18 +28,33 @@ if (is_post_request()) {
         exit;
     }
 
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE) {
-        $allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    $maxFileSize = 5 * 1024 * 1024; // 5mb max
+    $allowedFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
-        if (!in_array($_FILES['photo']['type'], $allowedFileTypes)) {
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $tmpFilePath = $_FILES['photo']['tmp_name'];
+
+        if ($_FILES['photo']['size'] <= $maxFileSize) {
+            $imageInfo = getimagesize($tmpFilePath);
+
+            if ($imageInfo !== false && in_array($imageInfo['mime'], $allowedFileTypes)) {
+                $photo = file_get_contents($tmpFilePath);
+            } else {
+                redirect_with_message(
+                    '../../public/edit_profile.php',
+                    'Invalid file format. Please upload a valid image file - jpeg, png, jpg',
+                    FLASH_ERROR
+                );
+                exit;
+            }
+        } else {
             redirect_with_message(
                 '../../public/edit_profile.php',
-                'Invalid file format. Please upload a valid image file.',
+                'File size exceeds the limit for the photo.',
                 FLASH_ERROR
             );
             exit;
         }
-
     } else {
         $photo = $_SESSION['photo'];
     }

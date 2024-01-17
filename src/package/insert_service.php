@@ -14,14 +14,26 @@ if (is_post_request()) {
     $long_description = filter_input(INPUT_POST, 'long_description', FILTER_SANITIZE_STRING);
     $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-    // Check if an image is uploaded
-    if (isset($_FILES['serviceImage']) && $_FILES['serviceImage']['error'] !== UPLOAD_ERR_NO_FILE) {
-        $serviceImage = file_get_contents($_FILES['serviceImage']['tmp_name']);
-    } else {
-        $serviceImage = ''; // Default for no image
-    }
-
     $errors = [];
+
+    $maxFileSize = 5 * 1024 * 1024; // 5mb max
+    if (isset($_FILES['serviceImage']) && $_FILES['serviceImage']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $tmpFilePath = $_FILES['serviceImage']['tmp_name'];
+
+        if ($_FILES['serviceImage']['size'] <= $maxFileSize) {
+            $imageInfo = getimagesize($tmpFilePath);
+
+            if ($imageInfo !== false) {
+                $serviceImage = file_get_contents($tmpFilePath);
+            } else {
+                $errors[] = 'Invalid photo. Please choose another one or proceed with no photo.';
+            }
+        } else {
+            $errors[] = 'File exceed limit';
+        }
+    } else {
+        $serviceImage = '';
+    }
 
     if (empty($name)) {
         $errors[] = 'Service name is required.';
@@ -45,12 +57,11 @@ if (is_post_request()) {
         $errors[] = 'Invalid category selected.';
     }
 
-    if ($max_guests === false || $max_guests <= 0) {
-        $errors[] = 'Invalid maximum guests value. Cannot be negative.';
+    if ($max_guests === false || $max_guests <= 0 || $max_guests > 10001) {
+        $errors[] = 'Invalid maximum guests value, should be between 0 and 10000';
     }
 
     if (!empty($errors)) {
-        // Redirect with error messages
         redirect_with_message(
             '../../public/insert_service.php',
             implode('<br>', $errors),
@@ -60,7 +71,6 @@ if (is_post_request()) {
         $result = insertService($name, $description, $price, $menu_types, $max_guests, $long_description, $serviceImage, $category);
 
         if (str_contains($result, 'inserted into')) {
-            // Redirect with success message
             redirect_with_message(
                 '../../public/insert_service.php',
                 'The service has been inserted.'

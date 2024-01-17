@@ -12,14 +12,26 @@ if (is_post_request()) {
     $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $quantity = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_NUMBER_INT);
 
-
-    if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] !== UPLOAD_ERR_NO_FILE) {
-        $productImage = file_get_contents($_FILES['productImage']['tmp_name']);
-    } else {
-        $productImage = ''; // Default for no image
-    }
-
     $errors = [];
+
+    $maxFileSize = 5 * 1024 * 1024; // 5mb max
+    if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $tmpFilePath = $_FILES['productImage']['tmp_name'];
+
+        if ($_FILES['productImage']['size'] <= $maxFileSize) {
+            $imageInfo = getimagesize($tmpFilePath);
+
+            if ($imageInfo !== false) {
+                $productImage = file_get_contents($tmpFilePath);
+            } else {
+                $errors[] = 'Invalid photo. Please choose another one or proceed with no photo.';
+            }
+        } else {
+            $errors[] = 'File exceed limit';
+        }
+    } else {
+        $productImage = '';
+    }
 
     if (empty($name)) {
         $errors[] = 'Product name is required.';
@@ -33,8 +45,8 @@ if (is_post_request()) {
         $errors[] = 'Invalid price. Please enter a valid positive number.';
     }
 
-    if ($quantity === false || $quantity <= 0) {
-        $errors[] = 'Invalid quantity. Please enter a valid positive integer.';
+    if ($quantity === false || $quantity <= 0 || $quantity > 201) {
+        $errors[] = 'Invalid quantity, please keep it between 0 and 200.';
     }
 
     $existingProduct = retrieveProductByName($name);
