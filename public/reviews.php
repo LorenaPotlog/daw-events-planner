@@ -90,7 +90,7 @@ foreach ($reviews as $review) {
     ?>
     <div class="review">
         <?php
-        $defaultImage = '../resources/photos/no-photo.png';
+        $defaultImage = 'https://i.ibb.co/yV6Wnzb/no-photo2.png';
         if (!empty($review['photo'])) {
         $imageSource = "data:image/jpeg;base64," . base64_encode($review['photo']);
         } else {
