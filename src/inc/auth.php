@@ -40,7 +40,7 @@ function register_user(string $firstname, string $lastname, string $email, strin
 function send_activation_email(string $email): bool
 {
     $verificationCode = md5($email);
-    $verificationLink = "http://daw-events-planner-ed298d55c5bd.herokuapp.com/user/src/verify.php?code=$verificationCode";
+    $verificationLink = "http://daw-events-planner-ed298d55c5bd.herokuapp.com/src/user/verify.php?code=$verificationCode";
     $subject = "Verify Your Email Address";
     $message = "Click the link below to verify your email address:\n$verificationLink";
 
