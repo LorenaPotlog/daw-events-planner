@@ -2,7 +2,7 @@
 require __DIR__ . '/../src/bootstrap.php';
 ?>
 
-<?php view('header', ['title' => 'Email was sent successfully']); ?>
+<?php view('header', ['title' => 'Thank you']); ?>
 
 <div class="message-box">
     <p >Thank you for your message!</p>

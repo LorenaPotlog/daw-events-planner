@@ -6,6 +6,9 @@ if (is_post_request()) {
     $rating = isset($_POST['rating']) ? filter_var($_POST['rating'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 5]]) : null;
     $message = isset($_POST['message']) ? filter_var($_POST['message'], FILTER_SANITIZE_STRING) : null;
 
+    //for special characters
+    $message = html_entity_decode($message);
+
     if ($rating === false) {
         redirect_with_message('../../public/leave_review.php', 'Invalid rating. Please choose between 1-5 stars.', FLASH_ERROR);
         exit;

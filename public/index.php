@@ -2,7 +2,7 @@
 require __DIR__ . '/../src/user/register.php';
 ?>
 
-<?php view('header', ['title' => 'Register']); ?>
+<?php view('header', ['title' => 'Home']); ?>
     <style>
         <?php include 'css/index.css' ?>
 

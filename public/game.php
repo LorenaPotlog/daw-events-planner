@@ -2,7 +2,7 @@
 require __DIR__ . '/../src/bootstrap.php';
 ?>
 
-<?php view('header', ['title' => 'Contact us']); ?>
+<?php view('header', ['title' => 'Game']); ?>
 
     <style>
         <?php include 'css/game.css' ?>

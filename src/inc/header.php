@@ -11,7 +11,6 @@ if (!isAuthorizedRoute($currentRoute)) {
 
 //check for cookies
 if (!isset($_COOKIE['cookiesAccepted']) || $_COOKIE['cookiesAccepted'] !== 'true') {
-    echo 'Please accept the cookies';
 }
 ?>
 
@@ -34,11 +33,9 @@ if (!isset($_COOKIE['cookiesAccepted']) || $_COOKIE['cookiesAccepted'] !== 'true
 <body>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid" style="font-size: 2rem">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <a class="navbar-brand" href="index.php" style="padding-right: 50px">
+        <a class="navbar-brand" href="index.php" style="padding-right: 5px">
             <i class="fas fa-ring"></i> DETAILS
         </a>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
@@ -50,7 +47,6 @@ if (!isset($_COOKIE['cookiesAccepted']) || $_COOKIE['cookiesAccepted'] !== 'true
                         <li><a href="services.php">All</a></li>
                         <li><a href="services.php?category=wedding"><i class="fas fa-ring"></i> Wedding</a></li>
                         <li><a href="services.php?category=bachelor"><i class="fas fa-glass-cheers"></i> Bachelor & Bachelorette</a></li>
-                        <!-- Add more dropdown items if needed -->
                     </ul>
                 </li>
                 <li><a href="products.php"><i class="fas fa-shopping-bag"></i> Shop</a></li>
@@ -65,7 +61,6 @@ if (!isset($_COOKIE['cookiesAccepted']) || $_COOKIE['cookiesAccepted'] !== 'true
 
             </ul>
 
-            <!-- Right-aligned items -->
             <ul class="nav navbar-nav navbar-right">
                 <?php
                 $username = current_user();

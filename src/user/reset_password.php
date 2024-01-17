@@ -31,7 +31,7 @@ if (isset($_POST['reset-password'])) {
                 mysqli_stmt_bind_param($stmt, "ss", $email, $token);
                 mysqli_stmt_execute($stmt);
 
-                $subject = "Reset your password on details.com";
+                $subject = "Reset your password on DETAILS - event planner";
                 $msg = "Hi there, click on this <a href=\"http://daw-events-planner-ed298d55c5bd.herokuapp.com/public/new_password.php?token=" . $token . "\">link</a> to reset your password on our site";
                 $msg = wordwrap($msg, 70);
                 send_email($email, $subject, $msg);
@@ -39,7 +39,7 @@ if (isset($_POST['reset-password'])) {
                 header('Location: ../../public/pending.php?email=' . $email);
                 exit();
             } catch (Exception $e) {
-                $errors['token_generation'] = 'Token generation failed';
+                $errors['token_generation'] = 'Token generation failed ' . $e->getMessage();
             }
         }
     }
